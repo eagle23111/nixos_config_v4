@@ -3,6 +3,7 @@
   flake.nixosModules.bypassCen = {pkgs,...}: 
   let 
     package = inputs.self.packages.${pkgs.system}.zapretMod;
+    #package = pkgs.zapret;
   in
   {
     services.zapret = {

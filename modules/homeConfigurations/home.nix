@@ -42,9 +42,9 @@
 
     llama-cpp
     lmstudio
+    
     inputs.nvchad4nix.packages.${system}.default
-
-    unstable.hydrus
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hydrus
 
     evolution
 

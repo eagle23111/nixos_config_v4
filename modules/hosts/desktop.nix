@@ -11,6 +11,7 @@
         self.nixosModules.nvidia
         self.nixosModules.qemu
         self.nixosModules.snapper
+        self.nixosModules.niri
 
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware
@@ -36,7 +37,7 @@
 
   #boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # TODO: probably move it somewhere else
+  fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
 
   services.pipewire = {
@@ -93,7 +94,7 @@
 
   system.stateVersion = "25.11";
   };
-
+  
     flake.nixosModules.desktopHardware = {
   config,
   lib,

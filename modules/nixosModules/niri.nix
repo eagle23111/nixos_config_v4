@@ -1,6 +1,14 @@
-  {pkgs, inputs, ...}:{
-  flake.nixosModule.niri = {pkgs, inputs,...}:
+{pkgs, inputs, ...}:{
+  flake.nixosModules.niri = {pkgs,...}:
   {
-    imports = [../../niri/nixosModule.nix];
+    imports = [
+      inputs.niri.nixosModules.niri
+      inputs.stylix.nixosModules.stylix
+      ../../niri/nixosModule.nix
+    ];
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
+    environment.systemPackages = [
+      inputs.noctalia.packages.${pkgs.system}.default
+    ];
   };
 }

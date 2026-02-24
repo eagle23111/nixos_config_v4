@@ -3,12 +3,6 @@
   inputs,
   ...
 }: {
-  imports = [
-    inputs.niri.nixosModules.niri
-    inputs.stylix.nixosModules.stylix
-  ];
-  nixpkgs.overlays = [inputs.niri.overlays.niri];
-
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
@@ -27,7 +21,6 @@
   #services.power-profiles-daemon.enable or services.tuned.enable = true;
   #services.upower.enable = true;
   environment.systemPackages = with pkgs; [
-    inputs.noctalia.packages.${system}.default
     xwayland-satellite
     playerctl
     file-roller
