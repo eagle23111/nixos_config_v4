@@ -1,126 +1,133 @@
-{pkgs, inputs, ...}:
 {
-  flake.nixosModules.nixLD = {pkgs, config,...}: {
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    # Core system and compression
-    glibc
-    zstd
-    stdenv.cc.cc.lib
-    curl
-    openssl
-    attr
-    libssh
-    bzip2
-    libxml2
-    acl
-    libsodium
-    util-linux
-    xz
-    systemd
+  pkgs,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.nixLD = {
+    pkgs,
+    config,
+    ...
+  }: {
+    programs.nix-ld.enable = true;
+    programs.nix-ld.libraries = with pkgs; [
+      # Core system and compression
+      glibc
+      zstd
+      stdenv.cc.cc.lib
+      curl
+      openssl
+      attr
+      libssh
+      bzip2
+      libxml2
+      acl
+      libsodium
+      util-linux
+      xz
+      systemd
 
-    # Graphics and display (your originals + expansions)
-    config.hardware.graphics.package # mesa/nvidia
-    glib
-    zlib
-    libgccjit
-    libGL
-    libGLU
-    libva
-    libgbm
-    libdrm
-    vulkan-loader
-    libvdpau
-    libxkbcommon
-    pipewire
+      # Graphics and display (your originals + expansions)
+      config.hardware.graphics.package # mesa/nvidia
+      glib
+      zlib
+      libgccjit
+      libGL
+      libGLU
+      libva
+      libgbm
+      libdrm
+      vulkan-loader
+      libvdpau
+      libxkbcommon
+      pipewire
 
-    # X11 essentials
-    xorg.libX11
-    xorg.libXcomposite
-    xorg.libXcursor
-    xorg.libXdamage
-    xorg.libXext
-    xorg.libXfixes
-    xorg.libXi
-    xorg.libXinerama
-    xorg.libXrandr
-    xorg.libXrender
-    xorg.libXScrnSaver
-    xorg.libXxf86vm
-    xorg.libxcb
-    xorg.libxshmfence
-    xorg.libXt
-    xorg.libXtst
-    xorg.libXmu
+      # X11 essentials
+      xorg.libX11
+      xorg.libXcomposite
+      xorg.libXcursor
+      xorg.libXdamage
+      xorg.libXext
+      xorg.libXfixes
+      xorg.libXi
+      xorg.libXinerama
+      xorg.libXrandr
+      xorg.libXrender
+      xorg.libXScrnSaver
+      xorg.libXxf86vm
+      xorg.libxcb
+      xorg.libxshmfence
+      xorg.libXt
+      xorg.libXtst
+      xorg.libXmu
 
-    # NVIDIA/CUDA (your originals)
-    config.boot.kernelPackages.nvidiaPackages.stable
-    cudaPackages.cudatoolkit
+      # NVIDIA/CUDA (your originals)
+      config.boot.kernelPackages.nvidiaPackages.stable
+      cudaPackages.cudatoolkit
 
-    # GUI and desktop
-    gtk2
-    gtk3
-    glib
-    pango
-    cairo
-    atk
-    gdk-pixbuf
-    fontconfig
-    freetype
-    dbus
-    dbus-glib
-    gsettings-desktop-schemas
-    libnotify
-    libappindicator-gtk2
-    libdbusmenu-gtk2
-    libindicator-gtk2
+      # GUI and desktop
+      gtk2
+      gtk3
+      glib
+      pango
+      cairo
+      atk
+      gdk-pixbuf
+      fontconfig
+      freetype
+      dbus
+      dbus-glib
+      gsettings-desktop-schemas
+      libnotify
+      libappindicator-gtk2
+      libdbusmenu-gtk2
+      libindicator-gtk2
 
-    # Audio and multimedia
-    alsa-lib
-    libcanberra
-    libvorbis
-    libogg
-    flac
-    libsamplerate
-    libmikmod
-    libtheora
-    libvpx
-    ffmpeg
+      # Audio and multimedia
+      alsa-lib
+      libcanberra
+      libvorbis
+      libogg
+      flac
+      libsamplerate
+      libmikmod
+      libtheora
+      libvpx
+      ffmpeg
 
-    # Misc runtime essentials
-    libelf
-    nspr
-    nss
-    cups
-    libcap
-    libusb1
-    libudev0-shim
-    libxcrypt-legacy
-    icu
-    expat
-    fuse
-    e2fsprogs
-    pciutils
-    coreutils
+      # Misc runtime essentials
+      libelf
+      nspr
+      nss
+      cups
+      libcap
+      libusb1
+      libudev0-shim
+      libxcrypt-legacy
+      icu
+      expat
+      fuse
+      e2fsprogs
+      pciutils
+      coreutils
 
-    # Gaming/media extras
-    SDL2
-    SDL2_image
-    SDL2_ttf
-    SDL2_mixer
-    SDL_image
-    SDL_ttf
-    SDL_mixer
-    libjpeg
-    libpng
-    libtiff
-    pixman
-    librsvg
-    libgcrypt
-    speex
-    tbb
-    glew110
-    libcaca
-  ];
-};
+      # Gaming/media extras
+      SDL2
+      SDL2_image
+      SDL2_ttf
+      SDL2_mixer
+      SDL_image
+      SDL_ttf
+      SDL_mixer
+      libjpeg
+      libpng
+      libtiff
+      pixman
+      librsvg
+      libgcrypt
+      speex
+      tbb
+      glew110
+      libcaca
+    ];
+  };
 }

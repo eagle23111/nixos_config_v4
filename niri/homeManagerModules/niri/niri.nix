@@ -61,8 +61,6 @@
         }
       ];
 
-
-
       window-rules = [
         {
           geometry-corner-radius = {

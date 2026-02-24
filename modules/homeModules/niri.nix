@@ -1,6 +1,13 @@
-{pkgs, inputs, ...}:{
-  flake.homeModules.niri = {pkgs, inputs,...}:
-  {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  flake.homeModules.niri = {
+    pkgs,
+    inputs,
+    ...
+  }: {
     imports = [../../niri/homeManagerModule.nix];
   };
 }

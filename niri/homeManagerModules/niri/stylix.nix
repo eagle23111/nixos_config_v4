@@ -5,9 +5,9 @@
   ...
 }: {
   imports = [
-    inputs.stylix.homeModules.stylix 
+    inputs.stylix.homeModules.stylix
     inputs.niri.homeModules.stylix
-    ];
+  ];
   stylix.enable = true;
   #stylix.image = ./your-wallpaper.png;
   stylix.polarity = "dark";

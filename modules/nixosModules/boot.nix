@@ -1,5 +1,4 @@
-{pkgs, ...}: 
-{
+{pkgs, ...}: {
   flake.nixosModules.boot = {pkgs, ...}: {
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -30,5 +29,5 @@
       ];
       loader.timeout = 0;
     };
-};
+  };
 }

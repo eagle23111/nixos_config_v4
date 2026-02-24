@@ -1,13 +1,17 @@
-{inputs, self,...}:
 {
-  flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem 
-  {
-    modules = [
+  inputs,
+  self,
+  ...
+}: {
+  flake.nixosConfigurations.desktop =
+    inputs.nixpkgs.lib.nixosSystem
+    {
+      modules = [
         self.nixosModules.caches
         self.nixosModules.bypassCen
         self.nixosModules.consoleUtils
         self.nixosModules.gaming
-        self.nixosModules.nixLD 
+        self.nixosModules.nixLD
         self.nixosModules.nvidia
         self.nixosModules.qemu
         self.nixosModules.snapper
@@ -17,149 +21,151 @@
         self.nixosModules.desktopHardware
 
         self.nixosModules.boot
-    ];
-  };
-
-  flake.nixosModules.desktopModule = {pkgs, inputs, lib,...}:
-  {
-  nixpkgs.config.allowUnfree = true;
-
-  boot.extraModprobeConfig = ''
-    options hid_apple fnmode=0
-  '';
-
-  nix = {
-    settings.experimental-features = "nix-command flakes";
-    settings.trusted-users = ["root" "@wheel"];
-
-        channel.enable = false;
-  };
-
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  i18n.defaultLocale = "ru_RU.UTF-8";
-  i18n.extraLocales = ["ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
-  console = {
-    useXkbConfig = true;
-    earlySetup = true;
-    font = "cyr-sun16";
-    packages = [pkgs.powerline-fonts];
-  };
-  services.xserver.xkb.layout = "us,ru";
-  services.xserver.xkb.options = "grp:alt_shift_toggle";
-  networking.hostName = "nixos";
-  time.timeZone = "Europe/Moscow";
-  security.pam.services.gdm.enableGnomeKeyring = true;
-  users.users = {
-    mortal = {
-      isNormalUser = true;
-      extraGroups = ["wheel" "gamemode" "libvirtd" "kvm" "wireshark" "video" "i2c"];
+      ];
     };
-  };
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
 
-  networking.firewall = {
-    enable = true;
-    extraCommands = ''
-      # Allow ALL traffic from your local network
-      iptables -I INPUT 1 -s 192.168.0.0/16 -j ACCEPT
-      ip6tables -I INPUT 1 -s fd00::/8 -j ACCEPT
-      ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT
+  flake.nixosModules.desktopModule = {
+    pkgs,
+    inputs,
+    lib,
+    ...
+  }: {
+    nixpkgs.config.allowUnfree = true;
+
+    boot.extraModprobeConfig = ''
+      options hid_apple fnmode=0
     '';
-  };
-  environment.variables = {
-    PATH = builtins.getEnv "PATH" + ":~/.local/bin";
-  };
 
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
+    nix = {
+      settings.experimental-features = "nix-command flakes";
+      settings.trusted-users = ["root" "@wheel"];
+
+      channel.enable = false;
     };
-  };
-  programs.nh = {
-    enable = true;
-    clean.enable = false;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-  };
 
-  system.stateVersion = "25.11";
-  };
-  
-    flake.nixosModules.desktopHardware = {
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+    #boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+    fonts.enableDefaultPackages = true;
+    fonts.packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
 
-  fileSystems."/" = {
-    device = "/dev/mapper/c3";
-    fsType = "btrfs";
-    options = ["subvol=nixos"];
-  };
-
-  boot.initrd.luks.devices = {
-    c1 = {
-      device = "/dev/disk/by-uuid/acfd84bf-57d3-4861-bf0e-bdb439914e90";
-      allowDiscards = true;
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
     };
-    c2 = {
-      device = "/dev/disk/by-uuid/2637479b-f5c9-4292-bd73-a6d008add595";
-      allowDiscards = true;
+
+    i18n.defaultLocale = "ru_RU.UTF-8";
+    i18n.extraLocales = ["ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
+    console = {
+      useXkbConfig = true;
+      earlySetup = true;
+      font = "cyr-sun16";
+      packages = [pkgs.powerline-fonts];
     };
-    c3 = {
-      device = "/dev/disk/by-uuid/304973dd-9fb5-45fd-824a-c2a948af0ecf";
-      allowDiscards = true;
+    services.xserver.xkb.layout = "us,ru";
+    services.xserver.xkb.options = "grp:alt_shift_toggle";
+    networking.hostName = "nixos";
+    time.timeZone = "Europe/Moscow";
+    security.pam.services.gdm.enableGnomeKeyring = true;
+    users.users = {
+      mortal = {
+        isNormalUser = true;
+        extraGroups = ["wheel" "gamemode" "libvirtd" "kvm" "wireshark" "video" "i2c"];
+      };
     };
-    swap = {
-      device = "/dev/disk/by-uuid/195a764d-3bc7-4cc5-8584-e3d2d6a1dece";
-      allowDiscards = true;
+    users.defaultUserShell = pkgs.zsh;
+    programs.zsh.enable = true;
+
+    networking.firewall = {
+      enable = true;
+      extraCommands = ''
+        # Allow ALL traffic from your local network
+        iptables -I INPUT 1 -s 192.168.0.0/16 -j ACCEPT
+        ip6tables -I INPUT 1 -s fd00::/8 -j ACCEPT
+        ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT
+      '';
     };
+    environment.variables = {
+      PATH = builtins.getEnv "PATH" + ":~/.local/bin";
+    };
+
+    services.openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+      };
+    };
+    programs.nh = {
+      enable = true;
+      clean.enable = false;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+    };
+
+    system.stateVersion = "25.11";
   };
 
-  fileSystems."/home" = {
-    device = "/dev/mapper/c3";
-    fsType = "btrfs";
-    options = ["subvol=home"];
+  flake.nixosModules.desktopHardware = {
+    config,
+    lib,
+    pkgs,
+    modulesPath,
+    ...
+  }: {
+    imports = [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
+    boot.initrd.kernelModules = [];
+    boot.kernelModules = ["kvm-amd"];
+    boot.extraModulePackages = [];
+
+    fileSystems."/" = {
+      device = "/dev/mapper/c3";
+      fsType = "btrfs";
+      options = ["subvol=nixos"];
+    };
+
+    boot.initrd.luks.devices = {
+      c1 = {
+        device = "/dev/disk/by-uuid/acfd84bf-57d3-4861-bf0e-bdb439914e90";
+        allowDiscards = true;
+      };
+      c2 = {
+        device = "/dev/disk/by-uuid/2637479b-f5c9-4292-bd73-a6d008add595";
+        allowDiscards = true;
+      };
+      c3 = {
+        device = "/dev/disk/by-uuid/304973dd-9fb5-45fd-824a-c2a948af0ecf";
+        allowDiscards = true;
+      };
+      swap = {
+        device = "/dev/disk/by-uuid/195a764d-3bc7-4cc5-8584-e3d2d6a1dece";
+        allowDiscards = true;
+      };
+    };
+
+    fileSystems."/home" = {
+      device = "/dev/mapper/c3";
+      fsType = "btrfs";
+      options = ["subvol=home"];
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/f6286dc8-eea4-4662-b92a-b2ea0992d6ca";
+      fsType = "ext4";
+    };
+
+    fileSystems."/boot/efi" = {
+      device = "/dev/disk/by-uuid/363C-6B10";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
+
+    swapDevices = [
+      {device = "/dev/mapper/swap";}
+    ];
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/f6286dc8-eea4-4662-b92a-b2ea0992d6ca";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/363C-6B10";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
-
-  swapDevices = [
-    {device = "/dev/mapper/swap";}
-  ];
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-};
-
-
 }

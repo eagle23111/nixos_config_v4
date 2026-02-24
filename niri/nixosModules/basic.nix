@@ -28,8 +28,8 @@
     ddcutil
 
     xdg-desktop-portal-gnome
-    nautilus   
-    gnome-keyring   
+    nautilus
+    gnome-keyring
   ];
   hardware.i2c.enable = true;
   boot.kernelModules = ["i2c-dev"]; # monitor lights
@@ -41,12 +41,12 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-gnome ];
-    config.common.default = [ "gtk" "gnome" ];
+    extraPortals = with pkgs; [xdg-desktop-portal-gtk xdg-desktop-portal-gnome];
+    config.common.default = ["gtk" "gnome"];
     config.niri = {
-      default = [ "gtk" "gnome" ];
-      "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-      "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+      default = ["gtk" "gnome"];
+      "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
+      "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
     };
   };
 
