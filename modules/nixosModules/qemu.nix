@@ -22,5 +22,6 @@
         inputs.winapps.packages."${pkgs.system}".winapps
         inputs.winapps.packages."${pkgs.system}".winapps-launcher
       ];
+    virtualisation.waydroid.enable = true;
   };
 }

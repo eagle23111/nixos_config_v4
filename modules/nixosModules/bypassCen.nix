@@ -18,12 +18,12 @@
         "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
         "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
         "--new"
-        "--filter-udp=80,443"
+        "--filter-udp=80,443,27000-27030,27036" # 27000-27030, 27036 - elite dangerous
         "--dpi-desync=fake"
         "--dpi-desync-repeats=10"
         "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
         "--new"
-        "--filter-tcp=80,443,6900-6999"
+        "--filter-tcp=80,443,6900-6999,8080" # 6900-6999 - warframe 8080 - elite dangerous
         "--dpi-desync=fake"
         "--dpi-desync-fooling=ts"
         "--dpi-desync-repeats=6"

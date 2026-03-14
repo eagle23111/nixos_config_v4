@@ -50,7 +50,7 @@
         };
       };
 
-      layer-rules = [
+      layer-rules = [ # dont confuse with window-rules
         {
           matches = [
             {
