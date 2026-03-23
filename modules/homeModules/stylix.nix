@@ -4,10 +4,11 @@
   inputs,
   ...
 }: {
-  flake.homeModules.stylix = {okgs, ...}: {
+  flake.homeModules.stylix = {pkgs, ...}: {
     imports = [
       inputs.stylix.homeModules.stylix
       inputs.niri.homeModules.stylix
+      inputs.niri.homeModules.niri
     ];
     stylix.enable = true;
     #stylix.image = ./your-wallpaper.png;
@@ -17,7 +18,6 @@
 
     stylix.targets.gtk.enable = true;
     stylix.targets.qt.enable = true;
-    stylix.targets.niri.enable = true;
     stylix.targets.vscode.enable = true;
     stylix.targets.zen-browser.enable = true;
 

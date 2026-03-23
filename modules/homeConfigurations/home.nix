@@ -8,7 +8,6 @@
     extraSpecialArgs = {inherit inputs;};
     modules = [
       self.homeModules.zsh
-      self.homeModules.niri
       self.homeModules.stylix
       self.homeModules.mortalModule
       {
