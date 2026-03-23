@@ -78,7 +78,7 @@
     networking.firewall = {
       enable = true;
       extraCommands = ''
-        # Allow ALL traffic from your local network
+        # Allow ALL traffic from local network
         iptables -I INPUT 1 -s 192.168.0.0/16 -j ACCEPT
         ip6tables -I INPUT 1 -s fd00::/8 -j ACCEPT
         ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT

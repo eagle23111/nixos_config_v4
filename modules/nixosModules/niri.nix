@@ -24,7 +24,7 @@
     #systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://github.com/NixOS/nixpkgs/pull/297434#issuecomment-2348783988
 
     services.flatpak.enable = true;
-    services.gvfs.enable = true; # Mount, trash, and other functionalities
+    #services.gvfs.enable = true; # Mount, trash, and other functionalities
     services.tumbler.enable = true; # Thumbnail support for images
 
     networking.networkmanager.enable = true;
@@ -38,14 +38,14 @@
       mate.mate-polkit
       ddcutil
 
-      xdg-desktop-portal-gnome
-      nautilus
+      #xdg-desktop-portal-gnome
+      #nautilus
       gnome-keyring
     ];
     hardware.i2c.enable = true;
     boot.kernelModules = ["i2c-dev"]; # monitor lights
 
-    xdg.portal = {
+    /*xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [xdg-desktop-portal-gtk xdg-desktop-portal-gnome];
       config.common.default = ["gtk" "gnome"];
@@ -54,8 +54,24 @@
         "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
         "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
       };
-    };
+    };*/
+    xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-gnome  # Often more stable for Steam/XWayland apps [web:11]
+        ];
+        configPackages = [
+          pkgs.xdg-desktop-portal-gtk
+          pkgs.gnome-session  # Optional for GNOME keyring/file manager support [web:1]
+        ];
+        config.common.default = [ "gtk" "gnome" ];
+      };
+    
+    security.rtkit.enable = true;
     security.polkit.enable = true;
+    services.upower.enable = true;
+    services.timesyncd.enable = true;
   };
 
   perSystem = {

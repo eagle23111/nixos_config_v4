@@ -9,6 +9,7 @@
     modules = [
       self.homeModules.zsh
       self.homeModules.stylix
+      self.homeModules.mimeApps
       self.homeModules.mortalModule
       {
         home = {
