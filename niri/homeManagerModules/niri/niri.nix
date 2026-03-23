@@ -12,7 +12,6 @@
 
   home.packages = with pkgs; [
     xwayland-satellite
-    swayimg
   ];
 
   nixpkgs.overlays = [inputs.niri.overlays.niri];
@@ -50,7 +49,8 @@
         };
       };
 
-      layer-rules = [ # dont confuse with window-rules
+      layer-rules = [
+        # dont confuse with window-rules
         {
           matches = [
             {
