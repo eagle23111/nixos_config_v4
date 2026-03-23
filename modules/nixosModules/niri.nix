@@ -45,7 +45,8 @@
     hardware.i2c.enable = true;
     boot.kernelModules = ["i2c-dev"]; # monitor lights
 
-    /*xdg.portal = {
+    /*
+      xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [xdg-desktop-portal-gtk xdg-desktop-portal-gnome];
       config.common.default = ["gtk" "gnome"];
@@ -54,20 +55,21 @@
         "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
         "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
       };
-    };*/
+    };
+    */
     xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-gnome  # Often more stable for Steam/XWayland apps [web:11]
-        ];
-        configPackages = [
-          pkgs.xdg-desktop-portal-gtk
-          pkgs.gnome-session  # Optional for GNOME keyring/file manager support [web:1]
-        ];
-        config.common.default = [ "gtk" "gnome" ];
-      };
-    
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome # Often more stable for Steam/XWayland apps [web:11]
+      ];
+      configPackages = [
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.gnome-session # Optional for GNOME keyring/file manager support [web:1]
+      ];
+      config.common.default = ["gtk" "gnome"];
+    };
+
     security.rtkit.enable = true;
     security.polkit.enable = true;
     services.upower.enable = true;
@@ -131,7 +133,7 @@
 
           border = {
             active-color = "#4B5F58";
-          #  inactive-color = "#292535";
+            #  inactive-color = "#292535";
           };
         };
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;

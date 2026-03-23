@@ -22,7 +22,7 @@
       autosuggestion.enable = true;
       oh-my-zsh = {
         enable = true;
-        theme = "robbyrussell";
+        theme = "jonathan";
         plugins = ["git"];
       };
     };
