@@ -10,7 +10,7 @@
     ...
   }: {
     packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
-      inherit pkgs; # THIS PART IS VERY IMPORTAINT, I FORGOT IT IN THE VIDEO!!!
+      inherit pkgs; 
       package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings = {
         bar = {
