@@ -24,14 +24,7 @@
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
-      steam
-      #protonup-qt
-      gamemode
-      gamescope
-      prismlauncher
       inputs.zen-browser.packages.${system}.default
-      wineWowPackages.stable
-      winetricks
       vscode
 
       tor
@@ -39,13 +32,12 @@
 
       libreoffice-fresh
 
-      devenv
-      openssl
+      # openssl
 
       llama-cpp
       lmstudio
 
-      inputs.nvchad4nix.packages.${system}.default
+      inputs.nvchad4nix.packages.${pkgs.system}.default
       inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hydrus
 
       evolution
@@ -55,9 +47,7 @@
       devenv
       firefox
     ];
-    programs.lutris = {
-      enable = true;
-    };
+
     programs.chromium.enable = true;
     programs.kitty = {
       enable = true;
@@ -68,7 +58,6 @@
     };
 
     programs.home-manager.enable = true;
-    services.gnome-keyring.enable = true;
     programs.git = {
       enable = true;
       lfs.enable = true; # for huggingface

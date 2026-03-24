@@ -65,7 +65,12 @@
     services.xserver.xkb.options = "grp:alt_shift_toggle";
     networking.hostName = "nixos";
     time.timeZone = "Europe/Moscow";
+
     security.pam.services.gdm.enableGnomeKeyring = true;
+    security.rtkit.enable = true;
+
+    services.timesyncd.enable = true;
+
     users.users = {
       mortal = {
         isNormalUser = true;

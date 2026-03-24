@@ -40,7 +40,7 @@
 
       #xdg-desktop-portal-gnome
       #nautilus
-      gnome-keyring
+      # gnome-keyring
     ];
     hardware.i2c.enable = true;
     boot.kernelModules = ["i2c-dev"]; # monitor lights
@@ -61,19 +61,21 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome # Often more stable for Steam/XWayland apps [web:11]
+        xdg-desktop-portal-gnome  
       ];
       configPackages = [
         pkgs.xdg-desktop-portal-gtk
-        pkgs.gnome-session # Optional for GNOME keyring/file manager support [web:1]
+        pkgs.gnome-session 
       ];
       config.common.default = ["gtk" "gnome"];
     };
 
-    security.rtkit.enable = true;
     security.polkit.enable = true;
-    services.upower.enable = true;
-    services.timesyncd.enable = true;
+    # services.upower.enable = true;
+
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.gdm.enableGnomeKeyring = true;
+
   };
 
   perSystem = {
@@ -442,7 +444,7 @@
         {
           timeout = 360;
           command = "niri msg action power-off-monitors";
-          resumeCommand = "niri msg action power-on-monitors";
+          # resumeCommand = "niri msg action power-on-monitors";
         }
       ];
 
