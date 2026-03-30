@@ -24,7 +24,7 @@
     #systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://github.com/NixOS/nixpkgs/pull/297434#issuecomment-2348783988
 
     services.flatpak.enable = true;
-    #services.gvfs.enable = true; # Mount, trash, and other functionalities
+    services.gvfs.enable = true; # Mount, trash, and other functionalities
     services.tumbler.enable = true; # Thumbnail support for images
 
     networking.networkmanager.enable = true;

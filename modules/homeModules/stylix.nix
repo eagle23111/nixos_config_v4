@@ -14,7 +14,7 @@
     #stylix.image = ./your-wallpaper.png;
     stylix.polarity = "dark";
     stylix.autoEnable = true;
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest.yaml";
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
 
     stylix.targets.gtk.enable = true;
     stylix.targets.qt.enable = true;
