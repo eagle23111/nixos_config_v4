@@ -3,14 +3,14 @@
   self,
   ...
 }: {
-  flake.homeConfigurations."mortal@desktop" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  flake.homeConfigurations."mortal@macbook" = inputs.home-manager.lib.homeManagerConfiguration {
+    pkgs = inputs.nixpkgs.legacyPackages.arch64-linux;
     extraSpecialArgs = {inherit inputs;};
     modules = [
       self.homeModules.zsh
       self.homeModules.stylix
       self.homeModules.mimeApps
-      self.homeModules.mortalDesktopModule
+      self.homeModules.mortalMacbookModule
       {
         home = {
           username = "mortal";
@@ -20,18 +20,11 @@
     ];
   };
 
-  flake.homeModules.mortalDesktopModule = {pkgs, ...}: {
+  flake.homeModules.mortalMacbookModule = {pkgs, ...}: {
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
-      steam
-      #protonup-qt
-      gamemode
-      gamescope
-      prismlauncher
       inputs.zen-browser.packages.${system}.default
-      wineWowPackages.stable
-      winetricks
       vscode
 
       tor
@@ -39,14 +32,10 @@
 
       libreoffice-fresh
 
-      devenv
       openssl
 
-      llama-cpp
-      lmstudio
 
       inputs.nvchad4nix.packages.${system}.default
-      inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hydrus
 
       evolution
 
@@ -55,10 +44,7 @@
       devenv
       firefox
     ];
-    programs.lutris = {
-      enable = true;
-    };
-    programs.chromium.enable = true;
+
     programs.kitty = {
       enable = true;
       extraConfig = ''

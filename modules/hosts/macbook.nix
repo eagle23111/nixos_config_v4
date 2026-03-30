@@ -11,6 +11,10 @@
         inputs.apple-silicon.nixosModules.default
         self.nixosModules.macbookModule
         self.nixosModules.macbookHardware
+        self.nixosModules.caches
+        self.nixosModules.consoleUtils
+
+
       ];
     };
   flake.nixosModules.macbookModule = {
