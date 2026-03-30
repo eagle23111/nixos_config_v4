@@ -1,16 +1,13 @@
 # the Asahi Linux kernel and options that must go along with it
-
 {
   config,
   lib,
   ...
-}:
-{
+}: {
   config = lib.mkIf config.hardware.asahi.enable {
-    boot.kernelPackages =
-      let
-        pkgs' = config.hardware.asahi.pkgs;
-      in
+    boot.kernelPackages = let
+      pkgs' = config.hardware.asahi.pkgs;
+    in
       pkgs'.linux-asahi.override {
         _kernelPatches = config.boot.kernelPatches;
       };
@@ -112,6 +109,6 @@
       "asahi"
       "useExperimentalGPUDriver"
     ] "This option became unnecessary with asahi support landing in mainline mesa.")
-    (lib.mkRemovedOptionModule [ "hardware" "asahi" "withRust" ] "Rust support is now the default.")
+    (lib.mkRemovedOptionModule ["hardware" "asahi" "withRust"] "Rust support is now the default.")
   ];
 }

@@ -3,8 +3,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   imports = [
     ./kernel
     ./peripheral-firmware
@@ -12,22 +11,21 @@
     ./sound
   ];
 
-  config =
-    let
-      cfg = config.hardware.asahi;
-    in
+  config = let
+    cfg = config.hardware.asahi;
+  in
     lib.mkIf cfg.enable {
-      nixpkgs.overlays = lib.mkBefore [ cfg.overlay ];
+      nixpkgs.overlays = lib.mkBefore [cfg.overlay];
 
       hardware.asahi.pkgs =
-        if cfg.pkgsSystem != "aarch64-linux" then
+        if cfg.pkgsSystem != "aarch64-linux"
+        then
           import (pkgs.path) {
             crossSystem.system = "aarch64-linux";
             localSystem.system = cfg.pkgsSystem;
-            overlays = [ cfg.overlay ];
+            overlays = [cfg.overlay];
           }
-        else
-          pkgs;
+        else pkgs;
 
       # 900 is higher priority than mkDefault but lower than just setting
       hardware.graphics.package = lib.mkOverride 900 (
@@ -35,7 +33,8 @@
           Mesa 25.3 is known to cause crashes in Firefox on Asahi GPUs.
           Please pin nixpkgs c5ae371f1a6a7fd27823 or earlier if affected.
           See https://github.com/nix-community/nixos-apple-silicon/issues/380
-          for more info.'' pkgs.mesa
+          for more info.''
+        pkgs.mesa
       );
     };
 

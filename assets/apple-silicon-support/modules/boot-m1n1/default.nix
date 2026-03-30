@@ -3,24 +3,23 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   pkgs' = config.hardware.asahi.pkgs;
 
   bootM1n1 =
-    if (config.boot.m1n1CustomLogo != null) then
+    if (config.boot.m1n1CustomLogo != null)
+    then
       pkgs'.m1n1.override {
         customLogo = config.boot.m1n1CustomLogo;
       }
-    else
-      pkgs'.m1n1;
+    else pkgs'.m1n1;
 
   bootUBoot = pkgs'.uboot-asahi.override {
     m1n1 = bootM1n1;
   };
 
   bootFiles = {
-    "m1n1/boot.bin" = pkgs.runCommand "boot.bin" { } ''
+    "m1n1/boot.bin" = pkgs.runCommand "boot.bin" {} ''
       cat ${bootM1n1}/lib/m1n1/m1n1.bin \
           ${config.boot.kernelPackages.kernel}/dtbs/apple/*.dtb \
           ${bootUBoot}/u-boot-nodtb.bin.gz \
@@ -30,8 +29,7 @@ let
       fi
     '';
   };
-in
-{
+in {
   config = lib.mkIf config.hardware.asahi.enable {
     # install m1n1 with the boot loader
     boot.loader.grub.extraFiles = bootFiles;

@@ -4,9 +4,7 @@
   pkgs,
   lib,
   ...
-}:
-
-{
+}: {
   options.hardware.asahi = {
     setupAsahiSound = lib.mkOption {
       type = lib.types.bool;
@@ -18,10 +16,9 @@
     };
   };
 
-  config =
-    let
-      cfg = config.hardware.asahi;
-    in
+  config = let
+    cfg = config.hardware.asahi;
+  in
     lib.mkIf (cfg.setupAsahiSound && cfg.enable) (
       lib.mkMerge [
         {
@@ -36,12 +33,12 @@
             alsa.enable = true;
             pulse.enable = true;
 
-            configPackages = [ pkgs.asahi-audio ];
+            configPackages = [pkgs.asahi-audio];
 
             wireplumber = {
               enable = true;
 
-              configPackages = [ pkgs.asahi-audio ];
+              configPackages = [pkgs.asahi-audio];
             };
           };
 
@@ -53,8 +50,8 @@
             config.environment.variables.ALSA_CONFIG_UCM2;
 
           # enable speakersafetyd to protect speakers
-          systemd.packages = [ pkgs.speakersafetyd ];
-          services.udev.packages = [ pkgs.speakersafetyd ];
+          systemd.packages = [pkgs.speakersafetyd];
+          services.udev.packages = [pkgs.speakersafetyd];
         }
       ]
     );
