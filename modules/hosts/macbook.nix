@@ -175,7 +175,7 @@
       options = ["subvol=@,compress=zstd"];
     };
 
-    boot.initrd.luks.devices."c1".device = "/dev/disk/by-uuid/5d8db752-29d9-441d-a1ed-79eac3496da1";
+    boot.initrd.luks.devices."c1".device = "/dev/disk/by-uuid/024adab0-5dac-4777-94aa-3b784f5a1a1c";
 
     fileSystems."/home" = {
       device = "/dev/mapper/c1";
@@ -184,7 +184,7 @@
     };
 
     fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/226C-07F0";
+      device = "/dev/disk/by-uuid/2390-07EB";
       fsType = "vfat";
       options = ["fmask=0022" "dmask=0022"];
     };
