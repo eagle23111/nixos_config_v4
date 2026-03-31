@@ -4,7 +4,7 @@
   ...
 }: {
   flake.homeConfigurations."mortal@macbook" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.arch64-linux;
+    pkgs = inputs.nixpkgs.legacyPackages.aarch64-linux;
     extraSpecialArgs = {inherit inputs;};
     modules = [
       self.homeModules.zsh
@@ -28,12 +28,11 @@
       vscode
 
       tor
-      tor-browser
+      #tor-browser
 
       libreoffice-fresh
 
       openssl
-
 
       inputs.nvchad4nix.packages.${system}.default
 

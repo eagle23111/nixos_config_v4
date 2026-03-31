@@ -13,8 +13,9 @@
         self.nixosModules.macbookHardware
         self.nixosModules.caches
         self.nixosModules.consoleUtils
+        self.nixosModules.niri
 
-
+        self.nixosModules.bypassCen
       ];
     };
   flake.nixosModules.macbookModule = {
@@ -24,6 +25,8 @@
     ...
   }: {
     hardware.asahi.peripheralFirmwareDirectory = ../../assets/macbook-m1-firmware;
+
+    nixpkgs.config.allowUnfree = true;
 
     nix = {
       settings.experimental-features = "nix-command flakes";
@@ -63,10 +66,19 @@
     services.xserver.xkb.layout = "us,ru";
     services.xserver.xkb.options = "grp:alt_shift_toggle";
 
-    services.pipewire = {
+    # services.pulseaudio.enable = true;
+
+    hardware.asahi = {
       enable = true;
-      pulse.enable = true;
+      setupAsahiSound = true;
     };
+    #services.pipewire = {
+    #  enable = true;
+    #  alsa.enable = true;
+    #  pulse.enable = true;
+    #};
+
+    # options.hardware.asahi.enable = true;
 
     networking.wireless.iwd = {
       enable = true;
@@ -80,10 +92,10 @@
 
     # Enable touchpad support (enabled default in most desktopManager).
 
-    services.libinput.enable = true;
+    # services.libinput.enable = true;
 
-    services.xserver.enable = true;
-    services.xserver.desktopManager.xfce.enable = true;
+    #services.xserver.enable = true;
+    #services.xserver.desktopManager.xfce.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users = {
@@ -92,6 +104,10 @@
         extraGroups = ["wheel" "gamemode" "libvirtd" "kvm" "wireshark" "video" "i2c"];
       };
     };
+    users.defaultUserShell = pkgs.zsh;
+    programs.zsh.enable = true;
+    programs.zsh.enableCompletion = true;
+    programs.zsh.syntaxHighlighting.enable = true;
 
     programs.firefox.enable = true;
     networking.firewall = {
@@ -108,7 +124,7 @@
     environment.systemPackages = with pkgs; [
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
-      kitty
+      git
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
@@ -131,7 +147,7 @@
 
     programs.nh = {
       enable = true;
-      clean.enable = false;
+      clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
     };
 
