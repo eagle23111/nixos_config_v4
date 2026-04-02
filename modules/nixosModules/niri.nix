@@ -108,6 +108,17 @@
           };
         };
 
+        input.touchpad = {
+          #tap = null;
+          natural-scroll = null;
+          click-method = "clickfinger";
+          scroll-method = "two-finger";
+          scroll-factor = 0.5;
+          accel-profile = "adaptive";
+          accel-speed = 0.2;
+          dwt = null;
+        };
+
         layer-rules = [
           # dont confuse with window-rules
           {

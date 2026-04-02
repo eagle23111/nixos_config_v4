@@ -38,20 +38,40 @@
     # Use the systemd-boot EFI boot loader.
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = false;
+    boot.initrd.systemd.enable = true;
 
-    networking.hostName = "macbook-nixos"; # Define your hostname.
+    boot = {
+      plymouth = {
+        enable = true;
+        theme = "spin";
+        themePackages = with pkgs; [
+          (adi1090x-plymouth-themes.override {
+            selected_themes = ["spin"];
+          })
+        ];
+      };
 
-    # Configure network connections interactively with nmcli or nmtui.
+      consoleLogLevel = 3;
+      initrd.verbose = false;
+      kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+        "systemd.show_status=auto"
+
+        "zswap.enabled=1" # enables zswap
+        "zswap.compressor=lz4" # compression algorithm
+        "zswap.max_pool_percent=20" # maximum percentage of RAM that zswap is allowed to use
+        "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
+      ];
+      loader.timeout = 3;
+    };
+
+    networking.hostName = "macbook-nixos";
+
     networking.networkmanager.enable = true;
 
-    # Set your time zone.
     time.timeZone = "Europe/Moscow";
 
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Select internationalisation properties.
     i18n.defaultLocale = "ru_RU.UTF-8";
     i18n.extraLocales = ["ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
     console = {
@@ -85,19 +105,21 @@
       settings.General.EnableNetworkConfiguration = true;
     };
 
-    #hardware.apple.touchpad = {
-    # 	enable = true;
-    #	package = pkgs.tiny-dfr;
-    # };
+    services.libinput = {
+      enable = true;
+      touchpad = {
+        naturalScrolling = true;
 
-    # Enable touchpad support (enabled default in most desktopManager).
+        tapping = true;
+        clickMethod = "clickfinger";
 
-    # services.libinput.enable = true;
+        disableWhileTyping = true;
+        accelProfile = "adaptive";
 
-    #services.xserver.enable = true;
-    #services.xserver.desktopManager.xfce.enable = true;
+        #scrollFactor = 0.5;
+      };
+    };
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users = {
       mortal = {
         isNormalUser = true;
@@ -119,10 +141,7 @@
         ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT
       '';
     };
-    # List packages installed in system profile.
-    # You can use https://search.nixos.org/ to find more packages (and options).
     environment.systemPackages = with pkgs; [
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
       git
     ];
@@ -135,9 +154,6 @@
     #   enableSSHSupport = true;
     # };
 
-    # List services that you want to enable:
-
-    # Enable the OpenSSH daemon.
     services.openssh = {
       enable = true;
       settings = {
@@ -176,6 +192,7 @@
     };
 
     boot.initrd.luks.devices."c1".device = "/dev/disk/by-uuid/024adab0-5dac-4777-94aa-3b784f5a1a1c";
+    boot.initrd.luks.devices."swap".device = "/dev/disk/by-uuid/7f4e4878-9d30-4884-98c0-ecff0285f0dd";
 
     fileSystems."/home" = {
       device = "/dev/mapper/c1";
@@ -189,7 +206,9 @@
       options = ["fmask=0022" "dmask=0022"];
     };
 
-    swapDevices = [];
+    swapDevices = [
+      {device = "/dev/mapper/swap";}
+    ];
 
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   };
