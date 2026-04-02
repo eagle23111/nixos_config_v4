@@ -7,6 +7,7 @@
   flake.nixosConfigurations.macbook =
     inputs.nixpkgs.lib.nixosSystem
     {
+      system = "aarch64-linux";
       modules = [
         inputs.apple-silicon.nixosModules.default
         self.nixosModules.macbookModule
@@ -27,7 +28,6 @@
     hardware.asahi.peripheralFirmwareDirectory = ../../assets/macbook-m1-firmware;
 
     nixpkgs.config.allowUnfree = true;
-
     nix = {
       settings.experimental-features = "nix-command flakes";
       settings.trusted-users = ["root" "@wheel"];
@@ -159,11 +159,6 @@
       };
     };
 
-    programs.nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 4d --keep 3";
-    };
 
     system.stateVersion = "25.11";
   };
