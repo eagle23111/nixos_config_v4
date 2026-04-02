@@ -48,6 +48,9 @@
                 id = "Brightness";
               }
               {
+                id = "Battery";
+              }
+              {
                 id = "Volume";
               }
               {

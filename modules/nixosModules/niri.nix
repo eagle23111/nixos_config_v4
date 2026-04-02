@@ -20,6 +20,7 @@
       thunar-media-tags-plugin
       thunar-vcs-plugin
     ];
+
     #services.displayManager.ly.enable = true;
     #systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://github.com/NixOS/nixpkgs/pull/297434#issuecomment-2348783988
 
@@ -30,7 +31,6 @@
     networking.networkmanager.enable = true;
     hardware.bluetooth.enable = true;
     #services.power-profiles-daemon.enable or services.tuned.enable = true;
-    #services.upower.enable = true;
     environment.systemPackages = with pkgs; [
       xwayland-satellite
       playerctl
@@ -76,6 +76,8 @@
     services.gnome.gnome-keyring.enable = true;
     security.pam.services.gdm.enableGnomeKeyring = true;
 
+    services.upower.enable = true;
+    services.timesyncd.enable = true;
   };
 
   perSystem = {
@@ -108,6 +110,17 @@
           "DP-1" = {
             mode = "1920x1080@179.999";
           };
+        };
+
+        input.touchpad = {
+          #tap = null;
+          natural-scroll = null;
+          click-method = "clickfinger";
+          scroll-method = "two-finger";
+          scroll-factor = 0.5;
+          accel-profile = "adaptive";
+          accel-speed = 0.2;
+          dwt = null;
         };
 
         layer-rules = [

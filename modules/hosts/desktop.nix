@@ -19,8 +19,6 @@
 
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware
-
-        self.nixosModules.boot
       ];
     };
 
@@ -35,6 +33,36 @@
     boot.extraModprobeConfig = ''
       options hid_apple fnmode=0
     '';
+
+    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.efi.efiSysMountPoint = "/boot/efi";
+    boot.loader.grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+    };
+    boot.initrd.systemd.enable = true;
+
+    boot = {
+      plymouth = {
+        enable = true;
+        theme = "spin";
+        themePackages = with pkgs; [
+          (adi1090x-plymouth-themes.override {
+            selected_themes = ["spin"];
+          })
+        ];
+      };
+
+      consoleLogLevel = 3;
+      initrd.verbose = false;
+      kernelParams = [
+        "quiet"
+        "udev.log_level=3"
+        "systemd.show_status=auto"
+      ];
+      loader.timeout = 0;
+    };
 
     nix = {
       settings.experimental-features = "nix-command flakes";
@@ -98,11 +126,6 @@
       settings = {
         PermitRootLogin = "no";
       };
-    };
-    programs.nh = {
-      enable = true;
-      clean.enable = false;
-      clean.extraArgs = "--keep-since 4d --keep 3";
     };
 
     system.stateVersion = "25.11";
