@@ -20,17 +20,17 @@
       thunar-media-tags-plugin
       thunar-vcs-plugin
     ];
+
     #services.displayManager.ly.enable = true;
     #systemd.services.display-manager.environment.XDG_CURRENT_DESKTOP = "X-NIXOS-SYSTEMD-AWARE"; # https://github.com/NixOS/nixpkgs/pull/297434#issuecomment-2348783988
 
     services.flatpak.enable = true;
-    #services.gvfs.enable = true; # Mount, trash, and other functionalities
+    services.gvfs.enable = true; # Mount, trash, and other functionalities
     services.tumbler.enable = true; # Thumbnail support for images
 
     networking.networkmanager.enable = true;
     hardware.bluetooth.enable = true;
     #services.power-profiles-daemon.enable or services.tuned.enable = true;
-    #services.upower.enable = true;
     environment.systemPackages = with pkgs; [
       xwayland-satellite
       playerctl
@@ -74,6 +74,7 @@
     security.polkit.enable = true;
     services.upower.enable = true;
     services.timesyncd.enable = true;
+    security.pam.services.gdm.enableGnomeKeyring = true;
   };
 
   perSystem = {

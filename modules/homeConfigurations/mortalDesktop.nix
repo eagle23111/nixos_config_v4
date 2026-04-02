@@ -45,8 +45,9 @@
       llama-cpp
       lmstudio
 
-      inputs.nvchad4nix.packages.${system}.default
+      inputs.nvchad4nix.packages.${pkgs.system}.default
       inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hydrus
+      inputs.self.packages.${pkgs.system}.hydownloader
 
       evolution
 
