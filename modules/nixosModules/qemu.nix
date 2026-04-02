@@ -4,7 +4,7 @@
     self,
     ...
   }: let
-    freerdp = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.freerdp;# https://github.com/winapps-org/winapps/issues/894
+    freerdp = inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.freerdp; # https://github.com/winapps-org/winapps/issues/894
   in {
     virtualisation.libvirtd = {
       enable = true;

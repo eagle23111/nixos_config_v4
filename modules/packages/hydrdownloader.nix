@@ -5,7 +5,6 @@
     ...
   }: let
     python = pkgs.python313;
-    dppath = "$HOME/.local/hydownloader";
     hydownloader = python.pkgs.buildPythonApplication {
       pname = "hydownloader";
       version = "0.71.0";
@@ -27,7 +26,6 @@
           --replace-fail 'poetry>=' 'poetry-core>=' \
           --replace-fail 'gallery-dl = "^1.31.10"' 'gallery-dl = "^1.30.10"'
       '';
-
 
       propagatedBuildInputs = [
         python.pkgs.click
@@ -72,12 +70,12 @@
         python.pkgs.charset-normalizer
         python.pkgs.urllib3
         python.pkgs.six
-        python.pkgs.numpy 
+        python.pkgs.numpy
         python.pkgs.packaging
       ];
 
       format = "pyproject";
-      doCheck = false; 
+      doCheck = false;
 
       meta = with pkgs.lib; {
         description = "Download stuff like Hydrus does.";

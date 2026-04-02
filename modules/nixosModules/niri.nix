@@ -61,11 +61,11 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
-        xdg-desktop-portal-gnome  
+        xdg-desktop-portal-gnome
       ];
       configPackages = [
         pkgs.xdg-desktop-portal-gtk
-        pkgs.gnome-session 
+        pkgs.gnome-session
       ];
       config.common.default = ["gtk" "gnome"];
     };

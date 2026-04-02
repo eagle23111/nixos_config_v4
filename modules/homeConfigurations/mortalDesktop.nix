@@ -48,6 +48,7 @@
       devenv
       firefox
     ];
+    programs.lutris.enable = true;
 
     programs.chromium.enable = true;
     programs.kitty = {
