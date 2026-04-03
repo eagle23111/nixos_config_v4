@@ -38,7 +38,7 @@
       lmstudio
 
       inputs.nvchad4nix.packages.${pkgs.system}.default
-      inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hydrus
+      hydrus
       inputs.self.packages.${pkgs.system}.hydownloader
 
       evolution

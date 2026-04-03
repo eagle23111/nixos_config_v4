@@ -20,18 +20,10 @@
       gamescope-wsi # HDR won't work without this
       protonplus
       lutris
-
-      wineWowPackages.stable
-
       wine
-      (wine.override {wineBuild = "wine64";})
-      wine64
-      wineWowPackages.staging
 
       winetricks
-      wineWowPackages.waylandFull
 
-      #steamtinkerlaunch dependencies
       yad
       xdotool
       xprop

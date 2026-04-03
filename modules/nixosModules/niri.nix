@@ -10,7 +10,7 @@
   }: {
     programs.niri = {
       enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
+      package =  self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
     programs.thunar.enable = true;
     programs.xfconf.enable = true;
@@ -88,7 +88,7 @@
   }: {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
-      package = lib.mkDefault inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable;
+      #package = lib.mkDefault inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable;
       settings = {
         prefer-no-csd = true;
         spawn-at-startup = [
