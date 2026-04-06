@@ -18,7 +18,7 @@
         "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
         "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
         "--new"
-        "--filter-udp=80,443,27000-27030,27036" # 27000-27030, 27036 - elite dangerous
+        "--filter-udp=80,443,27000-27030,27036,3074,27015-27030,27036-27037,1935,3478-3480" # 27000-27030, 27036 - elite dangerous
         "--dpi-desync=fake"
         "--dpi-desync-repeats=10"
         "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
@@ -36,5 +36,6 @@
       ];
     };
     services.cloudflare-warp.enable = true;
+    programs.wireshark.enable = true;
   };
 }
