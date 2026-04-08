@@ -10,7 +10,7 @@
   }: {
     programs.niri = {
       enable = true;
-      package =  self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
+      package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
     };
     programs.thunar.enable = true;
     programs.xfconf.enable = true;

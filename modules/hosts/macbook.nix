@@ -159,7 +159,6 @@
       };
     };
 
-
     system.stateVersion = "25.11";
   };
   flake.nixosModules.macbookHardware = {

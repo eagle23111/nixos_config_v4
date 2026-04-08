@@ -75,7 +75,7 @@
       ];
 
       format = "pyproject";
-      doCheck = false;
+      #doCheck = false;
 
       meta = with pkgs.lib; {
         description = "Download stuff like Hydrus does.";

@@ -29,7 +29,7 @@
     ...
   }: {
     nixpkgs.config.allowUnfree = true;
-
+    #nix.package = pkgs.lix;
     boot.extraModprobeConfig = ''
       options hid_apple fnmode=0
     '';
@@ -107,7 +107,7 @@
     };
     users.defaultUserShell = pkgs.zsh;
     programs.zsh.enable = true;
-
+    environment.systemPackages = [self.inputs.nix-alien.packages.${pkgs.system}.nix-alien];
     networking.firewall = {
       enable = true;
       extraCommands = ''
