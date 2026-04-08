@@ -1,7 +1,6 @@
 {
   inputs,
   self,
-  pkgs,
   ...
 }: {
   flake.nixosConfigurations.macbook =

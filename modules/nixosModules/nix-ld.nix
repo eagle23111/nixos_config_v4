@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{...}: {
   flake.nixosModules.nixLD = {
     pkgs,
     config,

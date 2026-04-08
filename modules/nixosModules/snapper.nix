@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: {
+{...}: {
   flake.nixosModules.snapper = {
     pkgs,
     inputs,

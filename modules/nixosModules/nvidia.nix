@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: {
+{...}: {
   flake.nixosModules.nvidia = {
     pkgs,
     inputs,

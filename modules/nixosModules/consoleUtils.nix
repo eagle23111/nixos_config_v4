@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   flake.nixosModules.consoleUtils = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       which

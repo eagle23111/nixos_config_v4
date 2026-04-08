@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   flake.homeModules.mimeApps = {pkgs, ...}: {
     home.packages = with pkgs; [
       nautilus

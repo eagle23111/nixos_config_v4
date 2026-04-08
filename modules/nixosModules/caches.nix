@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{...}: {
   flake.nixosModules.caches = {pkgs, ...}: {
     nix.settings.substituters = [
       "https://nix-community.cachix.org"
