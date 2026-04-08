@@ -42,23 +42,23 @@
       pipewire
 
       # X11 essentials
-      xorg.libX11
-      xorg.libXcomposite
-      xorg.libXcursor
-      xorg.libXdamage
-      xorg.libXext
-      xorg.libXfixes
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXrandr
-      xorg.libXrender
-      xorg.libXScrnSaver
-      xorg.libXxf86vm
-      xorg.libxcb
-      xorg.libxshmfence
-      xorg.libXt
-      xorg.libXtst
-      xorg.libXmu
+      libX11
+      libXcomposite
+      libXcursor
+      libXdamage
+      libXext
+      libXfixes
+      libXi
+      libXinerama
+      libXrandr
+      libXrender
+      libXScrnSaver
+      libXxf86vm
+      libxcb
+      libxshmfence
+      libXt
+      libXtst
+      libXmu
 
       # NVIDIA/CUDA (your originals)
       config.boot.kernelPackages.nvidiaPackages.stable
@@ -126,7 +126,7 @@
       libgcrypt
       speex
       tbb
-      glew110
+      glew_1_10
       libcaca
     ];
   };

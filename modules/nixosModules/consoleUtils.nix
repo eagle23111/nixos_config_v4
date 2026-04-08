@@ -8,7 +8,7 @@
       which
       tree
       wget
-      inputs.nvchad4nix.packages.${system}.default
+      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
       btop
       iotop
       iftop
@@ -24,10 +24,9 @@
       ethtool
       pciutils
       usbutils
-      nixfmt-rfc-style
       aria2
       fastfetch
-      inputs.home-manager.packages.${pkgs.system}.default
+      inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
       wireshark
       nil
     ];

@@ -21,8 +21,8 @@
         usbredir
       ]
       ++ [
-        (inputs.winapps.packages."${pkgs.system}".winapps.override {freerdp = freerdp;})
-        inputs.winapps.packages."${pkgs.system}".winapps-launcher
+        (inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps.override {freerdp = freerdp;})
+        inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
       ];
     virtualisation.waydroid.enable = true;
   };

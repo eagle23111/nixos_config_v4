@@ -34,7 +34,7 @@
 
       openssl
 
-      inputs.nvchad4nix.packages.${system}.default
+      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       evolution
 

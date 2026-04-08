@@ -24,7 +24,7 @@
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
-      inputs.zen-browser.packages.${system}.default
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       vscode
 
       tor
@@ -37,9 +37,9 @@
       llama-cpp
       lmstudio
 
-      inputs.nvchad4nix.packages.${pkgs.system}.default
+      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
       hydrus
-      inputs.self.packages.${pkgs.system}.hydownloader
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
 
       evolution
 
