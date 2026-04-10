@@ -29,7 +29,7 @@
     ...
   }: {
     nixpkgs.config.allowUnfree = true;
-    #nix.package = pkgs.lix;
+    nix.package = pkgs.lix;
     boot = {
       extraModprobeConfig = ''
         options hid_apple fnmode=0

@@ -26,7 +26,7 @@
     ...
   }: {
     hardware.asahi.peripheralFirmwareDirectory = ../../assets/macbook-m1-firmware;
-
+    nix.package = pkgs.lix;
     nixpkgs.config.allowUnfree = true;
 
     nix = {
@@ -72,9 +72,12 @@
     networking = {
       hostName = "macbook-nixos";
       networkmanager.enable = true;
-      wireless.iwd = {
-        enable = true;
-        settings.General.EnableNetworkConfiguration = true;
+      wireless = {
+        #enable = lib.mkForce false;
+        iwd = {
+          #enable = true;
+          settings.General.EnableNetworkConfiguration = true;
+        };
       };
       firewall = {
         enable = true;
