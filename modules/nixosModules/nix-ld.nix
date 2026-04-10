@@ -57,8 +57,8 @@
       libXmu
 
       # NVIDIA/CUDA (your originals)
-      config.boot.kernelPackages.nvidiaPackages.stable
-      cudaPackages.cudatoolkit
+      #config.boot.kernelPackages.nvidiaPackages.stable
+      #cudaPackages.cudatoolkit
 
       # GUI and desktop
       gtk2
