@@ -16,7 +16,6 @@
         self.nixosModules.qemu
         self.nixosModules.snapper
         self.nixosModules.niri
-        self.nixosModules.osu
 
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware

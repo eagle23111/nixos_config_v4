@@ -67,7 +67,7 @@
   }: {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
-      v2-settings = true; # enable new syntax
+      #v2-settings = true; # enable new syntax
       settings = {
         prefer-no-csd = true;
         spawn-at-startup = [
