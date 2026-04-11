@@ -47,6 +47,8 @@
       mpv
       devenv
       firefox
+
+      osu-lazer-bin
     ];
     programs.lutris.enable = true;
 
