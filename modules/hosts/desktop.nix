@@ -152,6 +152,8 @@
         enableSSHSupport = true;
       };
     };
+    networking.networkmanager.enable = true;
+    hardware.bluetooth.enable = true;
 
     environment = {
       systemPackages = [self.inputs.nix-alien.packages.${pkgs.stdenv.hostPlatform.system}.nix-alien];

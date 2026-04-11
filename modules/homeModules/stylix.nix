@@ -2,7 +2,7 @@
   flake.homeModules.stylix = {pkgs, ...}: {
     imports = [
       inputs.stylix.homeModules.stylix
-      #inputs.niri.homeModules.stylix
+      inputs.niri.homeModules.stylix
       #inputs.niri.homeModules.niri
     ];
     stylix.enable = true;

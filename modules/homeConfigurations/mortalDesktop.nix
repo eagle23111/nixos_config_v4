@@ -11,6 +11,7 @@
       self.homeModules.stylix
       self.homeModules.mimeApps
       self.homeModules.mortalDesktopModule
+      self.homeModules.niri
       {
         home = {
           username = "mortal";

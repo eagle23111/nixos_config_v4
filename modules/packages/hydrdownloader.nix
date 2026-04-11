@@ -13,7 +13,6 @@
         url = "https://gitgud.io/thatfuckingbird/hydownloader";
         rev = "ec551b9ac54bd869eea232f236fefd5ef4758426";
         ref = "master";
-        #sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
       };
 
       nativeBuildInputs = [
