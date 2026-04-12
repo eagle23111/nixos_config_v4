@@ -17,6 +17,7 @@
       protonplus
       lutris
       wine
+      osu-lazer-bin
 
       winetricks
 

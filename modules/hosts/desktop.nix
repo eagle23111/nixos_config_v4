@@ -30,6 +30,13 @@
   }: {
     nixpkgs.config.allowUnfree = true;
     nix.package = pkgs.lix;
+
+      hardware.opentabletdriver.enable = true;
+
+  # Required by OpenTabletDriver
+  hardware.uinput.enable = true;
+  boot.kernelModules = [ "uinput" ];
+
     boot = {
       extraModprobeConfig = ''
         options hid_apple fnmode=0
