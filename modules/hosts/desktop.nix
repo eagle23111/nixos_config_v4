@@ -162,6 +162,8 @@
     networking.networkmanager.enable = true;
     hardware.bluetooth.enable = true;
 
+    programs.direnv.enable = true;
+
     environment = {
       systemPackages = [self.inputs.nix-alien.packages.${pkgs.stdenv.hostPlatform.system}.nix-alien];
       variables.PATH = builtins.getEnv "PATH" + ":~/.local/bin";
