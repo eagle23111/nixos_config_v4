@@ -34,5 +34,7 @@
         inputs.winapps.packages."${pkgs.stdenv.hostPlatform.system}".winapps-launcher
       ];
     virtualisation.waydroid.enable = true;
+    virtualisation.docker.enable = true;
+    virtualisation.docker.storageDriver = "btrfs";
   };
 }

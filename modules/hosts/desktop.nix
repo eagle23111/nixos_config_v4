@@ -28,6 +28,13 @@
     lib,
     ...
   }: {
+      nixpkgs.overlays = [
+      (final: prev: {
+        openldap = prev.openldap.overrideAttrs (_: {
+          doCheck = false;
+        });
+      })
+    ]; # https://github.com/NixOS/nixpkgs/issues/513245
     nixpkgs.config.allowUnfree = true;
     nix.package = pkgs.lix;
 
@@ -146,7 +153,7 @@
     users = {
       users.mortal = {
         isNormalUser = true;
-        extraGroups = ["wheel" "gamemode" "libvirtd" "kvm" "wireshark" "video" "i2c"];
+        extraGroups = ["wheel" "docker" "gamemode" "libvirtd" "kvm" "wireshark" "video" "i2c"];
       };
       defaultUserShell = pkgs.zsh;
     };

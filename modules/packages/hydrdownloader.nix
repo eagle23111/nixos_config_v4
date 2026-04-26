@@ -23,7 +23,8 @@
           --replace-fail 'build-backend = "poetry.masonry.api"' \
                          'build-backend = "poetry.core.masonry.api"' \
           --replace-fail 'poetry>=' 'poetry-core>=' \
-          --replace-fail 'gallery-dl = "^1.31.10"' 'gallery-dl = "^1.30.10"'
+          --replace-fail 'gallery-dl = "^1.31.10"' 'gallery-dl = "^1.30.10"' \
+          --replace-fail 'pillow = "^11.0.0"' 'pillow = "^12.2.0"'
       '';
 
       propagatedBuildInputs = [
@@ -43,7 +44,7 @@
             hash = "sha256-Dq4SSj78CEZ4hq3jCgzcJK/+KPgn7h52HMfFNDQXQPY=";
           };
         }))
-        (python.pkgs.pillow.overrideAttrs (old: {
+        /*(python.pkgs.pillow.overrideAttrs (old: {
           version = "11.3.0";
           src = pkgs.fetchFromGitHub {
             owner = "python-pillow";
@@ -51,7 +52,8 @@
             tag = "11.3.0";
             hash = "sha256-VOOIxzTyERI85CvA2oIutybiivU14kIko8ysXpmwUN8=";
           };
-        }))
+        }))*/
+        python.pkgs.pillow
         python.pkgs.pysocks
         python.pkgs.yt-dlp-ejs
         #  (python.pkgs.yt-dlp-ejs.overrideAttrs (old: {

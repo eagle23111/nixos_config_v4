@@ -22,6 +22,13 @@
   };
 
   flake.homeModules.mortalDesktopModule = {pkgs, ...}: {
+          nixpkgs.overlays = [
+      (final: prev: {
+        openldap = prev.openldap.overrideAttrs (_: {
+          doCheck = false;
+        });
+      })
+    ]; # https://github.com/NixOS/nixpkgs/issues/513245
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [

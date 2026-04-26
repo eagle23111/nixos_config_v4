@@ -18,6 +18,7 @@
       lutris
       wine
       osu-lazer-bin
+      runelite
 
       winetricks
 
