@@ -73,7 +73,12 @@
           {argv = ["${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1"];}
           {argv = ["${pkgs.lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.niriNoctaliaSwayidle}"];}
           {argv = ["thunar" "--daemon"];}
+          {argv = ["${pkgs.wl-clip-persist}/bin/wl-clip-persist" "--clipboard" "regular"];}
+          {argv = ["${pkgs.cliphist}/bin/cliphist" "listen"];}
         ];
+        environment = {
+          DISPLAY = ":12"; # xwayland-satellite typically uses :12
+        };
 
         input = {
           mouse.accel-profile = "flat";

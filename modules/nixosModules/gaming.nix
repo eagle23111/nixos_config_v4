@@ -19,6 +19,7 @@
       wine
       osu-lazer-bin
       runelite
+      ryubing
 
       winetricks
 

@@ -65,7 +65,7 @@
     services.zapret = {
       enable = true;
       package = package;
-      params = zapretConfig2;
+      params = zapretConfig1;
       blacklist = [
         "qwen.ai"
         "aliyuncs.com"

@@ -28,7 +28,7 @@
     lib,
     ...
   }: {
-      nixpkgs.overlays = [
+    nixpkgs.overlays = [
       (final: prev: {
         openldap = prev.openldap.overrideAttrs (_: {
           doCheck = false;
@@ -38,11 +38,11 @@
     nixpkgs.config.allowUnfree = true;
     nix.package = pkgs.lix;
 
-      hardware.opentabletdriver.enable = true;
+    hardware.opentabletdriver.enable = true;
 
-  # Required by OpenTabletDriver
-  hardware.uinput.enable = true;
-  boot.kernelModules = [ "uinput" ];
+    # Required by OpenTabletDriver
+    hardware.uinput.enable = true;
+    boot.kernelModules = ["uinput"];
 
     boot = {
       extraModprobeConfig = ''

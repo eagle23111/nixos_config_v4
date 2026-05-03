@@ -39,6 +39,7 @@
       nvtopPackages.full
       libGL
       cudaPackages.cudatoolkit
+      cudaPackages.nsight_systems
     ];
 
     hardware.nvidia = {

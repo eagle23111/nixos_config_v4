@@ -22,7 +22,7 @@
   };
 
   flake.homeModules.mortalDesktopModule = {pkgs, ...}: {
-          nixpkgs.overlays = [
+    nixpkgs.overlays = [
       (final: prev: {
         openldap = prev.openldap.overrideAttrs (_: {
           doCheck = false;
@@ -55,7 +55,6 @@
       mpv
       devenv
       firefox
-
     ];
     programs.lutris.enable = true;
 

@@ -44,7 +44,8 @@
             hash = "sha256-Dq4SSj78CEZ4hq3jCgzcJK/+KPgn7h52HMfFNDQXQPY=";
           };
         }))
-        /*(python.pkgs.pillow.overrideAttrs (old: {
+        /*
+          (python.pkgs.pillow.overrideAttrs (old: {
           version = "11.3.0";
           src = pkgs.fetchFromGitHub {
             owner = "python-pillow";
@@ -52,7 +53,8 @@
             tag = "11.3.0";
             hash = "sha256-VOOIxzTyERI85CvA2oIutybiivU14kIko8ysXpmwUN8=";
           };
-        }))*/
+        }))
+        */
         python.pkgs.pillow
         python.pkgs.pysocks
         python.pkgs.yt-dlp-ejs

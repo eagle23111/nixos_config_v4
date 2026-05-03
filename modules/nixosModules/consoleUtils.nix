@@ -25,6 +25,8 @@
       inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
       wireshark
       nil
+
+      comma
     ];
 
     programs.nh = {
