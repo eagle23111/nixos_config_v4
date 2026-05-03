@@ -87,12 +87,13 @@
             options = "grp:alt_shift_toggle";
           };
           touchpad = {
-            click-method = "clickfinger";
-            scroll-method = "two-finger";
+            #click-method = "clickfinger";
+            #scroll-method = "two-finger";
             scroll-factor = 0.5;
             accel-profile = "adaptive";
             accel-speed = 0.2;
-            # tap, natural-scroll, dwt removed (defaults used)
+            dwt = true;
+            tap = false;
           };
         };
         outputs = {

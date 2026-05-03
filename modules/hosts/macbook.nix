@@ -25,7 +25,6 @@
     lib,
     ...
   }: {
-    hardware.asahi.peripheralFirmwareDirectory = ../../assets/macbook-m1-firmware;
     nix.package = pkgs.lix;
     nixpkgs.config.allowUnfree = true;
 
@@ -89,7 +88,8 @@
         '';
       };
     };
-
+    services.upower.enable = true;
+    services.tuned.enable = true;
     time.timeZone = "Europe/Moscow";
 
     i18n = {
@@ -120,7 +120,7 @@
         enable = true;
         touchpad = {
           naturalScrolling = true;
-          tapping = true;
+          tapping = false;
           clickMethod = "clickfinger";
           disableWhileTyping = true;
           accelProfile = "adaptive";
@@ -133,9 +133,13 @@
       };
     };
 
-    hardware.asahi = {
-      enable = true;
-      setupAsahiSound = true;
+    hardware = {
+      asahi = {
+        enable = true;
+        setupAsahiSound = true;
+        peripheralFirmwareDirectory = ../../assets/macbook-m1-firmware;
+      };
+      bluetooth.enable = true;
     };
 
     users = {
