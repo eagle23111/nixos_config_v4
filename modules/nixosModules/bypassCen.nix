@@ -73,6 +73,6 @@
       ];
     };
     services.cloudflare-warp.enable = true;
-    programs.wireshark.enable = true;
+    #programs.wireshark.enable = true;
   };
 }

@@ -23,7 +23,7 @@
       aria2
       fastfetch
       inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
-      wireshark
+      #wireshark
       nil
 
       comma

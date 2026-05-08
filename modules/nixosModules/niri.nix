@@ -32,6 +32,7 @@
     environment.systemPackages = with pkgs; [
       file-roller
       ddcutil
+      xwayland-satellite
     ];
     hardware.i2c.enable = true;
     boot.kernelModules = ["i2c-dev"];
@@ -76,9 +77,10 @@
           {argv = ["${pkgs.wl-clip-persist}/bin/wl-clip-persist" "--clipboard" "regular"];}
           {argv = ["${pkgs.cliphist}/bin/cliphist" "listen"];}
         ];
-        environment = {
-          DISPLAY = ":12"; # xwayland-satellite typically uses :12
-        };
+        
+        #environment = {
+        #  DISPLAY = ":0"; 
+        #};
 
         input = {
           mouse.accel-profile = "flat";
