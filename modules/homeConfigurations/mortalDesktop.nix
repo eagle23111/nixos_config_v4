@@ -42,7 +42,7 @@
 
       # openssl
 
-      inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda
       lmstudio
 
       inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
