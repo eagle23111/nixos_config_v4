@@ -5,7 +5,7 @@
     inputs,
     ...
   }: let
-    http_proxy = "http://192.168.0.50:3128";
+    http_proxy = "http://192.168.0.49:3128";
     nrsAlias =
       if config.programs.nh.enable
       then "nh os switch .#NixosSystem.desktop"

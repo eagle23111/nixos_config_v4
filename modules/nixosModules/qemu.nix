@@ -17,8 +17,7 @@
       [
         virt-manager
         usbredir
-      ]
-      ++ [
+        winboat
       ];
     virtualisation.docker.enable = true;
     virtualisation.docker.storageDriver = "btrfs";

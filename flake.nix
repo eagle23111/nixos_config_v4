@@ -14,8 +14,8 @@
     nvchad4nix.url = "github:nix-community/nix4nvchad";
     nvchad4nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    winapps = {
-      url = "github:winapps-org/winapps";
+    llama-cpp = {
+      url = "github:ggml-org/llama.cpp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

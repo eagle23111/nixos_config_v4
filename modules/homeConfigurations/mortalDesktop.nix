@@ -42,7 +42,7 @@
 
       # openssl
 
-      llama-cpp
+      inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default
       lmstudio
 
       inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -55,6 +55,8 @@
       mpv
       devenv
       firefox
+
+      
     ];
     programs.lutris.enable = true;
 
