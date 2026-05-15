@@ -44,6 +44,8 @@
     hardware.uinput.enable = true;
     boot.kernelModules = ["uinput"];
 
+    services.usbmuxd.enable = true;
+
     boot = {
       extraModprobeConfig = ''
         options hid_apple fnmode=0
