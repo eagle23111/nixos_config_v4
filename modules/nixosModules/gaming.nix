@@ -31,6 +31,7 @@
       xwininfo
 
       protontricks
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
     ];
   };
 }

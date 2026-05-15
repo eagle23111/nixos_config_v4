@@ -57,7 +57,7 @@
       devenv
       firefox
 
-      
+      opencode
     ];
     programs.lutris.enable = true;
 
