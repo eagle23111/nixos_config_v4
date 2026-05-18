@@ -30,7 +30,7 @@
       "--filter-udp=443"
       "--dpi-desync=fake"
       "--dpi-desync-repeats=11"
-      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
+      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
       "--new"
       "--filter-udp=19294-19344,50000-50100"
       "--dpi-desync=fake"
@@ -48,7 +48,7 @@
       "--filter-udp=443"
       "--dpi-desync=fake"
       "--dpi-desync-repeats=11"
-      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
+      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
       "--new"
       "--filter-tcp=80,443"
       "--dpi-desync=fake,multisplit"
@@ -65,13 +65,14 @@
     services.zapret = {
       enable = true;
       package = package;
-      params = zapretConfig1;
+      params = zapretConfig2;
       blacklist = [
         "qwen.ai"
         "aliyuncs.com"
         "archlinux.org"
       ];
     };
+    #services.uboot.enable = true;
     services.cloudflare-warp.enable = true;
     #programs.wireshark.enable = true;
   };

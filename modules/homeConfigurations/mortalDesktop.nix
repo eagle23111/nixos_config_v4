@@ -43,7 +43,7 @@
       # openssl
 
       #inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda
-      (llama-cpp.override { cudaSupport = true; })
+      (llama-cpp.override {cudaSupport = true;})
       lmstudio
 
       inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default

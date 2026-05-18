@@ -13,12 +13,11 @@
       };
     };
 
-    environment.systemPackages = with pkgs;
-      [
-        virt-manager
-        usbredir
-        winboat
-      ];
+    environment.systemPackages = with pkgs; [
+      virt-manager
+      usbredir
+      winboat
+    ];
     virtualisation.docker.enable = true;
     virtualisation.docker.storageDriver = "btrfs";
   };

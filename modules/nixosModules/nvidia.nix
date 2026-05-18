@@ -33,7 +33,7 @@
       vulkan-tools
       vulkan-validation-layers
       libvdpau-va-gl
-      egl-wayland 
+      egl-wayland
       wgpu-utils
       libglvnd
       nvtopPackages.full

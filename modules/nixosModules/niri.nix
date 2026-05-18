@@ -77,9 +77,9 @@
           {argv = ["${pkgs.wl-clip-persist}/bin/wl-clip-persist" "--clipboard" "regular"];}
           {argv = ["${pkgs.cliphist}/bin/cliphist" "listen"];}
         ];
-        
+
         #environment = {
-        #  DISPLAY = ":0"; 
+        #  DISPLAY = ":0";
         #};
 
         input = {

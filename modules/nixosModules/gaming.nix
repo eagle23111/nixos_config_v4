@@ -1,9 +1,5 @@
-{...}: {
-  flake.nixosModules.gaming = {
-    pkgs,
-    inputs,
-    ...
-  }: {
+{inputs, ...}: {
+  flake.nixosModules.gaming = {pkgs, ...}: {
     programs.gamemode.enable = true;
     programs.steam = {
       enable = true;
