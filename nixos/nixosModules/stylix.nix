@@ -4,7 +4,7 @@
       inputs.stylix.nixosModules.stylix
     ];
     stylix.enable = true;
-    #stylix.image = ./your-wallpaper.png;
+    stylix.image = "${self}/assets/wallpapers/mist_forest_1.png";
     stylix.polarity = "dark";
     stylix.autoEnable = true;
 

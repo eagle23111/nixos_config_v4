@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-alien.url = "github:thiagokokada/nix-alien";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";

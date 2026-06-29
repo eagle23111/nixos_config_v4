@@ -39,9 +39,11 @@
       };
     };
 
-    /*xdg.desktopEntries."zen-beta" = {
+    /*
+      xdg.desktopEntries."zen-beta" = {
       name = "Zen Browser"; # fixes the menu label
-    };*/
+    };
+    */
   };
   flake.homeModules."zen-browser@extensions" = {pkgs, ...}: let
     mkExtensionSettings = builtins.mapAttrs (_: pluginId: {

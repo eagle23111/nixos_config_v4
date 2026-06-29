@@ -85,7 +85,7 @@
     fileSystems."/boot" = {
       device = "/dev/disk/by-uuid/310b3bc6-c04f-40e6-bf96-6e18f1fdca25";
       fsType = "ext4";
-      options = ["umask=0077"];
+      # options = ["umask=0077"];
     };
 
     fileSystems."/home" = {
