@@ -14,6 +14,8 @@
     nvchad4nix.url = "github:nix-community/nix4nvchad";
     nvchad4nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    zen-browser-flake.url = "github:0xc000022070/zen-browser-flake";
+
     llama-cpp = {
       url = "github:ggml-org/llama.cpp";
       inputs.nixpkgs.follows = "nixpkgs";

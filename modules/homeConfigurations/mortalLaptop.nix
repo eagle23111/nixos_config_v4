@@ -11,7 +11,7 @@
 
     imports = [
       self.homeModules.zsh
-      self.homeModules.stylix
+      self.homeModules.gnome
       self.homeModules.mimeApps
       self.homeModules.mortalLaptopModule
       # self.homeModules.niri
