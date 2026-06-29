@@ -5,6 +5,8 @@
 
       inputs.self.homeModules."gnome@extensions"
       inputs.self.homeModules."gnome@defaultApps"
+
+      inputs.self.homeModules.zen-browser #TODO: remove this after testing
     ];
     stylix.enable = true;
     #stylix.image = ./your-wallpaper.png;
@@ -48,6 +50,10 @@
     stylix.icons.light = "Numix-Circle";
     stylix.icons.dark = "Numix-Circle";
 
+    stylix.targets.zen-browser = {
+      enable = true;
+      profileNames = ["default"]; # <-- replace with your actual profile name (e.g. "default", "main", etc.)
+    };
     #home.pointerCursor = {
     # gtk.enable = true;
     # x11.enable = true;
@@ -115,7 +121,7 @@
       };
     };
     home.packages = with pkgs; [
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       gnome-text-editor
       evince
       evolution

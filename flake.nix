@@ -8,8 +8,8 @@
 
     hardware.url = "github:NixOS/nixos-hardware/master";
 
-    zen-browser.url = "github:youwen5/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    #zen-browser.url = "github:youwen5/zen-browser-flake";
+    #zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
     nvchad4nix.url = "github:nix-community/nix4nvchad";
     nvchad4nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +54,10 @@
     {
       systems = ["x86_64-linux" "aarch64-linux"];
       imports = [
-        (inputs.import-tree ./modules)
+        (inputs.import-tree ./nixos)
+        (inputs.import-tree ./home-manager)
+        (inputs.import-tree ./packages)
+
         inputs.home-manager.flakeModules.home-manager
       ];
       perSystem = {pkgs, ...}: {

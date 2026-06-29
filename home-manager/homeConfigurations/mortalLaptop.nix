@@ -12,7 +12,7 @@
     imports = [
       self.homeModules.zsh
       self.homeModules.gnome
-      self.homeModules.mimeApps
+      # self.homeModules.mimeApps
       self.homeModules.mortalLaptopModule
       # self.homeModules.niri
     ];
@@ -30,7 +30,7 @@
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       vscode
 
       tor
