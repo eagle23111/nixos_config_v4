@@ -42,7 +42,6 @@
 
       # openssl
 
-
       inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
       hydrus
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader

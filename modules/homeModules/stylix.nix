@@ -17,16 +17,12 @@
     stylix.targets.zen-browser.enable = true;
 
     stylix.cursor = {
-
-#	      gtk.enable = true;
+      #	      gtk.enable = true;
       #x11.enable = true;
       package = pkgs.numix-cursor-theme;
       name = "Numix-Cursor";
       size = 24;
     };
-
-	
-    
 
     stylix.fonts = {
       serif = {
@@ -58,11 +54,11 @@
     stylix.icons.dark = "Numix-Circle";
 
     #home.pointerCursor = {
-     # gtk.enable = true;
-     # x11.enable = true;
-     # package = pkgs.numix-cursor-theme;
-     # name = "Numix-Cursor";
-     # size = 24;
+    # gtk.enable = true;
+    # x11.enable = true;
+    # package = pkgs.numix-cursor-theme;
+    # name = "Numix-Cursor";
+    # size = 24;
     #};
   };
 }

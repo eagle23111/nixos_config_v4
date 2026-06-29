@@ -1,5 +1,10 @@
 {inputs, ...}: {
   flake.nixosModules.consoleUtils = {pkgs, ...}: {
+    fonts = {
+      enableDefaultPackages = true;
+      packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
+    };
+
     environment.systemPackages = with pkgs; [
       which
       tree
@@ -27,7 +32,30 @@
       nil
 
       comma
+
+      git
     ];
+    i18n = {
+      defaultLocale = "ru_RU.UTF-8";
+      extraLocales = ["ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
+    };
+
+    console = {
+      useXkbConfig = true;
+      earlySetup = true;
+      font = "cyr-sun16";
+      packages = [pkgs.powerline-fonts];
+    };
+
+    programs = {
+      zsh.enable = true;
+      mtr.enable = true;
+      gnupg.agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+    };
+    programs.direnv.enable = true;
 
     programs.nh = {
       enable = true;
