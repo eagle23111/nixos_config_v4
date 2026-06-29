@@ -11,7 +11,7 @@
       self.homeModules.stylix
       self.homeModules.mimeApps
       self.homeModules.mortalLaptopModule
-      self.homeModules.niri
+      # self.homeModules.niri
       {
         home = {
           username = "mortal";
@@ -22,13 +22,13 @@
   };
 
   flake.homeModules.mortalLaptopModule = {pkgs, ...}: {
-    nixpkgs.overlays = [
-      (final: prev: {
-        openldap = prev.openldap.overrideAttrs (_: {
-          doCheck = false;
-        });
-      })
-    ]; # https://github.com/NixOS/nixpkgs/issues/513245
+    #nixpkgs.overlays = [
+    #  (final: prev: {
+    #    openldap = prev.openldap.overrideAttrs (_: {
+    #      doCheck = false;
+    #    });
+    #  })
+    #]; # https://github.com/NixOS/nixpkgs/issues/513245
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [

@@ -12,10 +12,9 @@
         self.nixosModules.consoleUtils
         self.nixosModules.gaming
         self.nixosModules.nixLD
-        self.nixosModules.nvidia
         self.nixosModules.qemu
         self.nixosModules.snapper
-        self.nixosModules.niri
+        #self.nixosModules.niri
 
         self.nixosModules.laptopModule
         self.nixosModules.laptopHardware
@@ -28,15 +27,9 @@
     lib,
     ...
   }: {
-    nixpkgs.overlays = [
-      (final: prev: {
-        openldap = prev.openldap.overrideAttrs (_: {
-          doCheck = false;
-        });
-      })
-    ]; # https://github.com/NixOS/nixpkgs/issues/513245
     nixpkgs.config.allowUnfree = true;
     nix.package = pkgs.lix;
+
 
 
     # Required by OpenTabletDriver
