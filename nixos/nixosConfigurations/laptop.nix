@@ -19,6 +19,7 @@
         self.nixosModules.variousServices
         self.nixosModules.consoleUtils
 
+        self.nixosModules.stylix
         self.nixosModules.gnome
         #self.nixosModules.niri
 
@@ -37,6 +38,10 @@
   }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
     home-manager.users.mortal = self.homeModules."mortal@laptop";
+    home-manager.backupFileExtension = "hm-backup";
+
+    #services.fprintd.enable = true;
+    #services.fprintd.tod.enable = true;
 
     networking.hostName = "nixoslaptop";
     time.timeZone = "Europe/Moscow";

@@ -1,4 +1,4 @@
-{...}: {
+{inputs, ...}: {
   flake.nixosModules.boot = {pkgs, ...}: {
     boot = {
       loader = {

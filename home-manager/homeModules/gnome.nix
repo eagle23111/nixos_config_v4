@@ -23,15 +23,15 @@
     stylix.fonts = {
       serif = {
         package = pkgs.nerd-fonts.terminess-ttf;
-        name = "Terminess Nerd Font";
+        name = "Terminess Nerd Font Medium";
       };
       sansSerif = {
         package = pkgs.nerd-fonts.terminess-ttf;
-        name = "Terminess Nerd Font";
+        name = "Terminess Nerd Font Medium";
       };
       monospace = {
         package = pkgs.nerd-fonts.terminess-ttf;
-        name = "Terminess Nerd Font Mono";
+        name = "Terminess Nerd Font Mono Medium";
       };
       emoji = {
         package = pkgs.twemoji-color-font;
@@ -44,6 +44,8 @@
       nerd-fonts.dejavu-sans-mono
       dejavu_fonts
     ];
+    fonts.fontconfig.antialiasing = false;
+    fonts.fontconfig.hinting = "slight";
 
     stylix.icons.enable = true;
     stylix.icons.package = pkgs.numix-icon-theme-circle;
@@ -102,6 +104,8 @@
         move-to-workspace-8 = ["<Shift><Super>8"];
         move-to-workspace-9 = ["<Shift><Super>9"];
         move-to-workspace-10 = ["<Shift><Super>0"];
+
+        switch-input-source = ["<Alt>Shift_L"];
       };
     };
   };
@@ -113,9 +117,6 @@
         "inode/directory" = ["org.gnome.Nautilus.desktop"];
         "text/plain" = ["gnome-text-editor.desktop"];
         "application/pdf" = ["evince.desktop"];
-        "x-scheme-handler/http" = ["zen.desktop"];
-        "x-scheme-handler/https" = ["zen.desktop"];
-        "text/html" = ["zen.desktop"];
         "x-scheme-handler/mailto" = ["org.gnome.Evolution.desktop"];
         "text/calendar" = ["gnome-calendar.desktop"];
       };
@@ -129,7 +130,7 @@
     ];
     dconf.settings."org/gnome/shell" = {
       favorite-apps = [
-        "zen.desktop"
+        "zen-beta.desktop"
         "steam.desktop"
         "net.lutris.Lutris.desktop"
         "org.gnome.Nautilus.desktop"
@@ -139,12 +140,14 @@
     };
   };
   flake.homeModules."gnome@extensions" = {pkgs, ...}: {
-    home.packages = with pkgs; [
-      gnomeExtensions.blur-my-shell
-      gnomeExtensions.clipboard-indicator
-      gnomeExtensions.dash-to-dock
-      gnomeExtensions.static-workspace-background
-      #gnomeExtensions.vicinae
+    home.packages = with pkgs.gnomeExtensions; [
+      blur-my-shell
+      clipboard-indicator
+      dash-to-dock
+      static-workspace-background
+      space-bar
+      appindicator
+      #vicinae
     ];
     dconf.settings = {
       "org/gnome/shell" = {
@@ -156,6 +159,8 @@
           clipboard-indicator.extensionUuid
           dash-to-dock.extensionUuid
           static-workspace-background.extensionUuid
+          space-bar.extensionUuid
+          appindicator.extensionUuid
           #vicinae.extensionUuid
         ];
       };
