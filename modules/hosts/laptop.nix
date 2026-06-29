@@ -15,6 +15,8 @@
         self.nixosModules.qemu
         self.nixosModules.snapper
         self.nixosModules.boot
+        self.nixosModules.nix
+        self.nixosModules.variousServices
 
         self.nixosModules.gnome
         #self.nixosModules.niri
@@ -30,41 +32,9 @@
     lib,
     ...
   }: {
-    services.usbmuxd.enable = true;
-
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    services = {
-      pipewire = {
-        enable = true;
-        pulse.enable = true;
-      };
-      timesyncd.enable = true;
-      openssh = {
-        enable = true;
-        settings.PermitRootLogin = "no";
-      };
-      xserver = {
-        xkb = {
-          layout = "us,ru";
-          options = "grp:alt_shift_toggle";
-        };
-      };
-    };
-
-    networking = {
-      hostName = "nixos";
-      firewall = {
-        enable = true;
-        extraCommands = ''
-          # Allow ALL traffic from local network
-          iptables -I INPUT 1 -s 192.168.0.0/16 -j ACCEPT
-          ip6tables -I INPUT 1 -s fd00::/8 -j ACCEPT
-          ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT
-        '';
-      };
-    };
-
+    networking.hostName = "nixoslaptop";
     time.timeZone = "Europe/Moscow";
 
     users = {
@@ -74,9 +44,6 @@
       };
       defaultUserShell = pkgs.zsh;
     };
-
-    networking.networkmanager.enable = true;
-    hardware.bluetooth.enable = true;
 
     system.stateVersion = "26.05";
   };
