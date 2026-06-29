@@ -1,5 +1,5 @@
-{...}:{
-  flake.nixosModules.variousServices = {...}:{  
+{...}: {
+  flake.nixosModules.variousServices = {...}: {
     services = {
       pipewire = {
         enable = true;
@@ -17,7 +17,7 @@
         };
       };
     };
-        networking = {
+    networking = {
       firewall = {
         enable = true;
         extraCommands = ''
@@ -28,9 +28,8 @@
         '';
       };
     };
-        networking.networkmanager.enable = true;
+    networking.networkmanager.enable = true;
     hardware.bluetooth.enable = true;
-        services.usbmuxd.enable = true;
-
-};
+    services.usbmuxd.enable = true;
+  };
 }

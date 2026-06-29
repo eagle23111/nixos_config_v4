@@ -3,32 +3,30 @@
   self,
   ...
 }: {
-  flake.homeConfigurations."mortal@laptop" = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-    extraSpecialArgs = {inherit inputs;};
-    modules = [
+  flake.homeModules."mortal@laptop" = {...}: {
+    home = {
+      username = "mortal";
+      homeDirectory = "/home/mortal";
+    };
+
+    imports = [
       self.homeModules.zsh
       self.homeModules.stylix
       self.homeModules.mimeApps
       self.homeModules.mortalLaptopModule
       # self.homeModules.niri
-      {
-        home = {
-          username = "mortal";
-          homeDirectory = "/home/mortal";
-        };
-      }
+    ];
+  };
+
+  flake.homeConfigurations."mortal@laptop" = inputs.home-manager.lib.homeManagerConfiguration {
+    pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+    extraSpecialArgs = {inherit inputs;};
+    modules = [
+      self.homeModules."mortal@laptop"
     ];
   };
 
   flake.homeModules.mortalLaptopModule = {pkgs, ...}: {
-    #nixpkgs.overlays = [
-    #  (final: prev: {
-    #    openldap = prev.openldap.overrideAttrs (_: {
-    #      doCheck = false;
-    #    });
-    #  })
-    #]; # https://github.com/NixOS/nixpkgs/issues/513245
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
@@ -56,7 +54,6 @@
       opencode
     ];
     programs.lutris.enable = true;
-
     programs.kitty = {
       enable = true;
       extraConfig = ''

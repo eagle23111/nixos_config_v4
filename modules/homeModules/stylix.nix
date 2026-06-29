@@ -11,14 +11,7 @@
     stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
 
-    stylix.targets.gtk.enable = true;
-    #stylix.targets.qt.enable = true;
-    stylix.targets.vscode.enable = true;
-    stylix.targets.zen-browser.enable = true;
-
     stylix.cursor = {
-      #	      gtk.enable = true;
-      #x11.enable = true;
       package = pkgs.numix-cursor-theme;
       name = "Numix-Cursor";
       size = 24;

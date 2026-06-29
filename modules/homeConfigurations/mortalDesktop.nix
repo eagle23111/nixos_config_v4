@@ -40,9 +40,6 @@
 
       libreoffice-fresh
 
-      # openssl
-
-      #inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda
       (llama-cpp.override {cudaSupport = true;})
       lmstudio
 

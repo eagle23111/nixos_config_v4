@@ -9,20 +9,23 @@
       modules = [
         self.nixosModules.caches
         self.nixosModules.bypassCen
-        self.nixosModules.consoleUtils
         self.nixosModules.gaming
         self.nixosModules.nixLD
         self.nixosModules.qemu
         self.nixosModules.snapper
+
         self.nixosModules.boot
         self.nixosModules.nix
         self.nixosModules.variousServices
+        self.nixosModules.consoleUtils
 
         self.nixosModules.gnome
         #self.nixosModules.niri
 
         self.nixosModules.laptopModule
         self.nixosModules.laptopHardware
+
+        inputs.home-manager.nixosModules.home-manager
       ];
     };
 
@@ -33,6 +36,7 @@
     ...
   }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
+    home-manager.users.mortal = self.homeModules."mortal@laptop";
 
     networking.hostName = "nixoslaptop";
     time.timeZone = "Europe/Moscow";
