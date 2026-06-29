@@ -1,7 +1,7 @@
 {inputs, ...}: {
   flake.homeModules.gnome = {pkgs, ...}: {
     imports = [
-      inputs.stylix.homeModules.stylix
+      # inputs.stylix.homeModules.stylix
 
       inputs.self.homeModules."gnome@extensions"
       inputs.self.homeModules."gnome@defaultApps"
@@ -13,6 +13,7 @@
     stylix.polarity = "dark";
     stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
+    programs.obsidian.enable = true;
 
     stylix.cursor = {
       package = pkgs.numix-cursor-theme;

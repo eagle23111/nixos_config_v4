@@ -22,6 +22,7 @@
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
     modules = [
+      self.stylix.homeModules.stylix
       self.homeModules."mortal@laptop"
     ];
   };
@@ -32,6 +33,7 @@
     home.packages = with pkgs; [
       #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
       vscode
+      obsidian
 
       tor
       tor-browser
