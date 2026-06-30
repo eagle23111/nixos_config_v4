@@ -12,14 +12,14 @@
       enable = true;
       setAsDefaultBrowser = true;
 
-      policies = {
-        default.settings = {
-          "zen.workspaces.continue-where-left-off" = true;
-          "zen.view.compact.hide-tabbar" = true;
-          #"zen.urlbar.behavior" = "float";
-          "zen.welcome-screen.seen" = true;
-        };
+      profiles.default.settings = {
+        "zen.workspaces.continue-where-left-off" = true;
+        "zen.view.compact.hide-tabbar" = true;
+        "zen.welcome-screen.seen" = true;
+        "mousewheel.default.delta_multiplier_y" = 50;
+      };
 
+      policies = {
         AutofillAddressEnabled = true;
         AutofillCreditCardEnabled = false;
         DisableAppUpdate = true;
