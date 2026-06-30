@@ -159,7 +159,7 @@
     };
     flake.nixosModules.bypassCen = {pkgs,...}:{
       imports = [
-        inputs.self.nixosModules.zapret
+        inputs.self.nixosModules.zapretSetup
       ];
       my.zapret = {
             enable = true;
@@ -171,6 +171,6 @@
               #extraListGeneral = [ "example.com" ];
             };
           };
-      programs.cloudflare-warp.enable = true;
+      services.cloudflare-warp.enable = true;
     };
 }
