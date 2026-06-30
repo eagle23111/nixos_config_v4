@@ -14,6 +14,9 @@
     #nvchad4nix.url = "github:nix-community/nix4nvchad";
     #nvchad4nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixvim.url = "github:nix-community/nixvim";
+    #nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
     zen-browser-flake.url = "github:0xc000022070/zen-browser-flake";
 
     llama-cpp = {
@@ -46,7 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-alien.url = "github:thiagokokada/nix-alien";
 
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 

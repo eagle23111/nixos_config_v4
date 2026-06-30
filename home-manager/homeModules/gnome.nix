@@ -15,6 +15,11 @@
     stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
 
+    stylix.targets.qt = {
+      enable = true;
+      platform = "qtct"; # or "gtk" if you prefer, but "qtct" is the most reliable for custom themes.
+    };
+
     stylix.cursor = {
       package = pkgs.numix-cursor-theme;
       name = "Numix-Cursor";
@@ -110,11 +115,11 @@
       };
 
       "org/gnome/desktop/notifications" = {
-        show-banners-on-locks = false;
+        show-in-lock-screen = false;
       };
       "org/gnome/desktop/interface" = {
-        font-antialiasing = "none"; 
-        font-hinting = "slight"; 
+        font-antialiasing = "none";
+        font-hinting = "slight";
       };
     };
   };

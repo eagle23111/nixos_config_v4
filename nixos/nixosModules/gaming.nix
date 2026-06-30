@@ -9,7 +9,7 @@
 
     hardware.graphics.enable32Bit = true;
     environment.systemPackages = with pkgs; [
-      gamescope-wsi # HDR won't work without this
+      gamescope-wsi
       protonplus
       lutris
       wine

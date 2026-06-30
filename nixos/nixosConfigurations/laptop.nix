@@ -40,6 +40,27 @@
     home-manager.users.mortal = self.homeModules."mortal@laptop";
     home-manager.backupFileExtension = "hm-backup";
 
+    hardware.graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver # VA-API video acceleration (iHD)
+        vpl-gpu-rt # Intel Quick Sync Video (QSV)
+        intel-compute-runtime # OpenCL and Level Zero for compute tasks
+      ];
+    };
+
+    # Set environment variable to use the modern Intel driver backend
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "iHD";
+    };
+
+    hardware.enableRedistributableFirmware = true;
+    boot.initrd.kernelModules = ["xe"];
+    boot.kernelParams = ["i915.enable_psr=0"];
+
+    services.power-profiles-daemon.enable = true;
+    services.thermald.enable = true;
+
     #services.fprintd.enable = true;
     #services.fprintd.tod.enable = true;
 
