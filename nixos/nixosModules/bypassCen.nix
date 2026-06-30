@@ -1,110 +1,176 @@
-{inputs, ...}: {
-  flake.nixosModules.bypassCen = {pkgs, ...}: let
-    package = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.zapretMod;
-    #package = pkgs.zapret;
-    /**/
-    zapretConfig1 = [
-      "--filter-tcp=80,443"
-      "--hostlist-domains=googlevideo.com,googleapis.com"
-      "--ip-id=zero"
-      "--dpi-desync=fake,multisplit"
-      "--dpi-desync-split-seqovl=681"
-      "--dpi-desync-split-pos=1"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-repeats=8"
-      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
-      "--new"
-      "--filter-udp=80,443,500,27000-27030,27036,3074,27015-27030,27036-27037,1935,3478-3480" # 27000-27030, 27036 - elite dangerous
-      "--dpi-desync=fake"
-      "--dpi-desync-repeats=10"
-      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
-      "--new"
-      "--filter-tcp=80,443,500,6900-6999,8080" # 6900-6999 - warframe 8080 - elite dangerous
-      "--dpi-desync=fake"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-repeats=6"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-    ];
-    zapretConfig2 = [
-      "--filter-udp=443"
-      "--dpi-desync=fake"
-      "--dpi-desync-repeats=11"
-      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
-      "--new"
-      "--filter-udp=19294-19344,50000-50100"
-      "--dpi-desync=fake"
-      "--dpi-desync-repeats=6"
-      "--new"
-      "--filter-tcp=2053,2083,2087,2096,8443"
-      "--dpi-desync=fake,multisplit"
-      "--dpi-desync-split-seqovl=681"
-      "--dpi-desync-split-pos=1"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-repeats=8"
-      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
-      "--new"
-      "--filter-udp=443"
-      "--dpi-desync=fake"
-      "--dpi-desync-repeats=11"
-      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
-      "--new"
-      "--filter-tcp=80,443"
-      "--dpi-desync=fake,multisplit"
-      "--dpi-desync-split-seqovl=664"
-      "--dpi-desync-split-pos=1"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-repeats=8"
-      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/stun.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-      "--dpi-desync-fake-http=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-    ];
-    zapretConfig3 = [
-      "--filter-udp=443"
-      "--dpi-desync=fake"
-      "--dpi-desync-repeats=11"
-      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
-      "--new"
-      "--filter-udp=19294-19344,50000-50100"
-      "--dpi-desync=fake"
-      "--dpi-desync-fake-discord=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
-      "--dpi-desync-fake-stun=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
-      "--dpi-desync-repeats=6"
-      "--new"
-      "--filter-tcp=2053,2083,2087,2096,8443"
-      "--dpi-desync=fake,multisplit"
-      "--dpi-desync-split-seqovl=681"
-      "--dpi-desync-split-pos=1"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-repeats=8"
-      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
-      "--new"
-      "--filter-tcp=80,443"
-      "--dpi-desync=fake,multisplit"
-      "--dpi-desync-split-pos=1"
-      "--dpi-desync-fooling=ts"
-      "--dpi-desync-repeats=8"
-      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/stun.bin"
-      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-      "--dpi-desync-fake-http=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
-    ];
-  in {
-    services.zapret = {
-      enable = true;
-      package = package;
-      params = zapretConfig3;
-      blacklist = [
-        "qwen.ai"
-        "aliyuncs.com"
-        "archlinux.org"
-      ];
+# zapret-flake-module.nix
+{inputs, ... }:
+{
+  flake.nixosModules.zapretSetup = { config, pkgs, lib, ... }:
+    let
+      cfg = config.my.zapret;
+    in
+    {
+      options.my.zapret = {
+        enable = lib.mkEnableOption "my zapret config";
+        zapret-discord-youtube = {
+          version = lib.mkOption {
+            type = lib.types.singleLineStr;
+          };
+          hash = lib.mkOption {
+            type = lib.types.singleLineStr;
+          };
+          batFileName = lib.mkOption {
+            type = lib.types.singleLineStr;
+          };
+          extraListGeneral = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
+          extraIpsetAll = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
+          extraListExclude = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
+          extraIpsetExclude = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
+          extraListGoogle = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [ ];
+          };
+        };
+        package = lib.mkOption {
+          type = lib.types.package;
+          default = pkgs.zapret;
+        };
+      };
+
+      config =
+        let
+          mkZapretConfig =
+            {
+              version,
+              hash,
+              batFileName,
+              extraListGeneral,
+              extraIpsetAll,
+              extraListExclude,
+              extraIpsetExclude,
+              extraListGoogle,
+            }:
+            let
+              src = pkgs.fetchFromGitHub {
+                owner = "Flowseal";
+                repo = "zapret-discord-youtube";
+                rev = version;
+                inherit hash;
+              };
+              f = list: pkgs.writeText "list.txt" ("\n" + (lib.strings.concatLines list));
+              zapret-discord-youtube = pkgs.stdenvNoCC.mkDerivation {
+                pname = "zapret-discord-youtube";
+                inherit version src;
+
+                buildPhase = ''
+                  mkdir lists-with-extra
+                  cat lists/list-general.txt ${f extraListGeneral} > lists-with-extra/list-general.txt
+                  cat lists/ipset-all.txt ${f extraIpsetAll} > lists-with-extra/ipset-all.txt
+                  cat lists/list-exclude.txt ${f extraListExclude} > lists-with-extra/list-exclude.txt
+                  cat lists/ipset-exclude.txt ${f extraIpsetExclude} > lists-with-extra/ipset-exclude.txt
+                  cat lists/list-google.txt ${f extraListGoogle} > lists-with-extra/list-google.txt
+                '';
+
+                installPhase = ''
+                  mkdir -p $out/bin
+                  cp -r bin/*.bin $out/bin
+
+                  mkdir -p $out/lists
+                  cp -r lists-with-extra/*.txt $out/lists
+                '';
+              };
+              batFile = builtins.readFile "${src}/${batFileName}";
+              batFileLines = builtins.filter (
+                l: builtins.isString l && l != "" && builtins.match "^#.*" l == null
+              ) (builtins.split "\n" batFile);
+              dropWhile =
+                pred: arr:
+                (lib.lists.foldl'
+                  (prev: cur: rec {
+                    shouldDrop = prev.shouldDrop && pred cur;
+                    result = if !shouldDrop then prev.result ++ [ cur ] else [ ];
+                  })
+                  {
+                    shouldDrop = true;
+                    result = [ ];
+                  }
+                  arr
+                ).result;
+              batFileFromStart = dropWhile (line: !(lib.strings.hasPrefix "start " line)) batFileLines;
+              batFileRawArgs = lib.lists.flatten (map (lib.strings.splitString " ") batFileFromStart);
+              wfUdpArg =
+                lib.lists.findSingle (lib.strings.hasPrefix "--wf-udp=") (throw "no --wf-udp")
+                  (throw "multiple --wf-udp")
+                  batFileRawArgs;
+
+              udpPorts = lib.trivial.pipe wfUdpArg [
+                (lib.strings.removePrefix "--wf-udp=")
+                (lib.strings.splitString ",")
+                (builtins.filter (s: (builtins.match "%.*%" s) == null))
+                (map (builtins.replaceStrings [ "-" ] [ ":" ]))
+              ];
+
+              batFileNotReplacedArgs = dropWhile (arg: !(lib.strings.hasPrefix "--filter" arg)) batFileRawArgs;
+              params = lib.lists.filter (arg: arg != "") (
+                map (builtins.replaceStrings
+                  [
+                    "%BIN%"
+                    "%LISTS%"
+                    "\r"
+                    "^"
+                    "\""
+                    "%GameFilterTCP%"
+                    "%GameFilterUDP%"
+                    "-user"
+                  ]
+                  [
+                    "${zapret-discord-youtube}/bin/"
+                    "${zapret-discord-youtube}/lists/"
+                    ""
+                    ""
+                    ""
+                    "12"
+                    "12"
+                    ""
+                  ]
+                ) batFileNotReplacedArgs
+              );
+            in
+            {
+              enable = true;
+              httpSupport = true;
+              udpSupport = true;
+              configureFirewall = true;
+              inherit udpPorts params;
+              package = cfg.package;
+            };
+        in
+        lib.mkIf cfg.enable {
+          services.zapret = (mkZapretConfig cfg.zapret-discord-youtube);
+        };
     };
-    #services.uboot.enable = true;
-    services.cloudflare-warp.enable = true;
-    #programs.wireshark.enable = true;
-  };
+    flake.nixosModules.bypassCen = {pkgs,...}:{
+      imports = [
+        inputs.self.nixosModules.zapret
+      ];
+      my.zapret = {
+            enable = true;
+            zapret-discord-youtube = {
+              version = "1.9.9c";
+              hash = "sha256-P+t0M9nJW9I99ZDX9M3LUFGv2vVScF1A6BdjQVXcKNE=";
+              batFileName = "general (ALT12).bat";
+
+              #extraListGeneral = [ "example.com" ];
+            };
+          };
+      programs.cloudflare-warp.enable = true;
+    };
 }
