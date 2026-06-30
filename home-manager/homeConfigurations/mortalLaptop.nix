@@ -15,6 +15,8 @@
       # self.homeModules.mimeApps
       self.homeModules.mortalLaptopModule
       # self.homeModules.niri
+
+      self.homeModules.essentials
     ];
   };
 
@@ -55,6 +57,7 @@
 
       opencode
     ];
+
     programs.lutris.enable = true;
     programs.kitty = {
       enable = true;
