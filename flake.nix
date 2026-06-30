@@ -11,8 +11,8 @@
     #zen-browser.url = "github:youwen5/zen-browser-flake";
     #zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    nvchad4nix.url = "github:nix-community/nix4nvchad";
-    nvchad4nix.inputs.nixpkgs.follows = "nixpkgs";
+    #nvchad4nix.url = "github:nix-community/nix4nvchad";
+    #nvchad4nix.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser-flake.url = "github:0xc000022070/zen-browser-flake";
 

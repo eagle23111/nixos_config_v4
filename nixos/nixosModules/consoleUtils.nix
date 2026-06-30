@@ -9,7 +9,7 @@
       which
       tree
       wget
-      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
       btop
       iotop
       iftop

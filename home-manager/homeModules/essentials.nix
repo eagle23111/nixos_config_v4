@@ -2,6 +2,7 @@
   flake.homeModules.essentials = {pkgs, ...}: {
     imports = [
       inputs.self.homeModules.zsh
+      inputs.self.homeModules.neovim
     ];
 
     home.packages = with pkgs; [
@@ -12,7 +13,7 @@
 
       libreoffice-fresh
 
-      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       ani-cli
       mpv

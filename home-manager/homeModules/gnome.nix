@@ -45,8 +45,8 @@
       nerd-fonts.dejavu-sans-mono
       dejavu_fonts
     ];
-    fonts.fontconfig.antialiasing = false;
-    fonts.fontconfig.hinting = "slight";
+    #fonts.fontconfig.antialiasing = false;
+    #fonts.fontconfig.hinting = "slight";
 
     stylix.icons.enable = true;
     stylix.icons.package = pkgs.numix-icon-theme-circle;
@@ -107,6 +107,14 @@
         move-to-workspace-10 = ["<Shift><Super>0"];
 
         switch-input-source = ["<Alt>Shift_L"];
+      };
+
+      "org/gnome/desktop/notifications" = {
+        show-banners-on-locks = false;
+      };
+      "org/gnome/desktop/interface" = {
+        font-antialiasing = "none"; 
+        font-hinting = "slight"; 
       };
     };
   };
