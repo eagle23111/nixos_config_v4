@@ -13,7 +13,7 @@
       self.homeModules.zsh
       self.homeModules.gnome
       self.homeModules.mortalDesktopModule
-      self.homeModules.zen-browser
+      #self.homeModules.zen-browser
 
       self.homeModules.essentials
     ];

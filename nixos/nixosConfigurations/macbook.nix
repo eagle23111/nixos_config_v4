@@ -13,7 +13,10 @@
         self.nixosModules.macbookHardware
         self.nixosModules.caches
         self.nixosModules.consoleUtils
-        self.nixosModules.niri
+        self.nixosModules.gnome
+
+        self.nixosModules.nix
+        self.nixosModules.variousServices
 
         self.nixosModules.bypassCen
       ];
@@ -25,17 +28,6 @@
     lib,
     ...
   }: {
-    nix.package = pkgs.lix;
-    nixpkgs.config.allowUnfree = true;
-
-    nix = {
-      settings = {
-        experimental-features = "nix-command flakes";
-        trusted-users = ["root" "@wheel"];
-      };
-      channel.enable = false;
-    };
-
     boot = {
       loader = {
         systemd-boot.enable = true;
@@ -78,58 +70,23 @@
           settings.General.EnableNetworkConfiguration = true;
         };
       };
-      firewall = {
-        enable = true;
-        extraCommands = ''
-          # Allow ALL traffic from local network
-          iptables -I INPUT 1 -s 192.168.0.0/16 -j ACCEPT
-          ip6tables -I INPUT 1 -s fd00::/8 -j ACCEPT
-          ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT
-        '';
-      };
     };
+
     services.upower.enable = true;
     services.tuned.enable = true;
     time.timeZone = "Europe/Moscow";
 
-    i18n = {
-      defaultLocale = "ru_RU.UTF-8";
-      extraLocales = ["ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
-    };
-
-    console = {
-      useXkbConfig = true;
-      earlySetup = true;
-      font = "cyr-sun16";
-      packages = [pkgs.powerline-fonts];
-    };
-
-    fonts = {
-      enableDefaultPackages = true;
-      packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
-    };
-
     services = {
-      xserver = {
-        xkb = {
-          layout = "us,ru";
-          options = "grp:alt_shift_toggle";
-        };
-      };
-      libinput = {
-        enable = true;
-        touchpad = {
-          naturalScrolling = true;
-          tapping = false;
-          clickMethod = "clickfinger";
-          disableWhileTyping = true;
-          accelProfile = "adaptive";
-          #scrollFactor = 0.5;
-        };
-      };
-      openssh = {
-        enable = true;
-        settings.PermitRootLogin = "no";
+    };
+    libinput = {
+      enable = true;
+      touchpad = {
+        naturalScrolling = true;
+        tapping = false;
+        clickMethod = "clickfinger";
+        disableWhileTyping = true;
+        accelProfile = "adaptive";
+        #scrollFactor = 0.5;
       };
     };
 
@@ -137,7 +94,7 @@
       asahi = {
         enable = true;
         setupAsahiSound = true;
-        peripheralFirmwareDirectory = ../../assets/macbook-m1-firmware;
+        peripheralFirmwareDirectory = "${inputs.self}/assets/macbook-m1-firmware";
       };
       bluetooth.enable = true;
     };
@@ -149,25 +106,6 @@
       };
       defaultUserShell = pkgs.zsh;
     };
-
-    programs = {
-      zsh = {
-        enable = true;
-        enableCompletion = true;
-        syntaxHighlighting.enable = true;
-      };
-      firefox.enable = true;
-      mtr.enable = true;
-      gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-    };
-
-    environment.systemPackages = with pkgs; [
-      wget
-      git
-    ];
 
     system.stateVersion = "26.05";
   };

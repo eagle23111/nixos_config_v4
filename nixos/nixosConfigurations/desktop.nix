@@ -20,6 +20,8 @@
         self.nixosModules.nix
         self.nixosModules.variousServices
 
+        self.nixosModules.gnome
+
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware
       ];
@@ -31,7 +33,6 @@
     lib,
     ...
   }: {
-
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
     home-manager.users.mortal = self.homeModules."mortal@desktop";

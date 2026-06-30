@@ -10,7 +10,7 @@
       inputs.self.homeModules.zsh
     ];
     stylix.enable = true;
-    stylix.image = "${inputs.self}/wallpapers/mist_forest_1.png";
+    stylix.image = "${inputs.self}/assets/wallpapers/mist_forest_1.png";
     stylix.polarity = "dark";
     stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
