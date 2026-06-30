@@ -13,9 +13,6 @@
       protonplus
       lutris
       wine
-      osu-lazer-bin
-      runelite
-      ryubing
 
       winetricks
 
@@ -27,7 +24,6 @@
       xwininfo
 
       protontricks
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
     ];
   };
 }

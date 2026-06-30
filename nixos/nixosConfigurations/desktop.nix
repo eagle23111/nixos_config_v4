@@ -24,6 +24,8 @@
 
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware
+
+        inputs.home-manager.nixosModules.home-manager
       ];
     };
 

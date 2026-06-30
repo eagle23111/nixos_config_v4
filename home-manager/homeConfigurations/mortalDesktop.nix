@@ -36,6 +36,8 @@
       lmstudio
       hydrus
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
+      osu-lazer-bin
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
     ];
 
     programs.lutris.enable = true;

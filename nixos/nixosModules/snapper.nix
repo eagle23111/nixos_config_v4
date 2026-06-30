@@ -6,7 +6,8 @@
   }: {
     services.snapper = {
       configs = {
-        root = {
+        /*
+          root = {
           SUBVOLUME = "/";
           FSTYPE = "btrfs";
           QGROUP = "";
@@ -32,6 +33,7 @@
           EMPTY_PRE_POST_CLEANUP = true;
           EMPTY_PRE_POST_MIN_AGE = "3600";
         };
+        */
 
         home = {
           SUBVOLUME = "/home";

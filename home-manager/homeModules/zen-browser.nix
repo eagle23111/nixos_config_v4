@@ -38,7 +38,6 @@
         };
       };
     };
-
   };
   flake.homeModules."zen-browser@extensions" = {pkgs, ...}: let
     mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
@@ -106,7 +105,7 @@
     in {
       inherit pins;
       pinsForce = true;
-      pinsForceAction = "demote"; # delete any undeclared pinned tabs
+      pinsForceAction = "demote";
     };
   };
 }

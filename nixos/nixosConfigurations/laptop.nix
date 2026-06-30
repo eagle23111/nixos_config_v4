@@ -21,7 +21,6 @@
 
         self.nixosModules.stylix
         self.nixosModules.gnome
-        #self.nixosModules.niri
 
         self.nixosModules.laptopModule
         self.nixosModules.laptopHardware

@@ -16,7 +16,6 @@
 
       ani-cli
       mpv
-      devenv
 
       opencode
     ];

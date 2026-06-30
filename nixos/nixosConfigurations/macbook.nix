@@ -19,6 +19,8 @@
         self.nixosModules.variousServices
 
         self.nixosModules.bypassCen
+
+        inputs.home-manager.nixosModules.home-manager
       ];
     };
 

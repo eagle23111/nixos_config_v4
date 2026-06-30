@@ -22,15 +22,6 @@
         verbose = false;
       };
 
-      #plymouth = {
-      #  enable = true;
-      #  theme = "spin";
-      #  themePackages = with pkgs; [
-      #    (adi1090x-plymouth-themes.override {
-      #      selected_themes = ["spin"];
-      #    })
-      #  ];
-      #};
       plymouth.enable = true;
 
       consoleLogLevel = 3;
@@ -47,14 +38,9 @@
       inputs.lanzaboote.nixosModules.lanzaboote
     ];
     environment.systemPackages = [
-      # For debugging and troubleshooting Secure Boot.
       pkgs.sbctl
     ];
 
-    # Lanzaboote currently replaces the systemd-boot module.
-    # This setting is usually set to true in configuration.nix
-    # generated at installation time. So we force it to false
-    # for now.
     boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
 
     boot.lanzaboote = {
