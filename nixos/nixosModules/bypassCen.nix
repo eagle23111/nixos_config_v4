@@ -61,11 +61,42 @@
       "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
       "--dpi-desync-fake-http=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
     ];
+    zapretConfig3 = [
+      "--filter-udp=443"
+      "--dpi-desync=fake"
+      "--dpi-desync-repeats=11"
+      "--dpi-desync-fake-quic=${package}/usr/share/zapret/files/fake/quic_initial_www_google_com.bin"
+      "--new"
+      "--filter-udp=19294-19344,50000-50100"
+      "--dpi-desync=fake"
+      "--dpi-desync-fake-discord=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
+      "--dpi-desync-fake-stun=${package}/usr/share/zapret/files/fake/quic_initial_dbankcloud_ru.bin"
+      "--dpi-desync-repeats=6"
+      "--new"
+      "--filter-tcp=2053,2083,2087,2096,8443"
+      "--dpi-desync=fake,multisplit"
+      "--dpi-desync-split-seqovl=681"
+      "--dpi-desync-split-pos=1"
+      "--dpi-desync-fooling=ts"
+      "--dpi-desync-repeats=8"
+      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
+      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_www_google_com.bin"
+      "--new"
+      "--filter-tcp=80,443"
+      "--dpi-desync=fake,multisplit"
+      "--dpi-desync-split-pos=1"
+      "--dpi-desync-fooling=ts"
+      "--dpi-desync-repeats=8"
+      "--dpi-desync-split-seqovl-pattern=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
+      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/stun.bin"
+      "--dpi-desync-fake-tls=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
+      "--dpi-desync-fake-http=${package}/usr/share/zapret/files/fake/tls_clienthello_max_ru.bin"
+    ];
   in {
     services.zapret = {
       enable = true;
       package = package;
-      params = zapretConfig2;
+      params = zapretConfig3;
       blacklist = [
         "qwen.ai"
         "aliyuncs.com"

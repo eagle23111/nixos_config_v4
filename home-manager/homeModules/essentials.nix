@@ -21,6 +21,14 @@
       opencode
     ];
 
+    programs.anki = {
+      enable = true;
+      addons = [
+        pkgs.ankiAddons.anki-connect
+        pkgs.ankiAddons.passfail2
+      ];
+    };
+
     programs.home-manager.enable = true;
     programs.git = {
       enable = true;

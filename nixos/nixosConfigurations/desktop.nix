@@ -19,6 +19,7 @@
         self.nixosModules.boot
         self.nixosModules.nix
         self.nixosModules.variousServices
+        self.nixosModules.stylix
 
         self.nixosModules.gnome
 
@@ -97,12 +98,12 @@
       "/" = {
         device = "/dev/mapper/c3";
         fsType = "btrfs";
-        options = ["subvol=nixos"];
+        options = ["subvol=@nixos,compress=zstd"];
       };
       "/home" = {
         device = "/dev/mapper/c3";
         fsType = "btrfs";
-        options = ["subvol=home"];
+        options = ["subvol=home,compress=zstd"];
       };
       "/boot" = {
         device = "/dev/disk/by-uuid/f6286dc8-eea4-4662-b92a-b2ea0992d6ca";
