@@ -12,9 +12,8 @@
     imports = [
       self.homeModules.zsh
       self.homeModules.gnome
-      # self.homeModules.mimeApps
       self.homeModules.mortalLaptopModule
-      # self.homeModules.niri
+      self.homeModules.zen-browser
 
       self.homeModules.essentials
     ];
@@ -31,54 +30,6 @@
 
   flake.homeModules.mortalLaptopModule = {pkgs, ...}: {
     nixpkgs.config.allowUnfree = true;
-
-    home.packages = with pkgs; [
-      #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-      vscode
-      obsidian
-
-      tor
-      tor-browser
-
-      libreoffice-fresh
-
-      # openssl
-
-      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      hydrus
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
-
-      evolution
-
-      ani-cli
-      mpv
-      devenv
-      firefox
-
-      opencode
-    ];
-
-    programs.lutris.enable = true;
-    programs.kitty = {
-      enable = true;
-      extraConfig = ''
-        copy_on_select yes
-        mouse_map right press ungrabbed,grabbed paste_from_selection
-      '';
-    };
-
-    programs.home-manager.enable = true;
-    programs.git = {
-      enable = true;
-      lfs.enable = true; # for huggingface
-      settings = {
-        user = {
-          name = "eagle23111";
-          email = "stasapohta@yandex.ru";
-        };
-      };
-    };
-
     systemd.user.startServices = "sd-switch";
 
     home.stateVersion = "26.05";

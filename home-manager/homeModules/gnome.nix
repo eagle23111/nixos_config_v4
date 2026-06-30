@@ -6,14 +6,14 @@
       inputs.self.homeModules."gnome@extensions"
       inputs.self.homeModules."gnome@defaultApps"
 
-      inputs.self.homeModules.zen-browser #TODO: remove this after testing
+      inputs.self.homeModules.zen-browser
+      inputs.self.homeModules.zsh
     ];
     stylix.enable = true;
-    #stylix.image = ./your-wallpaper.png;
+    stylix.image = "${inputs.self}/wallpapers/mist_forest_1.png";
     stylix.polarity = "dark";
     stylix.autoEnable = true;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
-    programs.obsidian.enable = true;
 
     stylix.cursor = {
       package = pkgs.numix-cursor-theme;

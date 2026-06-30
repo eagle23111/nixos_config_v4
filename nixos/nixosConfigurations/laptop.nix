@@ -37,6 +37,7 @@
     ...
   }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
+    
     home-manager.users.mortal = self.homeModules."mortal@laptop";
     home-manager.backupFileExtension = "hm-backup";
 

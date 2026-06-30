@@ -3,81 +3,43 @@
   self,
   ...
 }: {
+  flake.homeModules."mortal@desktop" = {...}: {
+    home = {
+      username = "mortal";
+      homeDirectory = "/home/mortal";
+    };
+
+    imports = [
+      self.homeModules.zsh
+      self.homeModules.gnome
+      self.homeModules.mortalDesktopModule
+      self.homeModules.zen-browser
+
+      self.homeModules.essentials
+    ];
+  };
+
   flake.homeConfigurations."mortal@desktop" = inputs.home-manager.lib.homeManagerConfiguration {
     pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
     extraSpecialArgs = {inherit inputs;};
     modules = [
-      self.homeModules.zsh
-      self.homeModules.stylix
-      self.homeModules.mimeApps
-      self.homeModules.mortalDesktopModule
-      self.homeModules.niri
-      {
-        home = {
-          username = "mortal";
-          homeDirectory = "/home/mortal";
-        };
-      }
+      self.stylix.homeModules.stylix
+      self.homeModules."mortal@desktop"
     ];
   };
 
   flake.homeModules.mortalDesktopModule = {pkgs, ...}: {
-    nixpkgs.overlays = [
-      (final: prev: {
-        openldap = prev.openldap.overrideAttrs (_: {
-          doCheck = false;
-        });
-      })
-    ]; # https://github.com/NixOS/nixpkgs/issues/513245
     nixpkgs.config.allowUnfree = true;
 
     home.packages = with pkgs; [
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-      vscode
-
-      tor
-      tor-browser
-
-      libreoffice-fresh
-
       (llama-cpp.override {cudaSupport = true;})
       lmstudio
-
-      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
       hydrus
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
-
-      evolution
-
-      ani-cli
-      mpv
-      devenv
-      firefox
-
-      opencode
     ];
+
     programs.lutris.enable = true;
-
     programs.chromium.enable = true;
-    programs.kitty = {
-      enable = true;
-      extraConfig = ''
-        copy_on_select yes
-        mouse_map right press ungrabbed,grabbed paste_from_selection
-      '';
-    };
-
-    programs.home-manager.enable = true;
-    programs.git = {
-      enable = true;
-      lfs.enable = true; # for huggingface
-      settings = {
-        user = {
-          name = "eagle23111";
-          email = "stasapohta@yandex.ru";
-        };
-      };
-    };
 
     systemd.user.startServices = "sd-switch";
 

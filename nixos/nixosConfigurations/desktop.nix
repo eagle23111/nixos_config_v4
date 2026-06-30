@@ -15,7 +15,10 @@
         self.nixosModules.nvidia
         self.nixosModules.qemu
         self.nixosModules.snapper
-        self.nixosModules.niri
+
+        self.nixosModules.boot
+        self.nixosModules.nix
+        self.nixosModules.variousServices
 
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware
@@ -28,129 +31,15 @@
     lib,
     ...
   }: {
-    nixpkgs.overlays = [
-      (final: prev: {
-        openldap = prev.openldap.overrideAttrs (_: {
-          doCheck = false;
-        });
-      })
-    ]; # https://github.com/NixOS/nixpkgs/issues/513245
-    nixpkgs.config.allowUnfree = true;
-    nix.package = pkgs.lix;
 
-    hardware.opentabletdriver.enable = true;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
-    # Required by OpenTabletDriver
-    hardware.uinput.enable = true;
-    boot.kernelModules = ["uinput"];
+    home-manager.users.mortal = self.homeModules."mortal@desktop";
+    home-manager.backupFileExtension = "hm-backup";
 
-    services.usbmuxd.enable = true;
-
-    boot = {
-      extraModprobeConfig = ''
-        options hid_apple fnmode=0
-      '';
-
-      loader = {
-        efi = {
-          canTouchEfiVariables = true;
-          efiSysMountPoint = "/boot/efi";
-        };
-        grub = {
-          enable = true;
-          efiSupport = true;
-          device = "nodev";
-        };
-        timeout = 0;
-      };
-
-      initrd = {
-        systemd.enable = true;
-        verbose = false;
-      };
-
-      plymouth = {
-        enable = true;
-        theme = "spin";
-        themePackages = with pkgs; [
-          (adi1090x-plymouth-themes.override {
-            selected_themes = ["spin"];
-          })
-        ];
-      };
-
-      consoleLogLevel = 3;
-      kernelParams = [
-        "quiet"
-        "udev.log_level=3"
-        "systemd.show_status=auto"
-      ];
-    };
-
-    nix = {
-      settings = {
-        experimental-features = "nix-command flakes";
-        trusted-users = ["root" "@wheel"];
-      };
-      channel.enable = false;
-    };
-
-    #boot.kernelPackages = pkgs.linuxPackages_latest;
-
-    fonts = {
-      enableDefaultPackages = true;
-      packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
-    };
-
-    services = {
-      pipewire = {
-        enable = true;
-        pulse.enable = true;
-      };
-      timesyncd.enable = true;
-      openssh = {
-        enable = true;
-        settings.PermitRootLogin = "no";
-      };
-      xserver = {
-        xkb = {
-          layout = "us,ru";
-          options = "grp:alt_shift_toggle";
-        };
-      };
-    };
-
-    i18n = {
-      defaultLocale = "ru_RU.UTF-8";
-      extraLocales = ["ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8"];
-    };
-
-    console = {
-      useXkbConfig = true;
-      earlySetup = true;
-      font = "cyr-sun16";
-      packages = [pkgs.powerline-fonts];
-    };
-
-    networking = {
-      hostName = "nixos";
-      firewall = {
-        enable = true;
-        extraCommands = ''
-          # Allow ALL traffic from local network
-          iptables -I INPUT 1 -s 192.168.0.0/16 -j ACCEPT
-          ip6tables -I INPUT 1 -s fd00::/8 -j ACCEPT
-          ip6tables -I INPUT 1 -s fe80::/10 -j ACCEPT
-        '';
-      };
-    };
+    networking.hostName = "nixos";
 
     time.timeZone = "Europe/Moscow";
-
-    security = {
-      pam.services.gdm.enableGnomeKeyring = true;
-      rtkit.enable = true;
-    };
 
     users = {
       users.mortal = {
@@ -158,24 +47,6 @@
         extraGroups = ["wheel" "docker" "gamemode" "libvirtd" "kvm" "wireshark" "video" "i2c"];
       };
       defaultUserShell = pkgs.zsh;
-    };
-
-    programs = {
-      zsh.enable = true;
-      mtr.enable = true;
-      gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-    };
-    networking.networkmanager.enable = true;
-    hardware.bluetooth.enable = true;
-
-    programs.direnv.enable = true;
-
-    environment = {
-      systemPackages = [self.inputs.nix-alien.packages.${pkgs.stdenv.hostPlatform.system}.nix-alien];
-      variables.PATH = builtins.getEnv "PATH" + ":~/.local/bin";
     };
 
     system.stateVersion = "26.05";
