@@ -162,6 +162,7 @@
       static-workspace-background
       space-bar
       appindicator
+      touchpad-gesture-customization
       #vicinae
     ];
     dconf.settings = {
@@ -176,8 +177,17 @@
           static-workspace-background.extensionUuid
           space-bar.extensionUuid
           appindicator.extensionUuid
+          touchpad-gesture-customization.extensionUuid
           #vicinae.extensionUuid
         ];
+      };
+      "org/gnome/shell/extensions/dash-to-dock" = {
+        background-opacity = 0.8;
+        custom-theme-shrink = true;
+        transparency-mode = "DYNAMIC";
+      };
+      "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
+        blur = false; # conflicts with dash-to-dock for now
       };
     };
   };

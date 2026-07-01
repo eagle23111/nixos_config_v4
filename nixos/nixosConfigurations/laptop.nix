@@ -49,7 +49,6 @@
       ];
     };
 
-    # Set environment variable to use the modern Intel driver backend
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "iHD";
     };
