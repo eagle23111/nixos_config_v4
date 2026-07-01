@@ -122,6 +122,9 @@
         font-antialiasing = "none";
         font-hinting = "slight";
       };
+      "org/gnome/desktop/input-sources" = {
+        sources =   "[('xkb', 'us'), ('xkb', 'ru'), ('ibus', 'mozc-on')]";
+      };
     };
   };
 
