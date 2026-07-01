@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.homeModules.gnome = {pkgs, ...}: {
+  flake.homeModules.gnome = {pkgs, lib, ...}: {
     imports = [
       # inputs.stylix.homeModules.stylix
 
@@ -63,13 +63,13 @@
       enable = true;
       profileNames = ["default"]; # <-- replace with your actual profile name (e.g. "default", "main", etc.)
     };
-    #home.pointerCursor = {
-    # gtk.enable = true;
-    # x11.enable = true;
-    # package = pkgs.numix-cursor-theme;
-    # name = "Numix-Cursor";
-    # size = 24;
-    #};
+
+    # https://github.com/google/mozc/discussions/408
+     home.activation.replaceMozcLayout = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ -f "$HOME/.config/mozc/ibus_config.textproto" ]; then
+        sed -i 's/^\([[:space:]]*layout[[:space:]]*:[[:space:]]*\)"default"/\1"us"/' "$HOME/.config/mozc/ibus_config.textproto"
+      fi
+    '';
     dconf.settings = {
       "org/gnome/desktop/wm/preferences" = {
         num-workspaces = 10;
@@ -163,6 +163,7 @@
       space-bar
       appindicator
       touchpad-gesture-customization
+      fixed-ime-list
       #vicinae
     ];
     dconf.settings = {
@@ -178,6 +179,7 @@
           space-bar.extensionUuid
           appindicator.extensionUuid
           touchpad-gesture-customization.extensionUuid
+          fixed-ime-list.extensionUuid
           #vicinae.extensionUuid
         ];
       };
