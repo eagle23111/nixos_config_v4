@@ -123,7 +123,11 @@
         font-hinting = "slight";
       };
       "org/gnome/desktop/input-sources" = {
-        sources =   "[('xkb', 'us'), ('xkb', 'ru'), ('ibus', 'mozc-on')]";
+        sources = [
+        (lib.gvariant.mkTuple [ "xkb" "us" ])
+        (lib.gvariant.mkTuple [ "xkb" "ru" ])
+        (lib.gvariant.mkTuple [ "ibus" "mozc-on" ])
+        ];
       };
     };
   };
