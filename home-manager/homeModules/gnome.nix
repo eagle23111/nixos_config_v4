@@ -1,8 +1,10 @@
 {inputs, ...}: {
-  flake.homeModules.gnome = {pkgs, lib, ...}: {
+  flake.homeModules.gnome = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = [
-      # inputs.stylix.homeModules.stylix
-
       inputs.self.homeModules."gnome@extensions"
       inputs.self.homeModules."gnome@defaultApps"
 
@@ -65,11 +67,12 @@
     };
 
     # https://github.com/google/mozc/discussions/408
-     home.activation.replaceMozcLayout = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    home.activation.replaceMozcLayout = lib.hm.dag.entryAfter ["writeBoundary"] ''
       if [ -f "$HOME/.config/mozc/ibus_config.textproto" ]; then
         sed -i 's/^\([[:space:]]*layout[[:space:]]*:[[:space:]]*\)"default"/\1"us"/' "$HOME/.config/mozc/ibus_config.textproto"
       fi
     '';
+
     dconf.settings = {
       "org/gnome/desktop/wm/preferences" = {
         num-workspaces = 10;
@@ -124,9 +127,9 @@
       };
       "org/gnome/desktop/input-sources" = {
         sources = [
-        (lib.gvariant.mkTuple [ "xkb" "us" ])
-        (lib.gvariant.mkTuple [ "xkb" "ru" ])
-        (lib.gvariant.mkTuple [ "ibus" "mozc-on" ])
+          (lib.gvariant.mkTuple ["xkb" "us"])
+          (lib.gvariant.mkTuple ["xkb" "ru"])
+          (lib.gvariant.mkTuple ["ibus" "mozc-on"])
         ];
       };
     };

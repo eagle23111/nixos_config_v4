@@ -7,6 +7,9 @@
     inputs.nixpkgs.lib.nixosSystem
     {
       modules = [
+        inputs.home-manager.nixosModules.home-manager
+        inputs.stylix.nixosModules.stylix
+
         self.nixosModules.caches
         self.nixosModules.bypassCen
         self.nixosModules.gaming
@@ -24,8 +27,6 @@
 
         self.nixosModules.laptopModule
         self.nixosModules.laptopHardware
-
-        inputs.home-manager.nixosModules.home-manager
       ];
     };
 

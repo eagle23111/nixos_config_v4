@@ -9,6 +9,9 @@
       system = "aarch64-linux";
       modules = [
         inputs.apple-silicon.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
+        inputs.stylix.nixosModules.stylix
+
         self.nixosModules.macbookModule
         self.nixosModules.macbookHardware
         self.nixosModules.caches
@@ -19,8 +22,6 @@
         self.nixosModules.variousServices
 
         self.nixosModules.bypassCen
-
-        inputs.home-manager.nixosModules.home-manager
       ];
     };
 
@@ -42,12 +43,12 @@
       };
       plymouth = {
         enable = true;
-        theme = "spin";
-        themePackages = with pkgs; [
-          (adi1090x-plymouth-themes.override {
-            selected_themes = ["spin"];
-          })
-        ];
+        #  theme = "spin";
+        #  themePackages = with pkgs; [
+        #    (adi1090x-plymouth-themes.override {
+        #      selected_themes = ["spin"];
+        #    })
+        #  ];
       };
       consoleLogLevel = 3;
       kernelParams = [
@@ -100,6 +101,9 @@
       };
       bluetooth.enable = true;
     };
+
+    home-manager.users.mortal = self.homeModules."mortal@macbook";
+    home-manager.backupFileExtension = "hm-backup";
 
     users = {
       users.mortal = {
