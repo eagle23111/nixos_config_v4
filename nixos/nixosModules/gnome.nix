@@ -3,8 +3,23 @@
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
 
-    #services.gnome.games.enable = false;
-    #environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+    environment.gnome.excludePackages = (with pkgs; [
+      atomix # puzzle game
+      cheese # webcam tool
+      epiphany # web browser
+      geary # email reader
+      gedit # text editor
+      gnome-music
+      gnome-photos
+      gnome-terminal
+      gnome-tour
+      hitori # sudoku game
+      iagno # go game
+      tali # poker game
+      totem # video player
+    ]);
+
+    services.gnome.games.enable = false;
 
     services.flatpak.enable = true;
 

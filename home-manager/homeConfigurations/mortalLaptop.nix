@@ -19,6 +19,7 @@
       #self.homeModules.zen-browser
 
       self.homeModules.essentials
+      self.homeModules.icons
     ];
   };
 
