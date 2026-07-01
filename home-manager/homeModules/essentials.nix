@@ -28,6 +28,7 @@
         pkgs.ankiAddons.passfail2
       ];
     };
+    programs.obsidian.enable = true;
 
     programs.home-manager.enable = true;
     programs.git = {
