@@ -44,9 +44,9 @@
     hardware.graphics = {
       enable = true;
       extraPackages = with pkgs; [
-        intel-media-driver # VA-API video acceleration (iHD)
-        vpl-gpu-rt # Intel Quick Sync Video (QSV)
-        intel-compute-runtime # OpenCL and Level Zero for compute tasks
+        intel-media-driver
+        vpl-gpu-rt
+        intel-compute-runtime
       ];
     };
 

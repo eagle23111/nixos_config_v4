@@ -1,4 +1,3 @@
-# zapret-flake-module.nix
 {inputs, ...}: {
   flake.nixosModules.zapretSetup = {
     config,

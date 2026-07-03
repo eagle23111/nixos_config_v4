@@ -16,7 +16,7 @@
       self.homeModules.zsh
       self.homeModules.gnome
       self.homeModules.mortalLaptopModule
-      #self.homeModules.zen-browser
+      #self.homeModules.chromium
 
       self.homeModules.essentials
       self.homeModules.icons

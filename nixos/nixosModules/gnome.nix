@@ -3,7 +3,7 @@
     services.displayManager.gdm.enable = true;
     services.desktopManager.gnome.enable = true;
 
-    environment.gnome.excludePackages = (with pkgs; [
+    environment.gnome.excludePackages = with pkgs; [
       atomix # puzzle game
       cheese # webcam tool
       epiphany # web browser
@@ -17,7 +17,7 @@
       iagno # go game
       tali # poker game
       totem # video player
-    ]);
+    ];
 
     services.gnome.games.enable = false;
 
