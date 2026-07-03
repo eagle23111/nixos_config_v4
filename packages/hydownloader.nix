@@ -7,11 +7,11 @@
     python = pkgs.python313;
     hydownloader = python.pkgs.buildPythonApplication {
       pname = "hydownloader";
-      version = "0.71.0";
+      version = "0.77.0";
 
       src = builtins.fetchGit {
         url = "https://gitgud.io/thatfuckingbird/hydownloader";
-        rev = "ec551b9ac54bd869eea232f236fefd5ef4758426";
+        rev = "1a407b468130aa0a506b107dcdce0f3d1270f765";
         ref = "master";
       };
 
@@ -20,11 +20,9 @@
       ];
       postPatch = ''
         substituteInPlace pyproject.toml \
-          --replace-fail 'build-backend = "poetry.masonry.api"' \
-                         'build-backend = "poetry.core.masonry.api"' \
-          --replace-fail 'poetry>=' 'poetry-core>=' \
-          --replace-fail 'gallery-dl = "^1.31.10"' 'gallery-dl = "^1.30.10"' \
-          --replace-fail 'pillow = "^11.0.0"' 'pillow = "^12.2.0"'
+          --replace-fail 'gallery-dl (>=1.32.4,<2.0.0)' 'gallery-dl' \
+          --replace-fail 'click (>=8.3.2,<9.0.0)' 'click' \
+          --replace-fail 'hydrus-api (>=5.2.1,<6.0.0)' 'hydrus-api'
       '';
 
       propagatedBuildInputs = [
@@ -34,6 +32,7 @@
         python.pkgs.hydrus-api
         python.pkgs.python-dateutil
         python.pkgs.requests
+        python.pkgs.cheroot
         python.pkgs.brotli
         (pkgs.gallery-dl.overrideAttrs (old: {
           version = "1.31.9";
