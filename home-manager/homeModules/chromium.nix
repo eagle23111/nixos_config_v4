@@ -1,5 +1,5 @@
 {...}: {
-  flake.homeModules.chromium = {pkgs,...}: {
+  flake.homeModules.chromium = {pkgs, ...}: {
     programs.chromium = {
       enable = true;
 
@@ -7,10 +7,9 @@
         "--force-dark-mode"
       ];
 
-
       extensions = [
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" 
-        "padekgcemlokbadohgkifijomclgjgif" 
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm"
+        "padekgcemlokbadohgkifijomclgjgif"
       ];
     };
   };

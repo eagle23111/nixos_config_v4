@@ -14,6 +14,10 @@
   in {
     imports = [
       (disableDesktopFiles [
+        "qt5ct.desktop"
+        "qt6ct.desktop"
+        "kvantummanager.desktop"
+
         "bluetooth-sendto.desktop"
         "org.gnome.Shell.Extensions.desktop"
         "org.gnome.baobab.desktop"

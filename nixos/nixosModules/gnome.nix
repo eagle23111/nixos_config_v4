@@ -17,6 +17,9 @@
       iagno # go game
       tali # poker game
       totem # video player
+      gnome-software
+      gnome-calculator
+      gnome-characters
     ];
 
     services.gnome.games.enable = false;
