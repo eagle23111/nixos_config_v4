@@ -12,7 +12,7 @@
       gamescope-wsi
       protonplus
       lutris
-      wine
+      wineWow64Packages.stable
 
       winetricks
 

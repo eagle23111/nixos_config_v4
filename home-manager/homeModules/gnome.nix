@@ -88,6 +88,16 @@
         switch-to-application-7 = [];
         switch-to-application-8 = [];
         switch-to-application-9 = [];
+
+        open-new-window-application-1 = [];
+        open-new-window-application-2 = [];
+        open-new-window-application-3 = [];
+        open-new-window-application-4 = [];
+        open-new-window-application-5 = [];
+        open-new-window-application-6 = [];
+        open-new-window-application-7 = [];
+        open-new-window-application-8 = [];
+        open-new-window-application-9 = [];
       };
 
       # 4. Set workspace switching shortcuts
@@ -117,6 +127,8 @@
 
         switch-input-source = ["<Alt>Shift_L"];
       };
+
+      "org/gnome/desktop/input-sources".xkb-options = [];
 
       "org/gnome/desktop/notifications" = {
         show-in-lock-screen = false;
@@ -196,6 +208,7 @@
       "org/gnome/shell/extensions/dash-to-dock" = {
         background-opacity = 0.8;
         custom-theme-shrink = true;
+        hot-keys = false;
         transparency-mode = "DYNAMIC";
       };
       "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {

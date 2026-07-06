@@ -30,6 +30,7 @@
         self.nixosModules.desktopHardware
 
         inputs.home-manager.nixosModules.home-manager
+        inputs.comfyui-fhs.nixosModules.default
       ];
     };
 
@@ -48,6 +49,12 @@
     systemd.targets.suspend.enable = false;
     systemd.targets.hibernate.enable = false;
     systemd.targets.hybrid-sleep.enable = false;
+
+    programs.comfyui = {
+      enable = true;
+      manager.enable = true;
+      cuda.enable = true;
+    };
 
     networking.hostName = "nixos";
 

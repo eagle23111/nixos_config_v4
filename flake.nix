@@ -49,10 +49,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
+
+    comfyui-fhs.url = "github:eagle23111/nix-comfyui-fhs";
   };
 
   outputs = inputs:

@@ -29,12 +29,20 @@
         python.pkgs.click
         python.pkgs.bottle
         python.pkgs.yt-dlp
-        python.pkgs.hydrus-api
+        (python.pkgs.hydrus-api.overrideAttrs (old: {
+          version = "5.3.0";
+          src = pkgs.fetchPypi {
+            pname = "hydrus_api";
+            version = "5.3.0";
+            hash = "sha256-Xq27pMVj2JkcHLvFzVDKL9KNOjTxZ3yH5+RVcVMzKJc=";
+          };
+        }))
         python.pkgs.python-dateutil
         python.pkgs.requests
         python.pkgs.cheroot
         python.pkgs.brotli
-        (pkgs.gallery-dl.overrideAttrs (old: {
+        pkgs.gallery-dl
+        /*(pkgs.gallery-dl.overrideAttrs (old: {
           version = "1.31.9";
           src = pkgs.fetchFromGitHub {
             owner = "mikf";
@@ -42,7 +50,7 @@
             tag = "v1.31.9";
             hash = "sha256-Dq4SSj78CEZ4hq3jCgzcJK/+KPgn7h52HMfFNDQXQPY=";
           };
-        }))
+        }))*/
         /*
           (python.pkgs.pillow.overrideAttrs (old: {
           version = "11.3.0";

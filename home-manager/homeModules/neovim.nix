@@ -19,6 +19,7 @@
             installCargo = true;
             installRustc = true;
           };
+          nil_ls.enable = true;
 
           pyright.enable = true;
         };
