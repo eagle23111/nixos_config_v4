@@ -41,6 +41,9 @@
     ...
   }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.extraModprobeConfig = ''
+      options hid_apple fnmode=2
+    '';
 
     home-manager.users.mortal = self.homeModules."mortal@desktop";
     home-manager.backupFileExtension = "hm-backup";
