@@ -22,6 +22,7 @@
       xrandr
       xxd
       xwininfo
+      kitty
 
       protontricks
     ];
