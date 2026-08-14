@@ -16,7 +16,7 @@
     environment.systemPackages = with pkgs; [
       virt-manager
       usbredir
-      winboat
+      #winboat
     ];
     virtualisation.docker.enable = true;
     virtualisation.docker.storageDriver = "btrfs";

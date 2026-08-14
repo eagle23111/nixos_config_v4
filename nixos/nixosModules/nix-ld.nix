@@ -61,7 +61,7 @@
       #cudaPackages.cudatoolkit
 
       # GUI and desktop
-      gtk2
+      #gtk2
       gtk3
       glib
       pango
@@ -74,9 +74,9 @@
       dbus-glib
       gsettings-desktop-schemas
       libnotify
-      libappindicator-gtk2
-      libdbusmenu-gtk2
-      libindicator-gtk2
+      #libappindicator-gtk2
+      #libdbusmenu-gtk2
+      #libindicator-gtk2
 
       # Audio and multimedia
       alsa-lib

@@ -16,7 +16,7 @@
       self.homeModules.zsh
       self.homeModules.gnome
       self.homeModules.mortalDesktopModule
-      #self.homeModules.zen-browser
+      self.homeModules.zen-browser
 
       self.homeModules.essentials
     ];
@@ -38,7 +38,7 @@
       (llama-cpp.override {cudaSupport = true;})
       lmstudio
       hydrus
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
+      #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
       osu-lazer-bin
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
     ];

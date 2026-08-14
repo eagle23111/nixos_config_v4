@@ -7,11 +7,11 @@
     python = pkgs.python313;
     hydownloader = python.pkgs.buildPythonApplication {
       pname = "hydownloader";
-      version = "0.77.0";
+      version = "0.78.0";
 
       src = builtins.fetchGit {
         url = "https://gitgud.io/thatfuckingbird/hydownloader";
-        rev = "1a407b468130aa0a506b107dcdce0f3d1270f765";
+        rev = "e37f2bd85702d1bee4650961968acb194aacc115";
         ref = "master";
       };
 
@@ -20,11 +20,11 @@
       ];
       postPatch = ''
         substituteInPlace pyproject.toml \
-          --replace-fail 'gallery-dl (>=1.32.4,<2.0.0)' 'gallery-dl' \
+          --replace-fail 'gallery-dl (>=1.32.8,<2.0.0)' 'gallery-dl' \
           --replace-fail 'click (>=8.3.2,<9.0.0)' 'click' \
-          --replace-fail 'hydrus-api (>=5.2.1,<6.0.0)' 'hydrus-api'
+          --replace-fail 'hydrus-api (>=5.2.1,<6.0.0)' 'hydrus-api' \
+	  --replace-fail 'poetry-core>=2.0.0,<3.0.0' 'poetry-core' 
       '';
-
       propagatedBuildInputs = [
         python.pkgs.click
         python.pkgs.bottle
@@ -84,7 +84,7 @@
         python.pkgs.packaging
       ];
 
-      format = "pyproject";
+      pyproject = true;
       #doCheck = false;
 
       meta = with pkgs.lib; {
