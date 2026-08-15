@@ -7,15 +7,47 @@
       inputs.self.homeModules.zsh
       inputs.self.homeModules.mpv
     ];
-    stylix.enable = true;
+    stylix.enable = false;
+
+    home.pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+      size = 24;
+
+      hyprcursor = {
+        enable = true;
+        size = 24;
+      };
+    };
+    /*
+      xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs;
+        lib.mkForce [
+          kdePackages.xdg-desktop-portal-kde
+          xdg-desktop-portal-hyprland
+        ];
+
+      config = {
+        common = {
+          "org.freedesktop.impl.portal.FileChooser" = "kde";
+        };
+      };
+    };
+    */
+
+    /*
+      stylix.enable = false;
     stylix.image = "${inputs.self}/assets/wallpapers/mist_forest_1.png";
     stylix.polarity = "dark";
-    stylix.autoEnable = true;
+    stylix.autoEnable = false;
     stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
     stylix.targets.gtk.enable = false;
     stylix.targets.qt = {
       enable = false;
-      platform = "qtct"; # or "gtk" if you prefer, but "qtct" is the most reliable for custom themes.
+      # platform = "qtct"; # or "gtk" if you prefer, but "qtct" is the most reliable for custom themes.
     };
 
     stylix.cursor = {
@@ -42,15 +74,19 @@
         name = "Twitter Color Emoji";
       };
     };
+    */
     # fallback fonts
     fonts.fontconfig.enable = true;
     home.packages = with pkgs; [
+      kdePackages.dolphin
+      playerctl
+      nerd-fonts.terminess-ttf
       nerd-fonts.dejavu-sans-mono
       dejavu_fonts
     ];
-    #fonts.fontconfig.antialiasing = false;
-    #fonts.fontconfig.hinting = "slight";
-
+    fonts.fontconfig.antialiasing = false;
+    fonts.fontconfig.hinting = "slight";
+    /*
     stylix.icons.enable = true;
     stylix.icons.package = pkgs.numix-icon-theme-circle;
     stylix.icons.light = "Numix-Circle";
@@ -60,5 +96,6 @@
       enable = false;
       profileNames = ["default"]; # <-- replace with your actual profile name (e.g. "default", "main", etc.)
     };
+    */
   };
 }

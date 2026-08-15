@@ -24,7 +24,7 @@
         self.nixosModules.variousServices
         self.nixosModules.stylix
 
-        self.nixosModules.gnome
+        # self.nixosModules.gnome
         self.nixosModules.hyprland
 
         self.nixosModules.desktopModule
