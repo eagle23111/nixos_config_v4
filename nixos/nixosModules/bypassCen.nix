@@ -170,7 +170,7 @@
         hash = "sha256-P+t0M9nJW9I99ZDX9M3LUFGv2vVScF1A6BdjQVXcKNE=";
         batFileName = "general (ALT12).bat";
 
-        extraListGeneral = [ "flathub.org" "nix-community.cachix.org" "cache.nixos-cuda.org" "nixos-apple-silicon.cachix.org" ];
+        extraListGeneral = ["flathub.org" "nix-community.cachix.org" "cache.nixos-cuda.org" "nixos-apple-silicon.cachix.org"];
       };
     };
     services.cloudflare-warp.enable = true;

@@ -9,13 +9,20 @@
     source.flake = false;
   };
 
-  outputs = { self, nixpkgs, flake-utils, source }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        tide-island-pkg = pkgs.callPackage ./default.nix { quickshell = pkgs.quickshell; src = source; };
-      in
-      {
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+    source,
+  }:
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {inherit system;};
+        tide-island-pkg = pkgs.callPackage ./default.nix {
+          quickshell = pkgs.quickshell;
+          src = source;
+        };
+      in {
         packages.default = tide-island-pkg;
 
         apps.default = {
@@ -24,7 +31,7 @@
         };
 
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = [ pkgs.cmake ];
+          nativeBuildInputs = [pkgs.cmake];
           buildInputs = with pkgs; [
             qt6.qtbase
             qt6.qtdeclarative
@@ -35,7 +42,8 @@
           ];
         };
       }
-    ) // {
+    )
+    // {
       nixosModules.default = ./nixos;
       homeManagerModules.default = ./home-manager;
     };

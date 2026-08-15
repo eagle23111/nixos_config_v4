@@ -19,11 +19,11 @@
         python.pkgs.poetry-core
       ];
       postPatch = ''
-        substituteInPlace pyproject.toml \
-          --replace-fail 'gallery-dl (>=1.32.8,<2.0.0)' 'gallery-dl' \
-          --replace-fail 'click (>=8.3.2,<9.0.0)' 'click' \
-          --replace-fail 'hydrus-api (>=5.2.1,<6.0.0)' 'hydrus-api' \
-	  --replace-fail 'poetry-core>=2.0.0,<3.0.0' 'poetry-core' 
+             substituteInPlace pyproject.toml \
+               --replace-fail 'gallery-dl (>=1.32.8,<2.0.0)' 'gallery-dl' \
+               --replace-fail 'click (>=8.3.2,<9.0.0)' 'click' \
+               --replace-fail 'hydrus-api (>=5.2.1,<6.0.0)' 'hydrus-api' \
+        --replace-fail 'poetry-core>=2.0.0,<3.0.0' 'poetry-core'
       '';
       propagatedBuildInputs = [
         python.pkgs.click
@@ -42,7 +42,8 @@
         python.pkgs.cheroot
         python.pkgs.brotli
         pkgs.gallery-dl
-        /*(pkgs.gallery-dl.overrideAttrs (old: {
+        /*
+          (pkgs.gallery-dl.overrideAttrs (old: {
           version = "1.31.9";
           src = pkgs.fetchFromGitHub {
             owner = "mikf";
@@ -50,7 +51,8 @@
             tag = "v1.31.9";
             hash = "sha256-Dq4SSj78CEZ4hq3jCgzcJK/+KPgn7h52HMfFNDQXQPY=";
           };
-        }))*/
+        }))
+        */
         /*
           (python.pkgs.pillow.overrideAttrs (old: {
           version = "11.3.0";

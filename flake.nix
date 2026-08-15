@@ -19,28 +19,8 @@
 
     zen-browser-flake.url = "github:0xc000022070/zen-browser-flake";
 
-    llama-cpp = {
-      url = "github:ggml-org/llama.cpp";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -49,11 +29,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
     comfyui-fhs.url = "github:eagle23111/nix-comfyui-fhs";
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:
