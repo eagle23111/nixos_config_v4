@@ -20,22 +20,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786535285,
-        "narHash": "sha256-rG5HKMAgAhMgydvKGtco6rqTxRq4EDZQCx9USLvVqYw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "9f78f44a87948854445dae0b6bf82b2e87e4efb5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-26.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1786599213,
         "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
         "owner": "nixos",
@@ -52,8 +36,9 @@
     },
     "root": {
       "inputs": {
+        "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "tide-island": "tide-island"
+        "source": "source"
       }
     },
     "source": {
@@ -82,23 +67,6 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
-      }
-    },
-    "tide-island": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2",
-        "source": "source"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-kjW/W4Uqz0+TLhC20V5vum+I6uCEZVNKEe9EytxXiJk=",
-        "path": "/nix/store/m111w1jlaxvy2s3r6yzs3q9wacrgvli3-source/tide-island",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/m111w1jlaxvy2s3r6yzs3q9wacrgvli3-source/tide-island",
-        "type": "path"
       }
     }
   },
