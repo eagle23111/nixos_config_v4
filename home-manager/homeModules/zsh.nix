@@ -14,7 +14,7 @@
       autosuggestion.enable = true;
       oh-my-zsh = {
         enable = true;
-        theme = "jonathan";
+        theme = "bureau";
         plugins = ["git"];
       };
     };
