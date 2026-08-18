@@ -1,56 +1,50 @@
 {inputs, ...}: {
-  flake.nixosModules.hyprland = {pkgs, ...}:
-    with pkgs.lib; let
-      hyprPluginPkgs = pkgs.hyprlandPlugins;
+  flake.nixosModules.hyprland = {pkgs, ...}: {
+    imports = [
+      inputs.noctalia.nixosModules.default
+    ];
 
-      hyprspace-fix = hyprPluginPkgs.hyprspace.overrideAttrs (oldAttrs: {
-        src = pkgs.fetchFromGitHub {
-          owner = "ImanolBarba";    
-          repo = "Hyprspace";
-          rev = "667f5a3a9ccba02eff8c4d97979904a7aa9f2ceb";
-          hash = "sha256-P27tvgpduDsMjk9mSti4We+a3kzYWYWznZKizvnyS+Q=";
-        };
-      }); # TODO: kill it with fire once it get merged
+    home-manager.sharedModules = [inputs.self.homeModules.hyprland];
 
-      hypr-plugin-dir = pkgs.symlinkJoin {
-        name = "hyrpland-plugins";
-        paths = with hyprPluginPkgs; [
-          hyprspace-fix
-        ];
-      };
-    in {
-      imports = [
-        inputs.noctalia.nixosModules.default
-        # inputs.hyprland.nixosModules.default
-        # inputs.self.homeModules."gnome@extensions"
-      ];
+    environment.systemPackages = with pkgs; [
+      playerctl
+      xwayland-satellite
+    ];
 
-      home-manager.sharedModules = [inputs.self.homeModules.hyprland];
-      environment.sessionVariables = { HYPR_PLUGIN_DIR = hypr-plugin-dir; };
+    services.gnome.gnome-keyring.enable = true;
 
-      environment.systemPackages = with pkgs; [
-        kdePackages.dolphin
-        playerctl
-      ];
-
-      services.gnome.gnome-keyring.enable = true;
-      
-
-      programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-      };
-
-      programs.noctalia = {
-        enable = true;
-        recommendedServices.enable = true;
-      };
-
-      services.flatpak.enable = true;
-      services.displayManager.gdm.enable = true;
+    programs.niri = {
+      enable = true;
     };
 
-    flake.homeModules.hyprland = {pkgs, ...}: {
+    programs.noctalia = {
+      enable = true;
+      recommendedServices.enable = true;
+    };
+
+    services.gvfs = {
+      enable = true;
+      package = pkgs.lib.mkForce pkgs.gnome.gvfs;
+    };
+    i18n.inputMethod = {
+      enable = false;
+      type = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+        fcitx5-table-extra # This adds many keyboard layouts
+      ];
+    };
+    security.rtkit.enable = true;
+    services.flatpak.enable = true;
+    services.displayManager.gdm.enable = true;
+  };
+
+  flake.homeModules.hyprland = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = [
       inputs.self.homeModules."gnome@defaultApps"
 
@@ -59,6 +53,78 @@
       inputs.self.homeModules.mpv
     ];
     stylix.enable = false;
+
+    home.activation.createKdeGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
+          if [ ! -f "$HOME/.config/kdeglobals" ]; then
+            mkdir -p "$HOME/.config"
+            cat > "$HOME/.config/kdeglobals" <<'EOF'
+      [General]
+      TerminalApplication=kitty
+      EOF
+          fi
+    '';
+
+    xdg.autostart.enable = true;
+    xdg.portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal-gtk];
+      config.niri = {
+        default = ["gnome" "gtk"];
+      };
+      config.common = {
+        default = ["gnome" "gtk"];
+      };
+    };
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "inode/directory" = ["org.kde.dolphin.desktop"];
+        "text/plain" = ["gnome-text-editor.desktop"];
+        "application/pdf" = ["evince.desktop"];
+        "x-scheme-handler/mailto" = ["org.gnome.Evolution.desktop"];
+        "text/calendar" = ["gnome-calendar.desktop"];
+
+        # yeah...
+        "application/json" = ["zen-beta.desktop"];
+        "application/x-extension-htm" = ["zen-beta.desktop"];
+        "application/x-extension-html" = ["zen-beta.desktop"];
+        "application/x-extension-shtml" = ["zen-beta.desktop"];
+        "application/x-extension-xht" = ["zen-beta.desktop"];
+        "application/x-extension-xhtml" = ["zen-beta.desktop"];
+        "application/xhtml+xml" = ["zen-beta.desktop"];
+        "text/html" = ["zen-beta.desktop"];
+        "x-scheme-handler/about" = ["zen-beta.desktop"];
+        "x-scheme-handler/chrome" = ["zen-beta.desktop"];
+        "x-scheme-handler/http" = ["zen-beta.desktop"];
+        "x-scheme-handler/https" = ["zen-beta.desktop"];
+      };
+    };
+    home.packages = with pkgs; [
+      playerctl
+
+      # default apps
+      kdePackages.dolphin
+      kdePackages.kio-extras # Provides SMB protocol support
+      kdePackages.kio-fuse # Mounts network shares via FUSE for better performance
+      kdePackages.kio
+
+      gnome-text-editor
+      evince
+      evolution
+      gnome-calendar
+
+      # fonts
+      nerd-fonts.terminess-ttf
+      twemoji-color-font
+      nerd-fonts.fira-code
+      dejavu_fonts
+      liberation_ttf
+      noto-fonts-cjk-sans
+      # wqy-zenhei
+      source-han-sans
+      font-awesome
+    ];
 
     home.pointerCursor = {
       enable = true;
@@ -126,17 +192,20 @@
       };
     };
     */
-    # fallback fonts
-    fonts.fontconfig.enable = true;
-    home.packages = with pkgs; [
-      kdePackages.dolphin
-      playerctl
-      nerd-fonts.terminess-ttf
-      nerd-fonts.dejavu-sans-mono
-      dejavu_fonts
-    ];
-    fonts.fontconfig.antialiasing = false;
-    fonts.fontconfig.hinting = "slight";
+    fonts = {
+      fontconfig = {
+        enable = true;
+        defaultFonts = {
+          serif = ["Terminess Nerd Font" "DejaVu Serif" "Source Han Serif" "Noto Serif"];
+          sansSerif = ["Terminess Nerd Font" "DejaVu Sans" "Source Han Sans" "Noto Sans"];
+          monospace = ["Terminess Nerd Font Mono" "DejaVu Sans Mono" "Fira Code" "JetBrains Mono"];
+          emoji = ["Twitter Color Emoji" "Noto Color Emoji"];
+        };
+      };
+    };
+    #fonts.fontconfig.antialiasing = false;
+    #fonts.fontconfig.hinting = "slight";
+
     /*
     stylix.icons.enable = true;
     stylix.icons.package = pkgs.numix-icon-theme-circle;

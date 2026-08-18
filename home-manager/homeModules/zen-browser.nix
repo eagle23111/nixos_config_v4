@@ -14,6 +14,8 @@
         "zen.view.compact.hide-tabbar" = true;
         "zen.welcome-screen.seen" = true;
         "mousewheel.default.delta_multiplier_y" = 50;
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+        "widget.use-xdg-desktop-portal.mime-handler" = 1;
       };
 
       policies = {

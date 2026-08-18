@@ -2,6 +2,7 @@
   flake.nixosModules.consoleUtils = {pkgs, ...}: {
     fonts = {
       enableDefaultPackages = true;
+      enableGhostscriptFonts = true;
       packages = with pkgs; [nerd-fonts.terminess-ttf pkgs.terminus_font];
     };
 
