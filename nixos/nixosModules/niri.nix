@@ -1,10 +1,10 @@
 {inputs, ...}: {
-  flake.nixosModules.hyprland = {pkgs, ...}: {
+  flake.nixosModules.niri = {pkgs, ...}: {
     imports = [
       inputs.noctalia.nixosModules.default
     ];
 
-    home-manager.sharedModules = [inputs.self.homeModules.hyprland];
+    home-manager.sharedModules = [inputs.self.homeModules.niri];
 
     environment.systemPackages = with pkgs; [
       playerctl
@@ -40,7 +40,7 @@
     services.displayManager.gdm.enable = true;
   };
 
-  flake.homeModules.hyprland = {
+  flake.homeModules.niri = {
     pkgs,
     lib,
     ...

@@ -14,7 +14,7 @@
       inputs.zen-browser-flake.homeModules.default
 
       self.homeModules.zsh
-      self.homeModules.gnome
+      #self.homeModules.gnome
       self.homeModules.mortalLaptopModule
       #self.homeModules.chromium
 

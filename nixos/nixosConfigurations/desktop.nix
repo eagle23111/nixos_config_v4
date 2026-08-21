@@ -25,7 +25,7 @@
         self.nixosModules.stylix
 
         # self.nixosModules.gnome
-        self.nixosModules.hyprland
+        self.nixosModules.niri
 
         self.nixosModules.desktopModule
         self.nixosModules.desktopHardware
