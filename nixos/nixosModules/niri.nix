@@ -53,6 +53,9 @@
       inputs.self.homeModules.mpv
     ];
     stylix.enable = false;
+    home.sessionVariables = {
+      QT_SCALE_FACTOR = "1.2";
+    };
 
     home.activation.createKdeGlobals = lib.hm.dag.entryAfter ["writeBoundary"] ''
           if [ ! -f "$HOME/.config/kdeglobals" ]; then
@@ -217,5 +220,10 @@
       profileNames = ["default"]; # <-- replace with your actual profile name (e.g. "default", "main", etc.)
     };
     */
+  };
+
+  programs.kitty  = {
+    enable = true;
+    
   };
 }
