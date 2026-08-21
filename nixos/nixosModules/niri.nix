@@ -27,12 +27,12 @@
       package = pkgs.lib.mkForce pkgs.gnome.gvfs;
     };
     i18n.inputMethod = {
-      enable = false;
+      enable = false; # TODO: make this work
       type = "fcitx5";
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-        fcitx5-table-extra # This adds many keyboard layouts
+        fcitx5-table-extra 
       ];
     };
     security.rtkit.enable = true;
@@ -46,12 +46,13 @@
     ...
   }: {
     imports = [
-      inputs.self.homeModules."gnome@defaultApps"
-
       inputs.self.homeModules.zen-browser
       inputs.self.homeModules.zsh
       inputs.self.homeModules.mpv
     ];
+    home.file.".config/niri/config.kdl".source = "${inputs.self}/assets/niri/config.kdl";
+    home.file.".config/noctalia/default.toml".source = "${inputs.self}/assets/noctalia/default.toml";
+
     stylix.enable = false;
     home.sessionVariables = {
       QT_SCALE_FACTOR = "1.2";
@@ -108,8 +109,8 @@
 
       # default apps
       kdePackages.dolphin
-      kdePackages.kio-extras # Provides SMB protocol support
-      kdePackages.kio-fuse # Mounts network shares via FUSE for better performance
+      kdePackages.kio-extras
+      kdePackages.kio-fuse 
       kdePackages.kio
 
       gnome-text-editor
@@ -141,60 +142,7 @@
         size = 24;
       };
     };
-    /*
-      xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs;
-        lib.mkForce [
-          kdePackages.xdg-desktop-portal-kde
-          xdg-desktop-portal-hyprland
-        ];
 
-      config = {
-        common = {
-          "org.freedesktop.impl.portal.FileChooser" = "kde";
-        };
-      };
-    };
-    */
-
-    /*
-      stylix.enable = false;
-    stylix.image = "${inputs.self}/assets/wallpapers/mist_forest_1.png";
-    stylix.polarity = "dark";
-    stylix.autoEnable = false;
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-soft.yaml";
-    stylix.targets.gtk.enable = false;
-    stylix.targets.qt = {
-      enable = false;
-      # platform = "qtct"; # or "gtk" if you prefer, but "qtct" is the most reliable for custom themes.
-    };
-
-    stylix.cursor = {
-      package = pkgs.numix-cursor-theme;
-      name = "Numix-Cursor";
-      size = 24;
-    };
-
-    stylix.fonts = {
-      serif = {
-        package = pkgs.nerd-fonts.terminess-ttf;
-        name = "Terminess Nerd Font Medium";
-      };
-      sansSerif = {
-        package = pkgs.nerd-fonts.terminess-ttf;
-        name = "Terminess Nerd Font Medium";
-      };
-      monospace = {
-        package = pkgs.nerd-fonts.terminess-ttf;
-        name = "Terminess Nerd Font Mono Medium";
-      };
-      emoji = {
-        package = pkgs.twemoji-color-font;
-        name = "Twitter Color Emoji";
-      };
-    };
-    */
     fonts = {
       fontconfig = {
         enable = true;
@@ -206,24 +154,11 @@
         };
       };
     };
-    #fonts.fontconfig.antialiasing = false;
-    #fonts.fontconfig.hinting = "slight";
-
-    /*
-    stylix.icons.enable = true;
-    stylix.icons.package = pkgs.numix-icon-theme-circle;
-    stylix.icons.light = "Numix-Circle";
-    stylix.icons.dark = "Numix-Circle";
-
-    stylix.targets.zen-browser = {
-      enable = false;
-      profileNames = ["default"]; # <-- replace with your actual profile name (e.g. "default", "main", etc.)
+    programs.kitty  = {
+      enable = true;
+          extraConfig = ''
+      background_opacity 0.45
+    '';
     };
-    */
-  };
-
-  programs.kitty  = {
-    enable = true;
-    
   };
 }

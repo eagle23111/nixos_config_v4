@@ -22,7 +22,6 @@
       protonplus
       lutris
       wineWow64Packages.stable
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.llama-cpp-optimized
 
 
       winetricks
