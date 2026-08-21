@@ -50,8 +50,8 @@
       inputs.self.homeModules.zsh
       inputs.self.homeModules.mpv
     ];
-    home.file.".config/niri/config.kdl".source = "${inputs.self}/assets/niri/config.kdl";
-    home.file.".config/noctalia/default.toml".source = "${inputs.self}/assets/noctalia/default.toml";
+    home.file.".config/niri/config.kdl".source = "${inputs.self.outPath}/assets/desktop/niri/config.kdl";
+    home.file.".config/noctalia/default.toml".source = "${inputs.self.outPath}/assets/desktop/noctalia/default.toml";
 
     stylix.enable = false;
     home.sessionVariables = {
