@@ -25,7 +25,7 @@
       enable = true;
       addons = [
         pkgs.ankiAddons.anki-connect
-        pkgs.ankiAddons.passfail2
+        #pkgs.ankiAddons.passfail2
       ];
     };
     programs.obsidian.enable = true;

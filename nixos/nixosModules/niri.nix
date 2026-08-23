@@ -4,7 +4,7 @@
       inputs.noctalia.nixosModules.default
     ];
 
-    home-manager.sharedModules = [inputs.self.homeModules.niri];
+    home-manager.sharedModules = [ inputs.self.homeModules.niri ];
 
     environment.systemPackages = with pkgs; [
       playerctl
