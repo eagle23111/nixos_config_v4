@@ -39,6 +39,8 @@
     services.flatpak.enable = true;
     services.displayManager.gdm.enable = true;
     security.pam.services.gdm.enableGnomeKeyring = true;
+    security.pam.services.login.enableGnomeKeyring = true;
+    programs.nm-applet.enable=true;
     programs.seahorse.enable = true;
   };
 
