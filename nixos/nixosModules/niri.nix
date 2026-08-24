@@ -12,6 +12,8 @@
     ];
 
     services.gnome.gnome-keyring.enable = true;
+    networking.networkmanager.enable = true;
+    security.pam.services.greetd.enableGnomeKeyring = true;
 
     programs.niri = {
       enable = true;
@@ -43,6 +45,7 @@
   flake.homeModules.niri = {
     pkgs,
     lib,
+    config,
     ...
   }: {
     imports = [
@@ -62,11 +65,33 @@
           if [ ! -f "$HOME/.config/kdeglobals" ]; then
             mkdir -p "$HOME/.config"
             cat > "$HOME/.config/kdeglobals" <<'EOF'
+      [UiSettings]
+      ColorScheme=qt5ct
+
       [General]
       TerminalApplication=kitty
       EOF
           fi
     '';
+
+      qt = {
+        enable = true;
+        platformTheme.name = "qtct";
+
+        qt5ctSettings = {
+          Appearance = {
+            custom_palette = true;
+            color_scheme_path = "${config.xdg.configHome}/qt5ct/colors/noctalia.conf";
+          };
+        };
+
+        qt6ctSettings = {
+          Appearance = {
+            custom_palette = true;
+            color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/noctalia.conf";
+          };
+        };
+      };
 
     xdg.autostart.enable = true;
     xdg.portal = {

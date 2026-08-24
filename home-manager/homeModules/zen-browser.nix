@@ -13,7 +13,7 @@
         "zen.workspaces.continue-where-left-off" = true;
         "zen.view.compact.hide-tabbar" = true;
         "zen.welcome-screen.seen" = true;
-        "mousewheel.default.delta_multiplier_y" = 50;
+        "mousewheel.default.delta_multiplier_y" = 150;
         "widget.use-xdg-desktop-portal.file-picker" = 1;
         "widget.use-xdg-desktop-portal.mime-handler" = 1;
         "widget.dmabuf.force-enabled" = 1;
