@@ -12,8 +12,6 @@
     ];
 
     services.gnome.gnome-keyring.enable = true;
-    networking.networkmanager.enable = true;
-    security.pam.services.greetd.enableGnomeKeyring = true;
 
     programs.niri = {
       enable = true;
@@ -40,6 +38,10 @@
     security.rtkit.enable = true;
     services.flatpak.enable = true;
     services.displayManager.gdm.enable = true;
+    security.pam.services.gdm.enableGnomeKeyring = true;
+    security.pam.services.login.enableGnomeKeyring = true;
+    programs.nm-applet.enable=true;
+    programs.seahorse.enable = true;
   };
 
   flake.homeModules.niri = {
