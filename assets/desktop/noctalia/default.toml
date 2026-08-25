@@ -67,23 +67,22 @@ auto_locate = true
 [lockscreen_widgets]
 enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@DP-1" ]
+widget_order = [ "lockscreen-login-box" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
-    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    [lockscreen_widgets.widget."lockscreen-login-box"]
     box_height = 196.0
     box_width = 810.0
     cx = 976.0
     cy = 938.0
-    output = "DP-1"
     rotation = 0.0
     type = "login_box"
 
-        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        [lockscreen_widgets.widget."lockscreen-login-box".settings]
         background_color = "surface_variant"
         background_opacity = 0.80000000000000004
         background_radius = 32.0
@@ -180,18 +179,3 @@ wallpaper_scheme = "vibrant"
 
 [wallpaper]
 directory = "/home/mortal/Pictures/Wallpapers"
-
-    [wallpaper.default]
-    path = "/home/mortal/Pictures/Wallpapers/gargantua-black-3840x2160-9621.jpg"
-
-    [wallpaper.last]
-    path = "/home/mortal/Pictures/Wallpapers/gargantua-black-3840x2160-9621.jpg"
-
-    [wallpaper.monitors.DP-1]
-    path = "/home/mortal/Pictures/Wallpapers/gargantua-black-3840x2160-9621.jpg"
-
-    [[wallpaper.favorite]]
-    palette_source = "wallpaper"
-    path = "/home/mortal/Pictures/Wallpapers/mist_forest_1(2).png"
-    theme_mode = "dark"
-    wallpaper_scheme = "m3-fruit-salad"
