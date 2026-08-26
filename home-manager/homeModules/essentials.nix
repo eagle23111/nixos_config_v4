@@ -10,13 +10,9 @@
 
       tor
       tor-browser
-
-      libreoffice-fresh
-
       # inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      ani-cli
-      mpv
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
 
       opencode
     ];

@@ -9,6 +9,10 @@
     environment.systemPackages = with pkgs; [
       playerctl
       xwayland-satellite
+
+      libreoffice   
+      hunspell
+      hunspellDicts.ru_RU
     ];
 
     environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -56,7 +60,6 @@
     imports = [
       inputs.self.homeModules.zen-browser
       inputs.self.homeModules.zsh
-      inputs.self.homeModules.mpv
     ];
     home.file.".config/niri/config.kdl".source = "${inputs.self.outPath}/assets/desktop/niri/config.kdl";
     home.file.".config/noctalia/default.toml".source = "${inputs.self.outPath}/assets/desktop/noctalia/default.toml";
@@ -115,12 +118,55 @@
       enable = true;
       defaultApplications = {
         "inode/directory" = ["org.kde.dolphin.desktop"];
-        "text/plain" = ["gnome-text-editor.desktop"];
-        "application/pdf" = ["evince.desktop"];
+        "text/plain" = ["org.gnome.Evince.desktop"];
+        "application/pdf" = ["org.gnome.Evince.desktop"];
         "x-scheme-handler/mailto" = ["org.gnome.Evolution.desktop"];
         "text/calendar" = ["gnome-calendar.desktop"];
+        
+        "image/*" = ["org.kde.gwenview.desktop"];
+        "image/avif" = ["org.kde.gwenview.desktop"];
+        "image/bmp" = ["org.kde.gwenview.desktop"];
+        "image/gif" = ["org.kde.gwenview.desktop"];
+        "image/heif" = ["org.kde.gwenview.desktop"];
+        "image/heic" = ["org.kde.gwenview.desktop"];
+        "image/jpeg" = ["org.kde.gwenview.desktop"];
+        "image/jpg" = ["org.kde.gwenview.desktop"];
+        "image/png" = ["org.kde.gwenview.desktop"];
+        "image/svg" = ["org.kde.gwenview.desktop"];
+        "image/svg+xml" = ["org.kde.gwenview.desktop"];
+        "image/tiff" = ["org.kde.gwenview.desktop"];
+        "image/webp" = ["org.kde.gwenview.desktop"];
+        "image/x-bmp" = ["org.kde.gwenview.desktop"];
+        "image/x-gif" = ["org.kde.gwenview.desktop"];
+        "image/x-icon" = ["org.kde.gwenview.desktop"];
+        "image/x-jpeg" = ["org.kde.gwenview.desktop"];
+        "image/x-png" = ["org.kde.gwenview.desktop"];
+        "image/x-tiff" = ["org.kde.gwenview.desktop"];
+        "image/x-webp" = ["org.kde.gwenview.desktop"];
+        "image/x-wmf" = ["org.kde.gwenview.desktop"];
+        "image/vnd.microsoft.icon" = ["org.kde.gwenview.desktop"];
+        "image/vnd.adobe.photoshop" = ["org.kde.gwenview.desktop"];
+        "image/vnd.wap.wbmp" = ["org.kde.gwenview.desktop"];
 
-        # yeah...
+        "video/mp4" = ["mpv.desktop"];
+        "video/mpeg" = ["mpv.desktop"];
+        "video/ogg" = ["mpv.desktop"];
+        "video/webm" = ["mpv.desktop"];
+        "video/quicktime" = ["mpv.desktop"];
+        "video/x-msvideo" = ["mpv.desktop"];
+        "video/x-matroska" = ["mpv.desktop"];
+        "video/x-ms-wmv" = ["mpv.desktop"];
+        "video/x-flv" = ["mpv.desktop"];
+        "video/flv" = ["mpv.desktop"];
+        "video/3gpp" = ["mpv.desktop"];
+        "video/3gpp2" = ["mpv.desktop"];
+        "video/mp2t" = ["mpv.desktop"];
+        "video/x-m4v" = ["mpv.desktop"];
+        "video/vnd.avi" = ["mpv.desktop"];
+        "video/vnd.dlna.mpeg-tts" = ["mpv.desktop"];
+        "video/x-ogm" = ["mpv.desktop"];
+        "video/x-ogm+ogg" = ["mpv.desktop"];
+
         "application/json" = ["zen-beta.desktop"];
         "application/x-extension-htm" = ["zen-beta.desktop"];
         "application/x-extension-html" = ["zen-beta.desktop"];
@@ -149,6 +195,11 @@
       evince
       evolution
       gnome-calendar
+
+      kdePackages.gwenview
+      kdePackages.kimageformats
+
+      inputs.self.packages.${pkgs.system}.mpvWithAnki
 
       # fonts
       nerd-fonts.terminess-ttf

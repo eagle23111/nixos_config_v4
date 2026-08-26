@@ -10,7 +10,6 @@
 
       inputs.self.homeModules.zen-browser
       inputs.self.homeModules.zsh
-      inputs.self.homeModules.mpv
     ];
     stylix.enable = true;
     stylix.image = "${inputs.self}/assets/wallpapers/mist_forest_1.png";
