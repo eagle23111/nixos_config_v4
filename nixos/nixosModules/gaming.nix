@@ -23,7 +23,6 @@
       lutris
       wineWow64Packages.stable
 
-
       winetricks
 
       yad

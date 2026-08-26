@@ -4,7 +4,7 @@
       inputs.noctalia.nixosModules.default
     ];
 
-    home-manager.sharedModules = [ inputs.self.homeModules.niri ];
+    home-manager.sharedModules = [inputs.self.homeModules.niri];
 
     environment.systemPackages = with pkgs; [
       playerctl
@@ -34,7 +34,7 @@
       fcitx5.addons = with pkgs; [
         fcitx5-mozc
         fcitx5-gtk
-        fcitx5-table-extra 
+        fcitx5-table-extra
       ];
     };
     security.rtkit.enable = true;
@@ -79,25 +79,25 @@
           fi
     '';
 
-      qt = {
-        enable = true;
-        platformTheme.name = "qtct";
+    qt = {
+      enable = true;
+      platformTheme.name = "qtct";
 
-        qt5ctSettings = {
-          Appearance = {
-            custom_palette = true;
-            color_scheme_path = "${config.xdg.configHome}/qt5ct/colors/noctalia.conf";
-          };
-        };
-
-        qt6ctSettings = {
-          Appearance = {
-            custom_palette = true;
-            color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/noctalia.conf";
-          };
+      qt5ctSettings = {
+        Appearance = {
+          custom_palette = true;
+          color_scheme_path = "${config.xdg.configHome}/qt5ct/colors/noctalia.conf";
         };
       };
       
+
+      qt6ctSettings = {
+        Appearance = {
+          custom_palette = true;
+          color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/noctalia.conf";
+        };
+      };
+    };
 
     xdg.autostart.enable = true;
     xdg.portal = {
@@ -141,7 +141,7 @@
       # default apps
       kdePackages.dolphin
       kdePackages.kio-extras
-      kdePackages.kio-fuse 
+      kdePackages.kio-fuse
       kdePackages.kio
       kdePackages.qtsvg 
 
@@ -187,11 +187,11 @@
         };
       };
     };
-    programs.kitty  = {
+    programs.kitty = {
       enable = true;
-          extraConfig = ''
-      background_opacity 0.45
-    '';
+      extraConfig = ''
+        background_opacity 0.45
+      '';
     };
   };
 }

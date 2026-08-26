@@ -37,6 +37,14 @@
     ...
   }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.initrd.systemd.enable = true;
+    services.logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+      HandleLidSwitchDocked = "suspend";
+    };
+
+    powerManagement.enable = true;
 
     home-manager.users.mortal = self.homeModules."mortal@laptop";
     home-manager.backupFileExtension = "hm-backup";
@@ -56,7 +64,14 @@
 
     hardware.enableRedistributableFirmware = true;
     boot.initrd.kernelModules = ["xe"];
-    boot.kernelParams = ["i915.enable_psr=0"];
+    boot.kernelParams = [
+      "acpi_backlight=native"
+      "i915.force_probe=!7d55"
+      "xe.force_probe=7d55"
+      "xe.enable_psr=0"
+      "xe.enable_panel_replay=0"
+      "mem_sleep_default=deep"
+    ];
 
     services.power-profiles-daemon.enable = true;
     services.thermald.enable = true;

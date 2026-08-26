@@ -42,9 +42,6 @@
       osu-lazer-bin
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.llama-cpp-optimized
-
-
-
     ];
 
     programs.lutris.enable = true;
