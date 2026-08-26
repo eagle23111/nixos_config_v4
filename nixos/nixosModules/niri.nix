@@ -11,6 +11,8 @@
       xwayland-satellite
     ];
 
+    environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
     services.gnome.gnome-keyring.enable = true;
 
     programs.niri = {
@@ -41,6 +43,7 @@
     security.pam.services.gdm.enableGnomeKeyring = true;
     security.pam.services.login.enableGnomeKeyring = true;
     programs.nm-applet.enable=true;
+    programs.nm-applet.indicator = false;
     programs.seahorse.enable = true;
   };
 
@@ -94,6 +97,7 @@
           };
         };
       };
+      
 
     xdg.autostart.enable = true;
     xdg.portal = {
@@ -139,6 +143,7 @@
       kdePackages.kio-extras
       kdePackages.kio-fuse 
       kdePackages.kio
+      kdePackages.qtsvg 
 
       gnome-text-editor
       evince
@@ -147,7 +152,7 @@
 
       # fonts
       nerd-fonts.terminess-ttf
-      twemoji-color-font
+      #twemoji-color-font
       nerd-fonts.fira-code
       dejavu_fonts
       liberation_ttf
@@ -156,6 +161,7 @@
       source-han-sans
       font-awesome
     ];
+    
 
     home.pointerCursor = {
       enable = true;
@@ -177,7 +183,7 @@
           serif = ["Terminess Nerd Font" "DejaVu Serif" "Source Han Serif" "Noto Serif"];
           sansSerif = ["Terminess Nerd Font" "DejaVu Sans" "Source Han Sans" "Noto Sans"];
           monospace = ["Terminess Nerd Font Mono" "DejaVu Sans Mono" "Fira Code" "JetBrains Mono"];
-          emoji = ["Twitter Color Emoji" "Noto Color Emoji"];
+          emoji = ["Noto Color Emoji"];
         };
       };
     };
