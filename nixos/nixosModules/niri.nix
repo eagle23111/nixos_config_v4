@@ -10,7 +10,7 @@
       playerctl
       xwayland-satellite
 
-      libreoffice   
+      libreoffice
       hunspell
       hunspellDicts.ru_RU
     ];
@@ -46,7 +46,7 @@
     services.displayManager.gdm.enable = true;
     security.pam.services.gdm.enableGnomeKeyring = true;
     security.pam.services.login.enableGnomeKeyring = true;
-    programs.nm-applet.enable=true;
+    programs.nm-applet.enable = true;
     programs.nm-applet.indicator = false;
     programs.seahorse.enable = true;
   };
@@ -92,7 +92,6 @@
           color_scheme_path = "${config.xdg.configHome}/qt5ct/colors/noctalia.conf";
         };
       };
-      
 
       qt6ctSettings = {
         Appearance = {
@@ -122,7 +121,7 @@
         "application/pdf" = ["org.gnome.Evince.desktop"];
         "x-scheme-handler/mailto" = ["org.gnome.Evolution.desktop"];
         "text/calendar" = ["gnome-calendar.desktop"];
-        
+
         "image/*" = ["org.kde.gwenview.desktop"];
         "image/avif" = ["org.kde.gwenview.desktop"];
         "image/bmp" = ["org.kde.gwenview.desktop"];
@@ -189,7 +188,7 @@
       kdePackages.kio-extras
       kdePackages.kio-fuse
       kdePackages.kio
-      kdePackages.qtsvg 
+      kdePackages.qtsvg
 
       gnome-text-editor
       evince
@@ -199,7 +198,7 @@
       kdePackages.gwenview
       kdePackages.kimageformats
 
-      inputs.self.packages.${pkgs.system}.mpvWithAnki
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
 
       # fonts
       nerd-fonts.terminess-ttf
@@ -212,7 +211,6 @@
       source-han-sans
       font-awesome
     ];
-    
 
     home.pointerCursor = {
       enable = true;

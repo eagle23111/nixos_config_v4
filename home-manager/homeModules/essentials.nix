@@ -12,7 +12,7 @@
       tor-browser
       # inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
+      #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
 
       opencode
     ];
