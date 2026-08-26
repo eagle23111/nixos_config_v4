@@ -47,7 +47,7 @@
       imports = [
         (inputs.import-tree ./nixos)
         (inputs.import-tree ./home-manager)
-        (inputs.import-tree ./packages)
+        ./packages/default.nix
 
         inputs.home-manager.flakeModules.home-manager
       ];
