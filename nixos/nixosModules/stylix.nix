@@ -1,7 +1,7 @@
 {inputs, ...}: {
   flake.nixosModules.stylix = {pkgs, ...}: {
     stylix.enable = true;
-    stylix.image = "${inputs.self}/assets/wallpapers/mist_forest_1.png";
+    stylix.image = "${inputs.self}/assets/wallpapers/1.png";
     stylix.polarity = "dark";
     stylix.autoEnable = true;
 

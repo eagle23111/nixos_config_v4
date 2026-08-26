@@ -5,7 +5,6 @@
   python3,
   ffmpeg,
   wl-clipboard,
-  # mpv config files shipped in this package's config/ directory.
   assets ? ./config,
 }: let
   pythonWithRequests = python3.withPackages (ps: with ps; [requests]);

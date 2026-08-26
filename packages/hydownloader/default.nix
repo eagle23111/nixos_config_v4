@@ -46,7 +46,6 @@ in
       python.pkgs.pillow
       python.pkgs.pysocks
       python.pkgs.yt-dlp-ejs
-      # Transitive dependencies often required explicitly if build fails:
       python.pkgs.certifi
       python.pkgs.idna
       python.pkgs.charset-normalizer
