@@ -14,9 +14,13 @@
       cuda.enable = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      lmstudio
-      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.llama-cpp-optimized
-    ];
+    environment.systemPackages =
+      (with pkgs; [
+        lmstudio
+        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.llama-cpp-optimized
+      ])
+      ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+        dsh
+      ]);
   };
 }
