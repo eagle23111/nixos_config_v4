@@ -14,7 +14,7 @@
 
       #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
 
-      opencode
+      freetube
     ];
 
     programs.anki = {
