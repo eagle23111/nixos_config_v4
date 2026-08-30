@@ -9,6 +9,7 @@
     environment.systemPackages = with pkgs; [
       playerctl
       xwayland-satellite
+      ddcutil
 
       libreoffice
       hunspell
@@ -49,6 +50,11 @@
     programs.nm-applet.enable = true;
     programs.nm-applet.indicator = false;
     programs.seahorse.enable = true;
+
+
+    hardware.i2c.enable = true;
+    boot.kernelModules = [ "i2c-dev" ];
+    services.udev.packages = [ pkgs.ddcutil ];
   };
 
   flake.homeModules.niri = {
