@@ -15,7 +15,23 @@
       #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
 
       freetube
+      webcord
     ];
+
+    programs.vesktop = {
+      enable = false;
+
+      vencord.settings = {
+        autoUpdate = true;
+        autoUpdateNotification = true;
+        notifyAboutUpdates = true;
+        plugins = {
+          ClearURLs.enabled = true;
+          FixYoutubeEmbeds.enabled = true;
+          SilentTyping.enabled = true;
+        };
+      };
+  };
 
     programs.anki = {
       enable = true;

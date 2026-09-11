@@ -14,6 +14,8 @@
       libreoffice
       hunspell
       hunspellDicts.ru_RU
+
+      qt6Packages.fcitx5-configtool
     ];
 
     environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -34,13 +36,30 @@
       package = pkgs.lib.mkForce pkgs.gnome.gvfs;
     };
     i18n.inputMethod = {
-      enable = false; # TODO: make this work
+      enable = false;
       type = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-        fcitx5-table-extra
-      ];
+      fcitx5 = {
+        waylandFrontend = true;
+        addons = with pkgs; [
+          fcitx5-mozc
+          fcitx5-gtk
+          fcitx5-table-extra
+        ];
+        settings.inputMethod = {
+          GroupOrder."0" = "Default";
+          GroupOrder."1" = "Mozc";
+          "Groups/0".Name = "Default";
+          "Groups/0"."Default Layout" = "us,ru";
+          "Groups/0".DefaultIM = "keyboard-us";
+          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/1".Name = "keyboard-ru";
+          "Groups/1".Name = "Mozc";
+          "Groups/1"."Default Layout" = "us";
+          "Groups/1".DefaultIM = "mozc";
+          "Groups/1/Items/0".Name = "mozc";
+          "Groups/1/Items/0".Layout = "us";
+        };
+      };
     };
     security.rtkit.enable = true;
     services.flatpak.enable = true;
@@ -51,10 +70,9 @@
     programs.nm-applet.indicator = false;
     programs.seahorse.enable = true;
 
-
     hardware.i2c.enable = true;
-    boot.kernelModules = [ "i2c-dev" ];
-    services.udev.packages = [ pkgs.ddcutil ];
+    boot.kernelModules = ["i2c-dev"];
+    services.udev.packages = [pkgs.ddcutil];
   };
 
   flake.homeModules.niri = {

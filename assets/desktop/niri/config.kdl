@@ -272,9 +272,10 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "noctalia"
 //spawn-at-startup "gnome-keyring-daemon --start"
+
+spawn-at-startup "fcitx5" "-d"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -367,6 +368,16 @@ window-rule {
     blur true
     xray false
   }
+}
+
+window-rule {
+    match title="^Fcitx5 Input Window$"
+
+    open-floating true
+    background-effect {
+        blur false
+        xray false
+    }
 }
 
 /*
