@@ -424,6 +424,11 @@ window-rule {
     default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
+window-rule {
+    match title="(?i)^hydrus client media viewer.*$"
+    open-fullscreen true
+}
+
 
 // Example: enable rounded corners for all windows.
 // (This example rule is commented out with a "/-" in front.)
