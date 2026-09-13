@@ -22,6 +22,20 @@
       group = "users";
       createUser = false;
       openFirewall = false;
+      customNodes = {
+        ComfyUI-Custom-Scripts = pkgs.fetchFromGitHub {
+          owner = "pythongosssss";
+          repo = "ComfyUI-Custom-Scripts";
+          rev = "v1.2.5";
+          hash = "sha256-...";
+        };
+        ComfyUI-Lora-Manager = pkgs.fetchFromGitHub {
+          owner = "willmiao";
+          repo = "ComfyUI-Lora-Manager";
+          rev = "v1.2.1";
+          hash = "sha256-...";
+        };
+      };
       # extraArgs = [ "--lowvram" ];
       # environment = { };
     };
