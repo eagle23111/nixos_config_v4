@@ -4,14 +4,26 @@
   ...
 }: {
   flake.nixosModules.ai = {pkgs, ...}: {
-    imports = [
+    /*
+      imports = [
       inputs.comfyui-fhs.nixosModules.default
     ];
+    */
 
-    programs.comfyui = {
+    services.comfyui = {
       enable = true;
-      manager.enable = true;
-      cuda.enable = true;
+      gpuSupport = "cuda";
+      cudaCapabilities = ["8.9"];
+      enableManager = true;
+      port = 8188;
+      listenAddress = "127.0.0.1";
+      dataDir = "/home/mortal/.local/share/ComfyUI";
+      user = "mortal";
+      group = "users";
+      createUser = false;
+      openFirewall = false;
+      # extraArgs = [ "--lowvram" ];
+      # environment = { };
     };
 
     environment.systemPackages =

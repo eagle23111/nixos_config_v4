@@ -33,7 +33,7 @@ in
         --replace-fail 'curl-cffi (>=0.15.0,<0.16.0)' 'curl-cffi'
     '';
 
-    propagatedBuildInputs = [      
+    propagatedBuildInputs = [
       python.pkgs.click
       python.pkgs.bottle
       python.pkgs.yt-dlp
@@ -49,13 +49,13 @@ in
       python.pkgs.requests
       python.pkgs.cheroot
       python.pkgs.brotli
-      
+
       # Override gallery-dl to use the same python314 package set and yt-dlp derivation
       (gallery-dl.override {
         python3Packages = python.pkgs;
         yt-dlp = python.pkgs.yt-dlp;
       })
-      
+
       python.pkgs.pillow
       python.pkgs.pysocks
       python.pkgs.yt-dlp-ejs

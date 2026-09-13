@@ -1,4 +1,16 @@
 {
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://cache.nixos-cuda.org"
+    ];
+
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -40,8 +52,12 @@
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
-  };
 
+    comfyui-nix = {
+      url = "github:utensils/comfyui-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;}
     {

@@ -9,6 +9,7 @@
       modules = [
         inputs.home-manager.nixosModules.home-manager
         inputs.stylix.nixosModules.stylix
+        inputs.comfyui-nix.nixosModules.default
 
         self.nixosModules.caches
         self.nixosModules.bypassCen

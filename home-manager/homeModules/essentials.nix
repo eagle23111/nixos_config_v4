@@ -31,7 +31,7 @@
           SilentTyping.enabled = true;
         };
       };
-  };
+    };
 
     programs.anki = {
       enable = true;
