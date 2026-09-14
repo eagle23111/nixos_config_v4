@@ -23,19 +23,23 @@
       createUser = false;
       openFirewall = false;
       customNodes = {
-        ComfyUI-Custom-Scripts = pkgs.fetchFromGitHub {
-          owner = "pythongosssss";
-          repo = "ComfyUI-Custom-Scripts";
-          rev = "v1.2.5";
-          hash = "sha256-...";
+        comfyui-image-saver = pkgs.fetchFromGitHub {
+          owner = "alexopus";
+          repo = "ComfyUI-Image-Saver";
+          rev = "v1.24.1";
+          hash = "sha256-mxz69YLYfXdcGCMR7i/otWysuGDDlQ6U3CXjy5i5W04=";
         };
-        ComfyUI-Lora-Manager = pkgs.fetchFromGitHub {
+        comfyui-lora-manager = pkgs.fetchFromGitHub {
           owner = "willmiao";
           repo = "ComfyUI-Lora-Manager";
           rev = "v1.2.1";
-          hash = "sha256-...";
+          hash = "sha256-M9dCClZbF3Q/4OrY+962EATjOqbNCDYv4oV0Su5feV8=";
         };
       };
+      extraPythonPackages = ps:
+        with ps; [
+          natsort
+        ];
       # extraArgs = [ "--lowvram" ];
       # environment = { };
     };

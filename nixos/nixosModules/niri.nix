@@ -16,6 +16,8 @@
       hunspellDicts.ru_RU
 
       qt6Packages.fcitx5-configtool
+
+      
     ];
 
     environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
@@ -213,6 +215,9 @@
       kdePackages.kio-fuse
       kdePackages.kio
       kdePackages.qtsvg
+
+      kdePackages.ark               
+      kdePackages.dolphin-plugins  
 
       gnome-text-editor
       evince
