@@ -20,6 +20,13 @@
       
     ];
 
+    fonts.packages = with pkgs; [
+      corefonts
+      liberation_ttf
+      carlito
+      caladea
+    ];
+
     environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
     services.gnome.gnome-keyring.enable = true;
