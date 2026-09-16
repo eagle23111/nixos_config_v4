@@ -13,7 +13,11 @@
         "zen.workspaces.continue-where-left-off" = true;
         "zen.view.compact.hide-tabbar" = true;
         "zen.welcome-screen.seen" = true;
-        "mousewheel.default.delta_multiplier_y" = 150;
+        #"mousewheel.default.delta_multiplier_y" = 150;
+        "apz.gtk.kinetic_scroll.delta_mode" = 2;
+        "apz.gtk.pangesture.delta_mode" = 2;
+        "apz.gtk.kinetic_scroll.pixel_delta_mode_multiplier" = 20;
+        "apz.gtk.pangesture.pixel_delta_mode_multiplier" = 20;
         "widget.use-xdg-desktop-portal.file-picker" = 1;
         "widget.use-xdg-desktop-portal.mime-handler" = 1;
         "widget.dmabuf.force-enabled" = 1;
@@ -95,12 +99,12 @@
           position = 6;
           isEssential = true;
         };
-        "Hermes Dashboard" = {
+        /*"Hermes Dashboard" = {
           id = "a7b8c9d0-e1f2-3456-0123-567890123456";
           url = "http://192.168.0.116:9119";
           position = 7;
           isEssential = true;
-        };
+        };*/
       };
     in {
       inherit pins;

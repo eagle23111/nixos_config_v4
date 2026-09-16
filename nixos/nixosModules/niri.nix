@@ -9,15 +9,12 @@
     environment.systemPackages = with pkgs; [
       playerctl
       xwayland-satellite
-      ddcutil
+      # ddcutil
 
       libreoffice
       hunspell
       hunspellDicts.ru_RU
-
       qt6Packages.fcitx5-configtool
-
-      
     ];
 
     fonts.packages = with pkgs; [

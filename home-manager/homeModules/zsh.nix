@@ -15,12 +15,12 @@
       oh-my-zsh = {
         enable = true;
         theme = "bureau";
-        plugins = ["git"];
+        plugins = ["git" "docker"];
       };
     };
 
-    home.shellAliases = {
+    /*home.shellAliases = {
       proxyrun = "HTTP_PROXY=${http_proxy} http_proxy=${http_proxy} HTTPS_PROXY=${http_proxy} https_proxy=${http_proxy}";
-    };
+    };*/
   };
 }

@@ -16,7 +16,7 @@
         self.nixosModules.consoleUtils
         self.nixosModules.ai
         self.nixosModules.gaming
-        self.nixosModules.nixLD
+        # self.nixosModules.nixLD
         self.nixosModules.nvidia
         self.nixosModules.qemu
         self.nixosModules.snapper

@@ -14,7 +14,7 @@
         self.nixosModules.caches
         self.nixosModules.bypassCen
         self.nixosModules.gaming
-        self.nixosModules.nixLD
+        # self.nixosModules.nixLD
         self.nixosModules.qemu
         self.nixosModules.snapper
 
