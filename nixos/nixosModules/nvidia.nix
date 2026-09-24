@@ -40,7 +40,11 @@
       libGL
       cudaPackages.cudatoolkit
       cudaPackages.nsight_systems
+
+      
     ];
+
+    services.lact.enable = true;
 
     hardware.nvidia = {
       # forceFullCompositionPipeline = true;
