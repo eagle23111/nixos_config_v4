@@ -22,8 +22,10 @@
       protonplus
       lutris
       wineWow64Packages.stable
+      wineWowPackages.stable 
 
       winetricks
+      umu-launcher
 
       yad
       xdotool
@@ -34,6 +36,23 @@
       kitty
 
       protontricks
+      #samba
+      #krb5
     ];
+
+    # Включаем сервис winbindd
+    /*services.samba = {
+      enable = true;
+      winbindd.enable = true; # Именно эта опция устанавливает winbind и ntlm_auth
+
+      # Следующие настройки не обязательны, но рекомендуются для корректной работы
+      nsswins = true; # Позволяет разрешать NetBIOS-имена через winbindd
+      settings = {
+        global = {
+          "workgroup" = "WORKGROUP"; # Или имя вашего домена
+          "security" = "user";
+        };
+      };
+    };*/
   };
 }

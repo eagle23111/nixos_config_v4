@@ -220,8 +220,8 @@
       kdePackages.kio
       kdePackages.qtsvg
 
-      kdePackages.ark               
-      kdePackages.dolphin-plugins  
+      kdePackages.ark
+      kdePackages.dolphin-plugins
 
       gnome-text-editor
       evince

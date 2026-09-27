@@ -99,12 +99,14 @@
           position = 6;
           isEssential = true;
         };
-        /*"Hermes Dashboard" = {
+        /*
+          "Hermes Dashboard" = {
           id = "a7b8c9d0-e1f2-3456-0123-567890123456";
           url = "http://192.168.0.116:9119";
           position = 7;
           isEssential = true;
-        };*/
+        };
+        */
       };
     in {
       inherit pins;

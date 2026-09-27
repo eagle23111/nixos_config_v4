@@ -40,7 +40,7 @@
           default = [];
         };
         gameFilter = lib.mkOption {
-          type = lib.types.enum [ "disabled" "all" "tcp" "udp" ];
+          type = lib.types.enum ["disabled" "all" "tcp" "udp"];
           default = "disabled";
           description = ''
             Game filter mode, mirroring the "Game Filter" item in zapret service.bat:
@@ -137,8 +137,14 @@
           tcp = gameFilter == "all" || gameFilter == "tcp";
           udp = gameFilter == "all" || gameFilter == "udp";
         };
-        gameFilterTCP = if gameFilterEnabled.tcp then "1024-65535" else "12";
-        gameFilterUDP = if gameFilterEnabled.udp then "1024-65535" else "12";
+        gameFilterTCP =
+          if gameFilterEnabled.tcp
+          then "1024-65535"
+          else "12";
+        gameFilterUDP =
+          if gameFilterEnabled.udp
+          then "1024-65535"
+          else "12";
         udpPorts =
           (lib.optional gameFilterEnabled.udp "1024:65535")
           ++ (
@@ -190,8 +196,7 @@
         let
           zapretConfig = mkZapretConfig cfg.zapret-discord-youtube;
           gameFilter = cfg.zapret-discord-youtube.gameFilter;
-        in
-        {
+        in {
           services.zapret = zapretConfig;
           # services.zapret only queues TCP 80/443 and udpPorts, but the game filter's
           # TCP group needs 1024-65535 queued too. Only the first packets matter
@@ -220,7 +225,7 @@
         # Uncomment to enable the game filter (mirrors service.bat menu 4).
         # Note: queues all UDP 1024-65535 (and first packets of TCP 1024-65535)
         # through zapret, which increases CPU usage.
-        # gameFilter = "all"; # or "tcp" / "udp"
+        gameFilter = "all"; # or "tcp" / "udp"
       };
     };
     services.cloudflare-warp.enable = true;

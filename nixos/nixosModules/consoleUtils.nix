@@ -31,6 +31,7 @@
       inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.default
       #wireshark
       nil
+      btrfs-assistant
 
       comma
 

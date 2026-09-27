@@ -3,9 +3,11 @@
     programs.chromium = {
       enable = true;
 
-      /*commandLineArgs = [
+      /*
+        commandLineArgs = [
         "--force-dark-mode"
-      ];*/
+      ];
+      */
 
       extensions = [
         "cjpalhdlnbpafiamejdnhcphjbkeiagm"

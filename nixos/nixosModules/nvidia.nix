@@ -40,8 +40,6 @@
       libGL
       cudaPackages.cudatoolkit
       cudaPackages.nsight_systems
-
-      
     ];
 
     services.lact.enable = true;

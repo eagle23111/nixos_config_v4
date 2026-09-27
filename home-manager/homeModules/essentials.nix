@@ -17,6 +17,19 @@
       freetube
       webcord
     ];
+    programs.prismlauncher = {
+      enable = true;
+      # Optional: package override if you need specific Java versions
+      package = pkgs.prismlauncher.override {
+        jdks = [pkgs.temurin-bin-25];
+      };
+
+      settings = {
+        AutoConnect = false;
+        CheckForUpdates = false;
+        # Add other Prism Launcher configurations here
+      };
+    };
 
     programs.vesktop = {
       enable = false;
