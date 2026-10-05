@@ -38,6 +38,7 @@
     };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
+    pi.url = "github:lukasl-dev/pi.nix";
 
     comfyui-nix = {
       url = "github:utensils/comfyui-nix";

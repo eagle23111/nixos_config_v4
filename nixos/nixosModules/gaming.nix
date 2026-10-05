@@ -18,11 +18,11 @@
 
     hardware.graphics.enable32Bit = true;
     environment.systemPackages = with pkgs; [
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.gamesentenceminer
       gamescope-wsi
       protonplus
       lutris
       wineWow64Packages.stable
-      wineWowPackages.stable 
 
       winetricks
       umu-launcher
@@ -39,20 +39,5 @@
       #samba
       #krb5
     ];
-
-    # Включаем сервис winbindd
-    /*services.samba = {
-      enable = true;
-      winbindd.enable = true; # Именно эта опция устанавливает winbind и ntlm_auth
-
-      # Следующие настройки не обязательны, но рекомендуются для корректной работы
-      nsswins = true; # Позволяет разрешать NetBIOS-имена через winbindd
-      settings = {
-        global = {
-          "workgroup" = "WORKGROUP"; # Или имя вашего домена
-          "security" = "user";
-        };
-      };
-    };*/
   };
 }

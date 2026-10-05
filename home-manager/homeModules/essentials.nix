@@ -16,10 +16,12 @@
 
       freetube
       webcord
+
+      obs-studio
+      anki
     ];
     programs.prismlauncher = {
       enable = true;
-      # Optional: package override if you need specific Java versions
       package = pkgs.prismlauncher.override {
         jdks = [pkgs.temurin-bin-25];
       };
@@ -27,32 +29,15 @@
       settings = {
         AutoConnect = false;
         CheckForUpdates = false;
-        # Add other Prism Launcher configurations here
       };
     };
-
-    programs.vesktop = {
-      enable = false;
-
-      vencord.settings = {
-        autoUpdate = true;
-        autoUpdateNotification = true;
-        notifyAboutUpdates = true;
-        plugins = {
-          ClearURLs.enabled = true;
-          FixYoutubeEmbeds.enabled = true;
-          SilentTyping.enabled = true;
-        };
-      };
-    };
-
-    programs.anki = {
+    /*programs.anki = {
       enable = true;
       addons = [
         pkgs.ankiAddons.anki-connect
         #pkgs.ankiAddons.passfail2
       ];
-    };
+    };*/
     programs.obsidian.enable = true;
 
     programs.home-manager.enable = true;

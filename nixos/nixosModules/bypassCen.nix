@@ -225,7 +225,7 @@
         # Uncomment to enable the game filter (mirrors service.bat menu 4).
         # Note: queues all UDP 1024-65535 (and first packets of TCP 1024-65535)
         # through zapret, which increases CPU usage.
-        gameFilter = "all"; # or "tcp" / "udp"
+        # gameFilter = "all"; # or "tcp" / "udp"
       };
     };
     services.cloudflare-warp.enable = true;
