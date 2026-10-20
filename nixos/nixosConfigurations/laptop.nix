@@ -75,6 +75,7 @@
     ];
 
     services.power-profiles-daemon.enable = true;
+    services.acpid.enable = true;
     services.thermald.enable = true;
 
     #services.fprintd.enable = true;
