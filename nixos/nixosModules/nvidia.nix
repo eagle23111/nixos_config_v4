@@ -38,14 +38,13 @@
       libglvnd
       nvtopPackages.full
       libGL
-      cudaPackages.cudatoolkit
-      cudaPackages.nsight_systems
+      #cudaPackages.cudatoolkit
+      #cudaPackages.nsight_systems
     ];
 
     services.lact.enable = true;
 
     hardware.nvidia = {
-      # forceFullCompositionPipeline = true;
       modesetting.enable = true;
 
       powerManagement.enable = true;
@@ -59,5 +58,19 @@
     };
     nixpkgs.config.cudaSupport = true;
     hardware.nvidia-container-toolkit.enable = true;
+    systemd.services.nvidia-power-limit = {
+      description = "Set NVIDIA GPU power limit to 200 W";
+
+      wantedBy = ["multi-user.target"];
+      after = ["nvidia-persistenced.service"];
+      wants = ["nvidia-persistenced.service"];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecCondition = "${pkgs.coreutils}/bin/test -e /dev/nvidia0";
+        ExecStart = "${pkgs.lib.getExe' config.hardware.nvidia.package "nvidia-smi"} -i 0 -pl 200";
+      };
+    };
   };
 }

@@ -39,8 +39,44 @@
       #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
       osu-lazer-bin
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.gamesentenceminer
     ];
 
+    nixpkgs.overlays = [
+      (final: prev: {
+        python3Packages =
+          prev.python3Packages
+          // {
+            show-in-file-manager = prev.python3Packages.show-in-file-manager.overrideAttrs (old: {
+              src = prev.fetchFromGitHub {
+                owner = "damonlynch";
+                repo = "showinfilemanager";
+                rev = "v1.1.6";
+                hash = "sha256-Ku9zT6NIjmiRyXmUDJK3/77wn2H2ZvcWnS5MKeHMdCM=";
+              };
+
+              nativeBuildInputs =
+                (old.nativeBuildInputs or [])
+                ++ [
+                  prev.python3Packages.hatchling
+                  prev.python3Packages.hatch-argparse-manpage
+                ];
+            });
+          };
+      })
+    ];
+
+    programs.prismlauncher = {
+      enable = true;
+      package = pkgs.prismlauncher.override {
+        jdks = [pkgs.temurin-bin-25];
+      };
+
+      settings = {
+        AutoConnect = false;
+        CheckForUpdates = false;
+      };
+    };
     programs.lutris.enable = true;
     programs.chromium.enable = true;
 

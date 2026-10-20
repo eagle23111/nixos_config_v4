@@ -4,12 +4,11 @@
   ...
 }: {
   flake.nixosModules.ai = {pkgs, ...}: {
-    
-      imports = [
+    imports = [
       inputs.pi.nixosModules.default
     ];
     programs.pi.coding-agent = {
-    enable = true;
+      enable = true;
       # rules = ''Be concise.'';
       # skills = [ ./skills/my-skill ];
       # extensions = [ ./extensions/my-extension.ts ];
@@ -20,41 +19,44 @@
       #   model = "gpt-5";
       # };
       jail.enable = true;
-      jail.permissions = combinators: with combinators; [
-        network
-        mount-cwd
+      jail.permissions = combinators:
+        with combinators; [
+          network
+          mount-cwd
 
-        # 1. Make the host's system binaries available in the jail's PATH
-        (add-path "/run/current-system/sw/bin")
+          # 1. Make the host's system binaries available in the jail's PATH
+          (add-path "/run/current-system/sw/bin")
 
-        # 2. Add the specific packages you need (this also adds their /bin to PATH)
-        /*(add-pkg-deps [
-          pkgs.jq
-          pkgs.gnumake
-          pkgs.python3
-          pkgs.coreutils
-          pkgs.curl
-        ])*/
+          # 2. Add the specific packages you need (this also adds their /bin to PATH)
+          /*
+            (add-pkg-deps [
+            pkgs.jq
+            pkgs.gnumake
+            pkgs.python3
+            pkgs.coreutils
+            pkgs.curl
+          ])
+          */
 
-        # 3. Bind specific files read-only
-        (try-readonly (noescape "~/.gitconfig"))
-        (readonly "/etc/nix")
-        (readonly "/etc/static")
-        (readonly "/nix")
+          # 3. Bind specific files read-only
+          (try-readonly (noescape "~/.gitconfig"))
+          (readonly "/etc/nix")
+          (readonly "/etc/static")
+          (readonly "/nix")
+          #(try-readonly (noescape "~/.nix-profile"))
+          (try-readonly (noescape "~/.cache"))
 
-
-        # 4. Bind the host's /bin directory read-only (if you want the actual binaries)
-        #    Note: This is often unnecessary if you use add-path, but included for completeness.
-        (readonly "/run/current-system/sw/bin")
-      ];
+          # 4. Bind the host's /bin directory read-only (if you want the actual binaries)
+          #    Note: This is often unnecessary if you use add-path, but included for completeness.
+          (readonly "/run/current-system/sw/bin")
+        ];
       # extraArgs = [ "--provider" "openai" "--model" "gpt-5" ];
       # environment.PI_CODING_AGENT_DIR.value = "/path/to/pi-agent";
       # environment.OPENAI_API_KEY.file = config.sops.secrets.openai-api-key.path;
     };
 
-
     services.comfyui = {
-      enable = true;
+      enable = false;
       gpuSupport = "cuda";
       cudaCapabilities = ["8.9"];
       enableManager = true;

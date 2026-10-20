@@ -1,18 +1,17 @@
 {...}: {
   flake.nixosModules.caches = {pkgs, ...}: {
-    nix.settings.extra-trusted-substituters = [
+    nix.settings.substituters = [
+      "https://cache.nixos.org/"
       "https://nix-community.cachix.org"
       "https://cache.nixos-cuda.org"
-      #"https://cuda-maintainers.cachix.org"
     ];
 
-    nix.settings.extra-trusted-public-keys = [
+    nix.settings.trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
-      #"cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
     ];
 
-    nix.settings.trusted-users = ["@wheel"];
     nixpkgs.config.allowUnfreePredicate = p:
       builtins.all (
         license:

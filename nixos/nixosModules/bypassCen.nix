@@ -216,16 +216,11 @@
     my.zapret = {
       enable = true;
       zapret-discord-youtube = {
-        version = "1.9.9c";
-        hash = "sha256-P+t0M9nJW9I99ZDX9M3LUFGv2vVScF1A6BdjQVXcKNE=";
+        version = "1.10.4";
+        hash = "sha256-5qKg2BvW4XcjY+Az9ocvwACcfsfBpG4I3Xh6SCPksIM=";
         batFileName = "general (ALT12).bat";
 
-        extraListGeneral = ["flathub.org" "nix-community.cachix.org" "cache.nixos-cuda.org" "nixos-apple-silicon.cachix.org"];
-
-        # Uncomment to enable the game filter (mirrors service.bat menu 4).
-        # Note: queues all UDP 1024-65535 (and first packets of TCP 1024-65535)
-        # through zapret, which increases CPU usage.
-        # gameFilter = "all"; # or "tcp" / "udp"
+        extraListGeneral = ["flathub.org" "nix-community.cachix.org" "cache.nixos-cuda.org" "nixos-apple-silicon.cachix.org" "context7.com"];
       };
     };
     services.cloudflare-warp.enable = true;

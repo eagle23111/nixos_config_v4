@@ -14,7 +14,7 @@
         capSysNice = true;
       };
     };
-    hardware.xone.enable = true; # support for the xbox controller USB dongle
+    # hardware.xone.enable = false;
 
     hardware.graphics.enable32Bit = true;
     environment.systemPackages = with pkgs; [

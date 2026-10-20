@@ -17,8 +17,23 @@
       virt-manager
       usbredir
       winboat
+      distrobox
     ];
-    virtualisation.docker.enable = true;
-    virtualisation.docker.storageDriver = "btrfs";
+    /*
+      virtualisation.docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+      storageDriver = "btrfs";
+    };
+    */
+
+    virtualisation.podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+    virtualisation.containers.storage.settings.storage.driver = "btrfs";
   };
 }

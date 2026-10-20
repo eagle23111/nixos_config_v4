@@ -2,7 +2,7 @@
   flake.homeModules.essentials = {pkgs, ...}: {
     imports = [
       inputs.self.homeModules.zsh
-      inputs.self.homeModules.neovim
+      #inputs.self.homeModules.neovim
     ];
 
     home.packages = with pkgs; [
@@ -10,9 +10,9 @@
 
       tor
       tor-browser
-      # inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.nvchad4nix.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
+      inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.mpvWithAnki
 
       freetube
       webcord
@@ -20,24 +20,15 @@
       obs-studio
       anki
     ];
-    programs.prismlauncher = {
-      enable = true;
-      package = pkgs.prismlauncher.override {
-        jdks = [pkgs.temurin-bin-25];
-      };
-
-      settings = {
-        AutoConnect = false;
-        CheckForUpdates = false;
-      };
-    };
-    /*programs.anki = {
+    /*
+      programs.anki = {
       enable = true;
       addons = [
         pkgs.ankiAddons.anki-connect
         #pkgs.ankiAddons.passfail2
       ];
-    };*/
+    };
+    */
     programs.obsidian.enable = true;
 
     programs.home-manager.enable = true;
