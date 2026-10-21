@@ -18,7 +18,7 @@
       webcord
 
       obs-studio
-      anki
+      anki-bin
     ];
     /*
       programs.anki = {

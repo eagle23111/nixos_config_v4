@@ -38,6 +38,7 @@
       hydrus
       #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
       osu-lazer-bin
+      librewolf
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.gamesentenceminer
     ];
