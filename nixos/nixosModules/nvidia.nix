@@ -73,8 +73,6 @@
 
     #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
-
-
     /*
       systemd.services.nvidia-power-limit = {
       description = "Set NVIDIA GPU power limit to 200 W";
