@@ -1,6 +1,7 @@
 {inputs, ...}: {
   flake.homeModules.zen-browser = {pkgs, ...}: {
     imports = [
+      inputs.zen-browser-flake.homeModules.default
       inputs.self.homeModules."zen-browser@extensions"
       inputs.self.homeModules."zen-browser@tabs"
     ];

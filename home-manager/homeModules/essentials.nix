@@ -2,6 +2,7 @@
   flake.homeModules.essentials = {pkgs, ...}: {
     imports = [
       inputs.self.homeModules.zsh
+      inputs.self.homeModules.librewolf
       #inputs.self.homeModules.neovim
     ];
 

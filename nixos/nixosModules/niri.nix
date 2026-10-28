@@ -88,8 +88,9 @@
     ...
   }: {
     imports = [
-      inputs.self.homeModules.zen-browser
+      #inputs.self.homeModules.zen-browser
       inputs.self.homeModules.zsh
+      inputs.self.homeModules.librewolf
     ];
     home.file.".config/niri/config.kdl".source = "${inputs.self.outPath}/assets/desktop/niri/config.kdl";
     home.file.".config/noctalia/default.toml".source = "${inputs.self.outPath}/assets/desktop/noctalia/default.toml";
@@ -104,7 +105,7 @@
             mkdir -p "$HOME/.config"
             cat > "$HOME/.config/kdeglobals" <<'EOF'
       [UiSettings]
-      ColorScheme=qt5ct
+      ColorScheme=qt6ct
 
       [General]
       TerminalApplication=kitty
@@ -196,18 +197,18 @@
         "video/x-ogm" = ["mpv.desktop"];
         "video/x-ogm+ogg" = ["mpv.desktop"];
 
-        "application/json" = ["zen-beta.desktop"];
-        "application/x-extension-htm" = ["zen-beta.desktop"];
-        "application/x-extension-html" = ["zen-beta.desktop"];
-        "application/x-extension-shtml" = ["zen-beta.desktop"];
-        "application/x-extension-xht" = ["zen-beta.desktop"];
-        "application/x-extension-xhtml" = ["zen-beta.desktop"];
-        "application/xhtml+xml" = ["zen-beta.desktop"];
-        "text/html" = ["zen-beta.desktop"];
-        "x-scheme-handler/about" = ["zen-beta.desktop"];
-        "x-scheme-handler/chrome" = ["zen-beta.desktop"];
-        "x-scheme-handler/http" = ["zen-beta.desktop"];
-        "x-scheme-handler/https" = ["zen-beta.desktop"];
+        "application/json" = ["librewolf.desktop"];
+        "application/x-extension-htm" = ["librewolf.desktop"];
+        "application/x-extension-html" = ["librewolf.desktop"];
+        "application/x-extension-shtml" = ["librewolf.desktop"];
+        "application/x-extension-xht" = ["librewolf.desktop"];
+        "application/x-extension-xhtml" = ["librewolf.desktop"];
+        "application/xhtml+xml" = ["librewolf.desktop"];
+        "text/html" = ["librewolf.desktop"];
+        "x-scheme-handler/about" = ["librewolf.desktop"];
+        "x-scheme-handler/chrome" = ["librewolf.desktop"];
+        "x-scheme-handler/http" = ["librewolf.desktop"];
+        "x-scheme-handler/https" = ["librewolf.desktop"];
       };
     };
     home.packages = with pkgs; [

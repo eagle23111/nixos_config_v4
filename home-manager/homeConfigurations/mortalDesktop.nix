@@ -10,9 +10,6 @@
     };
 
     imports = [
-      inputs.nixvim.homeModules.default
-      inputs.zen-browser-flake.homeModules.default
-
       self.homeModules.zsh
       #self.homeModules.hyprland
       self.homeModules.mortalDesktopModule
@@ -38,7 +35,7 @@
       hydrus
       #inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.hydownloader
       osu-lazer-bin
-      librewolf
+      #librewolf
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.ryujinxCanary
       inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.gamesentenceminer
     ];

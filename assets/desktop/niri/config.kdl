@@ -453,7 +453,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+Q hotkey-overlay-title="Open a web browser" {spawn "zen-beta"; }
+    Mod+Q hotkey-overlay-title="Open a web browser" {spawn "librewolf"; }
     Mod+C hotkey-overlay-title="Open a file browser" {spawn "dolphin"; }
     Mod+R hotkey-overlay-title="Run an Application" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+L hotkey-overlay-title="Lock the Screen" { spawn-sh "noctalia msg session lock"; }

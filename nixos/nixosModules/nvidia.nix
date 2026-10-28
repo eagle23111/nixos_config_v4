@@ -73,14 +73,7 @@
 
     #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
-  hardware.nvidia.package =
-    config.boot.kernelPackages.nvidiaPackages.stable.overrideAttrs (oldAttrs: {
-      postFixup = (oldAttrs.postFixup or "") + ''
-        ${patchelf-fixed}/bin/patchelf \
-          --set-rpath "$(${patchelf-fixed}/bin/patchelf --print-rpath $bin/bin/nvidia-smi)" \
-          $bin/bin/nvidia-smi
-      '';
-    });
+
 
     /*
       systemd.services.nvidia-power-limit = {

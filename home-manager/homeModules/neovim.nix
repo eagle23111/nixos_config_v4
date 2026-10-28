@@ -1,5 +1,6 @@
 {inputs, ...}: {
   flake.homeModules.neovim = {pkgs, ...}: {
+    imports = [      inputs.nixvim.homeModules.default];
     stylix.targets.nixvim.enable = true;
     programs.nixvim = {
       enable = true;
